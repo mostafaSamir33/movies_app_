@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/main_layer/main_layer_screen.dart';
 import 'package:movies_app/onboarding/pageview_pages/onboarding_screen_1.dart';
 
 import 'common/app_colors.dart';
@@ -37,13 +38,25 @@ class MyApp extends StatelessWidget {
           thickness: 1,
         ),
         appBarTheme: const AppBarTheme(backgroundColor: AppColors.black),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: AppColors.grey,
+          selectedItemColor: AppColors.yellow,
+          unselectedItemColor: AppColors.white,
+          selectedIconTheme: IconThemeData(size: 24),
+          unselectedIconTheme: IconThemeData(size: 24),
+        ),
       ),
       themeMode: ThemeMode.light,
       routes: {
         OnboardingScreen1.routeName: (_) => OnboardingScreen1(),
         OnboardingScreen2.routeName: (_) => OnboardingScreen2(),
+        MainLayerScreen.routeName: (_) => const MainLayerScreen(),
       },
-      initialRoute: OnboardingScreen1.routeName,
+      initialRoute: MainLayerScreen.routeName,
+      //OnboardingScreen1.routeName,
     );
   }
 }
