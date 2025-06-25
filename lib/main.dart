@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/onboarding/pageview_pages/onboarding_screen_1.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/common/app_constants.dart';
+import 'package:movies_app/common/screens/update_profile_screen.dart';
+import 'package:movies_app/onboarding/onboarding_screens/onboarding_screen_1.dart';
 
 import 'common/app_colors.dart';
-import 'common/custom_text_styles.dart';
-import 'onboarding/pageview_pages/onboarding_screen_2.dart';
+import 'common/app_prefs.dart';
+import 'onboarding/onboarding_screens/onboarding_screen_2.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppPrefs.init();
   runApp(const MyApp());
 }
 
@@ -14,36 +19,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.black,
-          brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-        scaffoldBackgroundColor: AppColors.black,
-        textTheme: const TextTheme(
-          bodySmall: CustomTextStyles.style14w400,
-          bodyMedium: CustomTextStyles.style16w400,
-          bodyLarge: CustomTextStyles.style20w400,
-          labelSmall: CustomTextStyles.style36w500,
-          labelMedium: CustomTextStyles.style20w600,
-          labelLarge: CustomTextStyles.style20w700,
-          titleSmall: CustomTextStyles.style24w700,
-        ),
-        dividerTheme: const DividerThemeData(
-          color: AppColors.yellow,
-          thickness: 1,
-        ),
-        appBarTheme: const AppBarTheme(backgroundColor: AppColors.black),
-      ),
-      themeMode: ThemeMode.light,
-      routes: {
-        OnboardingScreen1.routeName: (_) => OnboardingScreen1(),
-        OnboardingScreen2.routeName: (_) => OnboardingScreen2(),
-      },
-      initialRoute: OnboardingScreen1.routeName,
+    return ScreenUtilInit(
+      designSize: Size(430, 932),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder:
+          (context, child) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: AppColors.black,
+                brightness: Brightness.light,
+              ),
+              useMaterial3: true,
+              scaffoldBackgroundColor: AppColors.black,
+              dividerTheme: const DividerThemeData(
+                color: AppColors.yellow,
+                thickness: 1,
+              ),
+              appBarTheme: const AppBarTheme(backgroundColor: AppColors.black),
+            ),
+            themeMode: ThemeMode.light,
+            routes: {
+              OnboardingScreen1.routeName: (_) => OnboardingScreen1(),
+              OnboardingScreen2.routeName: (_) => OnboardingScreen2(),
+              UpdateProfileScreen.routeName: (_) => UpdateProfileScreen(),
+            },
+            initialRoute:
+                AppPrefs.onboardingGetBool(AppConstants.onboardingKey) == null
+                    ? OnboardingScreen1.routeName
+                    : UpdateProfileScreen.routeName,
+          ),
     );
   }
 }
