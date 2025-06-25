@@ -4,7 +4,6 @@ import 'package:movies_app/common/app_constants.dart';
 import 'package:movies_app/common/screens/update_profile_screen.dart';
 import 'package:movies_app/onboarding/onboarding_screens/onboarding_screen_1.dart';
 import 'package:movies_app/main_layer/main_layer_screen.dart';
-import 'package:movies_app/onboarding/pageview_pages/onboarding_screen_1.dart';
 
 import 'common/app_colors.dart';
 import 'common/app_prefs.dart';
