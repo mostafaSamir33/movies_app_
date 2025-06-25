@@ -55,8 +55,8 @@ class MyApp extends StatelessWidget {
         OnboardingScreen2.routeName: (_) => OnboardingScreen2(),
         MainLayerScreen.routeName: (_) => const MainLayerScreen(),
       },
-      initialRoute: MainLayerScreen.routeName,
-      //OnboardingScreen1.routeName,
+      initialRoute: //MainLayerScreen.routeName,
+          OnboardingScreen1.routeName,
     );
   }
 }
