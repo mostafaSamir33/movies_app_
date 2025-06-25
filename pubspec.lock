@@ -428,10 +428,7 @@ packages:
       sha256: ddfa8d30d89985b96407efce8acbdd124701f96741f2d981ca860662f1c0dc02
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
     version: "15.0.0"
-=======
-    version: "14.3.1"
   web:
     dependency: transitive
     description:
@@ -448,7 +445,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
->>>>>>> 7893544343b8d694af72070b717381894126afdc
   xml:
     dependency: transitive
     description:
