@@ -64,10 +64,10 @@ class MyApp extends StatelessWidget {
           Forgetpassword.routeName: (_) => Forgetpassword(),
           Signupscreen.routeName: (_) => Signupscreen(),
         },
-        initialRoute: Signupscreen.routeName,
-        // AppPrefs.onboardingGetBool(AppConstants.onboardingKey) == null
-        //     ? OnboardingScreen1.routeName
-        //     : UpdateProfileScreen.routeName,
+        initialRoute:
+            AppPrefs.onboardingGetBool(AppConstants.onboardingKey) == null
+                ? OnboardingScreen1.routeName
+                : Signinscreen.routeName,
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:movies_app/UI/auth/screens/forgetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
+import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -70,7 +71,8 @@ class _SigninscreenState extends State<Signinscreen> {
               ),
               CustomElevatedButtonFilled(
                 buttonText: 'Login',
-                onPressed: () {},
+                onPressed: () => Navigator.pushReplacementNamed(
+                    context, MainLayerScreen.routeName),
               ),
               SizedBox(
                 height: size.height * .03,
