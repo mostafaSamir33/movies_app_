@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/custom_text_styles.dart';
+
+class Customtextformfield extends StatefulWidget {
+  const Customtextformfield(
+      {super.key,
+      required this.hintText,
+      required this.password,
+      required this.prefixIconPath,
+      required this.controller});
+  final String hintText;
+  final bool password;
+  final String prefixIconPath;
+  final TextEditingController controller;
+
+  @override
+  State<Customtextformfield> createState() => _CustomtextformfieldState();
+}
+
+class _CustomtextformfieldState extends State<Customtextformfield> {
+  bool isObscure = false;
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: TextFormField(
+        style: CustomTextStyles.style20w400.copyWith(color: AppColors.white),
+        cursorColor: AppColors.white,
+        controller: widget.controller,
+        obscureText: isObscure,
+        decoration: InputDecoration(
+          suffixIconColor: AppColors.white,
+          hintStyle:
+              CustomTextStyles.style16w400.copyWith(color: AppColors.white),
+          fillColor: AppColors.grey,
+          filled: true,
+          hintText: widget.hintText,
+          suffixIcon: widget.password == true
+              ? GestureDetector(
+                  onTap: () {
+                    isObscure = !isObscure;
+                    setState(() {});
+                  },
+                  child:
+                      Icon(isObscure ? Icons.visibility_off : Icons.visibility))
+              : null,
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SvgPicture.asset(
+              widget.prefixIconPath,
+              width: size.width * .02,
+              height: size.height * .03,
+              colorFilter: ColorFilter.mode(
+                AppColors.white,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          border: customBorder(),
+          enabledBorder: customBorder(),
+          focusedBorder: customBorder(),
+        ),
+      ),
+    );
+  }
+
+  OutlineInputBorder customBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+    );
+  }
+}
