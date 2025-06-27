@@ -48,4 +48,13 @@ class AppAssets {
   static const String googleIcon = 'assets/icons/google.svg';
   static const String egIcon = 'assets/images/auth_images/EG.png';
   static const String enIcon = 'assets/images/auth_images/EN.png';
+//===============Home_Tap=================================\\
+  static const String filmBlackWidow = 'assets/images/home_tap/film_black_widow.jpg';
+  static const String film1917 = 'assets/images/home_tap/film_1917.jpg';
+  static const String filmCa = 'assets/images/home_tap/film_ca.jpg';
+  static const String filmBaby = 'assets/images/home_tap/film_baby.jpg';
+  static const String availableNow = 'assets/images/home_tap/available_now.png';
+  static const String theDarkKnight = 'assets/images/home_tap/the_dark_knight.jpg';
+  static const String watchNow = 'assets/images/home_tap/watch_now.png';
+
 }

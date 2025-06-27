@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/widgets/action_movies_section.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/widgets/available_now_section.dart';
+
 
 class HomeTabScreen extends StatelessWidget {
   const HomeTabScreen({super.key});
@@ -6,11 +9,15 @@ class HomeTabScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home'), centerTitle: true),
-      body: Center(
-        child: Text(
-          'Home Tab Content',
-          style: Theme.of(context).textTheme.bodyLarge,
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            AvailableNowSection(),
+            SizedBox(height: 32),
+            ActionMoviesSection(),
+            SizedBox(height: 40),
+          ],
         ),
       ),
     );
