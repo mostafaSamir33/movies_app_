@@ -4,7 +4,7 @@ import 'package:movies_app/common/app_colors.dart';
 import 'package:movies_app/common/custom_text_styles.dart';
 
 import '../../common/app_assets.dart';
-import '../widgets/custom_elevated_button_filled.dart';
+import '../../widgets/custom_elevated_button_filled.dart';
 
 class Page1 extends StatelessWidget {
   final PageController controller;

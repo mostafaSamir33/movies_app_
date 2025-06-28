@@ -5,7 +5,7 @@ import 'package:movies_app/onboarding/widgets/custom_outlined_button.dart';
 import '../../common/app_assets.dart';
 import '../../common/app_colors.dart';
 import '../../common/custom_text_styles.dart';
-import '../widgets/custom_elevated_button_filled.dart';
+import '../../widgets/custom_elevated_button_filled.dart';
 
 class Page2 extends StatelessWidget {
   final PageController controller;

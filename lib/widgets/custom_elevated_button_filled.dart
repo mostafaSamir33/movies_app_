@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../common/app_colors.dart';
-import '../../common/custom_text_styles.dart';
+import '../common/app_colors.dart';
+import '../common/custom_text_styles.dart';
 
 class CustomElevatedButtonFilled extends StatelessWidget {
-  final String buttonText;
+  final String? buttonText;
   final void Function() onPressed;
+  final Widget? buttonTextWidget;
+  final Color? buttonColor;
 
   const CustomElevatedButtonFilled({
     super.key,
-    required this.buttonText,
+    this.buttonText,
     required this.onPressed,
+    this.buttonTextWidget,
+    this.buttonColor,
   });
 
   @override
@@ -22,13 +26,17 @@ class CustomElevatedButtonFilled extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.r),
         ),
-        backgroundColor: AppColors.yellow,
+        backgroundColor: buttonColor ?? AppColors.yellow,
         minimumSize: Size(double.infinity.w, 56.h),
       ),
-      child: Text(
-        buttonText,
-        style: CustomTextStyles.style20w600.copyWith(color: AppColors.black),
-      ),
+      child:
+          buttonTextWidget ??
+          Text(
+            buttonText ?? '',
+            style: CustomTextStyles.style20w600.copyWith(
+              color: AppColors.black,
+            ),
+          ),
     );
   }
 }

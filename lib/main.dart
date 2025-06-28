@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/common/app_constants.dart';
-import 'package:movies_app/common/screens/update_profile_screen.dart';
 import 'package:movies_app/onboarding/onboarding_screens/onboarding_screen_1.dart';
+import 'package:movies_app/providers/avatar_bottom_sheet_provider.dart';
+import 'package:movies_app/screens/update_profile_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'common/app_colors.dart';
 import 'common/app_prefs.dart';
@@ -11,7 +13,16 @@ import 'onboarding/onboarding_screens/onboarding_screen_2.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPrefs.init();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AvatarBottomSheetProvider(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

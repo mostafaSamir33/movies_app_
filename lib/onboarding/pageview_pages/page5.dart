@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/common/app_constants.dart';
 import 'package:movies_app/common/app_prefs.dart';
-import 'package:movies_app/common/screens/update_profile_screen.dart';
 
 import '../../common/app_assets.dart';
 import '../../common/app_colors.dart';
 import '../../common/custom_text_styles.dart';
-import '../widgets/custom_elevated_button_filled.dart';
+import '../../screens/update_profile_screen.dart';
+import '../../widgets/custom_elevated_button_filled.dart';
 import '../widgets/custom_outlined_button.dart';
 
 class Page5 extends StatelessWidget {
@@ -81,11 +81,10 @@ class Page5 extends StatelessWidget {
                   SizedBox(height: 16.h),
                   CustomOutlinedButton(
                     buttonText: 'Back', //TODO:localization
-                    onPressed:
-                        () => controller.previousPage(
-                          duration: Duration(seconds: 1),
-                          curve: Curves.easeInOut,
-                        ),
+                    onPressed: () => controller.previousPage(
+                      duration: Duration(seconds: 1),
+                      curve: Curves.easeInOut,
+                    ),
                   ),
                 ],
               ),

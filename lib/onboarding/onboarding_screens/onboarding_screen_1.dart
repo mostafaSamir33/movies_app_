@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/common/app_assets.dart';
 import 'package:movies_app/common/app_colors.dart';
 import 'package:movies_app/common/custom_text_styles.dart';
-import 'package:movies_app/onboarding/widgets/custom_elevated_button_filled.dart';
+import 'package:movies_app/widgets/custom_elevated_button_filled.dart';
 
 import 'onboarding_screen_2.dart';
 
