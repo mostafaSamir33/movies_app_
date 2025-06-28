@@ -26,7 +26,7 @@ class Signupscreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () =>
-                Navigator.pushReplacementNamed(context, Signinscreen.routeName),
+                Navigator.of(context).pop(),
             icon: Icon(Icons.arrow_back)),
         title: Text(
           'Register',
@@ -99,7 +99,7 @@ class Signupscreen extends StatelessWidget {
             Customtextformfield(
               hintText: 'Phone Number',
               password: false,
-              prefixIconPath: AppAssets.phoneIcon,
+              prefixIconPath: AppAssets.phoneIcon1,
               controller: phoneController,
             ),
             CustomElevatedButtonFilled(
@@ -122,8 +122,7 @@ class Signupscreen extends StatelessWidget {
                           color: AppColors.yellow, fontWeight: FontWeight.bold),
                       text: 'Login',
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.pushReplacementNamed(
-                            context, Signinscreen.routeName),
+                        ..onTap = () => Navigator.of(context).pop(),
                     ),
                   ],
                 ),

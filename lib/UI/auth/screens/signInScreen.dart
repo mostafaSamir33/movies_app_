@@ -10,14 +10,16 @@ import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 
-class Signinscreen extends StatefulWidget {
+class SignInScreen extends StatefulWidget {
   static const String routeName = '/Signinscreen';
 
+  const SignInScreen({super.key});
+
   @override
-  State<Signinscreen> createState() => _SigninscreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SigninscreenState extends State<Signinscreen> {
+class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -31,17 +33,13 @@ class _SigninscreenState extends State<Signinscreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: size.height * .03),
               Image(
                 image: AssetImage(AppAssets.signinLogo),
                 width: size.width * .28,
                 height: size.height * .12,
               ),
-              SizedBox(
-                height: size.height * .05,
-              ),
+              SizedBox(height: size.height * .05),
               Customtextformfield(
                 hintText: 'Email',
                 password: false,
@@ -57,78 +55,73 @@ class _SigninscreenState extends State<Signinscreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
-                  onTap: () =>
-                      Navigator.pushNamed(context, Forgetpassword.routeName),
+                  onTap:
+                      () => Navigator.pushNamed(
+                        context,
+                        Forgetpassword.routeName,
+                      ),
                   child: Text(
                     'Forget Password ?',
-                    style: CustomTextStyles.style14w400
-                        .copyWith(color: AppColors.yellow),
+                    style: CustomTextStyles.style14w400.copyWith(
+                      color: AppColors.yellow,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: size.height * .05,
-              ),
+              SizedBox(height: size.height * .05),
               CustomElevatedButtonFilled(
                 buttonText: 'Login',
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, MainLayerScreen.routeName),
+                onPressed:
+                    () => Navigator.pushReplacementNamed(
+                      context,
+                      MainLayerScreen.routeName,
+                    ),
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: size.height * .03),
               RichText(
                 text: TextSpan(
                   children: [
-                    TextSpan(
-                      text: 'Don’t Have Account ? ',
-                    ),
+                    TextSpan(text: 'Don’t Have Account ? '),
                     TextSpan(
                       style: CustomTextStyles.style14w400.copyWith(
-                          color: AppColors.yellow, fontWeight: FontWeight.bold),
+                        color: AppColors.yellow,
+                        fontWeight: FontWeight.bold,
+                      ),
                       text: 'Create One',
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.pushReplacementNamed(
-                            context, Signupscreen.routeName),
+                      recognizer:
+                          TapGestureRecognizer()
+                            ..onTap =
+                                () => Navigator.pushNamed(
+                                  context,
+                                  Signupscreen.routeName,
+                                ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: size.height * .03),
               Row(
                 children: [
-                  Expanded(
-                      child: Divider(
-                    indent: 75,
-                  )),
+                  Expanded(child: Divider(indent: 75)),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Text(
                       'OR',
-                      style: CustomTextStyles.style16w400
-                          .copyWith(color: AppColors.yellow),
+                      style: CustomTextStyles.style16w400.copyWith(
+                        color: AppColors.yellow,
+                      ),
                     ),
                   ),
-                  Expanded(
-                    child: Divider(
-                      endIndent: 75,
-                    ),
-                  ),
+                  Expanded(child: Divider(endIndent: 75)),
                 ],
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: size.height * .03),
               CustomElevatedButtonFilled(
-                isSinginPage: true,
+                isSingInPage: true,
                 buttonText: 'Login With Google',
                 onPressed: () {},
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: size.height * .03),
               Customswitch(
                 inactiveIcon: AppAssets.enIcon,
                 activeIcon: AppAssets.egIcon,

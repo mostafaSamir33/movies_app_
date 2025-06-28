@@ -1,4 +1,4 @@
-import 'package:movies_app/common/app_assets.dart';
+import 'package:movies_app/core/utils/app_assets.dart';
 
 class AvatarBottomSheetModel {
   final String avatarImage;

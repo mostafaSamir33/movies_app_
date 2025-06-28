@@ -8,7 +8,8 @@ class AvatarBottomSheetProvider extends ChangeNotifier {
 
   void selectAvatar(int index) {
     selectedIndex = index;
-    selectedAvatar = AvatarBottomSheetModel.avatarImages[selectedIndex??7].avatarImage;
+    selectedAvatar =
+        AvatarBottomSheetModel.avatarImages[selectedIndex ?? 7].avatarImage;
     notifyListeners();
   }
 

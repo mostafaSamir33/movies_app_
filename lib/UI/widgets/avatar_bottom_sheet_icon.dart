@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/common/app_colors.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/avatar_bottom_sheet_provider.dart';
+import '../../core/providers/avatar_bottom_sheet_provider.dart';
+import '../../core/utils/app_colors.dart';
 
 class AvatarBottomSheetIcon extends StatefulWidget {
   final String avatarImage;

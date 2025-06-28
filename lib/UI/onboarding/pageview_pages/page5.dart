@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/common/app_constants.dart';
-import 'package:movies_app/common/app_prefs.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_prefs.dart';
-import 'package:movies_app/UI/screens/update_profile_screen.dart';
 
-import '../../common/app_assets.dart';
-import '../../common/app_colors.dart';
-import '../../common/custom_text_styles.dart';
-import '../../screens/update_profile_screen.dart';
-import '../../widgets/custom_elevated_button_filled.dart';
-import '../widgets/custom_outlined_button.dart';
 import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/custom_text_styles.dart';
@@ -80,7 +71,7 @@ class Page5 extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(
                         context,
-                      ).pushReplacementNamed(Signinscreen.routeName);
+                      ).pushReplacementNamed(SignInScreen.routeName);
                       AppPrefs.onboardingSetBool(
                         AppConstants.onboardingKey,
                         true,
@@ -90,10 +81,11 @@ class Page5 extends StatelessWidget {
                   SizedBox(height: 16.h),
                   CustomOutlinedButton(
                     buttonText: 'Back', //TODO:localization
-                    onPressed: () => controller.previousPage(
-                      duration: Duration(seconds: 1),
-                      curve: Curves.easeInOut,
-                    ),
+                    onPressed:
+                        () => controller.previousPage(
+                          duration: Duration(seconds: 1),
+                          curve: Curves.easeInOut,
+                        ),
                   ),
                 ],
               ),
