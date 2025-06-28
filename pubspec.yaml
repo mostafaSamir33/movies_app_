@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.6.1
+  sdk: ^3.7.2
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -44,6 +44,8 @@ dependencies:
 
 
 
+  flutter_svg: ^2.2.0
+  provider: ^6.1.5
 
 dev_dependencies:
   flutter_test:
@@ -76,12 +78,14 @@ flutter:
      - assets/images/auth_images/profile/
      - assets/images/home_tap/
 
+     - assets/images/update_profile_images/
+     - assets/icons/update_profile_icons/
   #   - images/a_dot_ham.jpeg
-  
-   
-   
-    
-    
+
+
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
