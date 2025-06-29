@@ -24,7 +24,6 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
   bool isObscure = false;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(bottom: 24.r),
       child: TextFormField(
