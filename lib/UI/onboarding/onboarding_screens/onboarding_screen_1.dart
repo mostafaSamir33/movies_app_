@@ -27,10 +27,10 @@ class OnboardingScreen1 extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.black,
-                  AppColors.black.withValues(alpha: 0.9),
-                  AppColors.black.withValues(alpha: 0.5),
-                  AppColors.black.withValues(alpha: 0),
+                  AppColors.black1,
+                  AppColors.black1.withValues(alpha: 0.9),
+                  AppColors.black1.withValues(alpha: 0.5),
+                  AppColors.black1.withValues(alpha: 0),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,

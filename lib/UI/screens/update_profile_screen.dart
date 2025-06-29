@@ -163,7 +163,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
               buttonTextWidget: Text(
                 'Update Data', //TODO:localization
                 style: CustomTextStyles.style20w400.copyWith(
-                  color: AppColors.black,
+                  color: AppColors.black1,
                   fontFamily: 'Roboto',
                 ),
               ),

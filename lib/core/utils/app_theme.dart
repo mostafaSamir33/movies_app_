@@ -4,17 +4,17 @@ import 'package:movies_app/core/utils/app_colors.dart';
 class Apptheme {
   static ThemeData themeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.black,
+      seedColor: AppColors.black1,
       brightness: Brightness.light,
     ),
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.black,
+    scaffoldBackgroundColor: AppColors.black1,
     dividerTheme: const DividerThemeData(
       color: AppColors.yellow,
       thickness: 1,
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.black1,
       foregroundColor: AppColors.yellow,
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

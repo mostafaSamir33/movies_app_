@@ -79,6 +79,8 @@ flutter:
 
      - assets/images/update_profile_images/
      - assets/icons/update_profile_icons/
+     - assets/icons/profile_tab_icons/
+     - assets/images/profile_tab_images/
 
   #   - images/a_dot_ham.jpeg
   

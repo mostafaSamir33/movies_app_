@@ -43,17 +43,19 @@ class CustomElevatedButtonFilled extends StatelessWidget {
                 Text(
                   buttonText ?? '',
                   style: CustomTextStyles.style20w600.copyWith(
-                    color: AppColors.black,
+                    color: AppColors.black1,
                   ),
                 ),
               ],
             )
-          : Text(
-              buttonText ?? '',
-              style: CustomTextStyles.style20w600.copyWith(
-                color: AppColors.black,
-              ),
-            ),
+          : buttonText != null
+              ? Text(
+                  buttonText!,
+                  style: CustomTextStyles.style20w600.copyWith(
+                    color: AppColors.black1,
+                  ),
+                )
+              : buttonTextWidget,
     );
   }
 }
