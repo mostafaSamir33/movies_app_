@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/widgets/watch_now_banner.dart';
+
 import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_colors.dart';
 import 'data/movies_data.dart';
@@ -29,8 +30,8 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                AppColors.black.withAlpha(204),
-                AppColors.black.withAlpha(153),
+                AppColors.black1.withAlpha(204),
+                AppColors.black1.withAlpha(153),
                 Colors.black
               ],
               stops: [0.0, 0.5, 1.0],

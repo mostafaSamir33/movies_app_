@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 
 import 'UI/onboarding/onboarding_screens/onboarding_screen_2.dart';
 import 'core/providers/avatar_bottom_sheet_provider.dart';
-import 'core/utils/app_colors.dart';
 import 'core/utils/app_prefs.dart';
 
 Future<void> main() async {

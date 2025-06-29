@@ -152,6 +152,8 @@ class ProfileTabHeader extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       AppAssets.watchListIcon,
+                      height: 16.h,
+                      width: 30.w,
                     ),
                     SizedBox(
                       height: 10.4.h,
@@ -168,6 +170,8 @@ class ProfileTabHeader extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       AppAssets.historyIcon,
+                      height: 42.h,
+                      width: 42.w,
                     ),
                     // SizedBox(
                     //   height: 10.4.h,
