@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/UI/screens/update_profile_screen.dart';
+import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
+import 'package:provider/provider.dart';
 
 class ProfileTabHeader extends StatelessWidget {
   final TabController controller;
@@ -16,6 +18,7 @@ class ProfileTabHeader extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(color: AppColors.black2),
       child: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             Padding(
@@ -28,7 +31,10 @@ class ProfileTabHeader extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        AppAssets.avatarImage8,
+                        context
+                                .watch<AvatarBottomSheetProvider>()
+                                .selectedAvatar ??
+                            AppAssets.avatarImage8,
                         height: 118.h,
                         width: 118.w,
                       ),
@@ -85,7 +91,7 @@ class ProfileTabHeader extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.r)
-                  .copyWith(top: 22.r, bottom: 20.r),
+                  .copyWith(top: 22.r, bottom: 30.r),
               child: Row(
                 children: [
                   Expanded(
@@ -142,47 +148,81 @@ class ProfileTabHeader extends StatelessWidget {
             ),
             TabBar(
               controller: controller,
-              indicatorWeight: 3,
+              indicatorWeight: 3.r,
               indicatorColor: AppColors.yellow,
               indicatorSize: TabBarIndicatorSize.tab,
               dividerColor: Colors.transparent,
+              labelStyle: CustomTextStyles.style20w400
+                  .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
+              unselectedLabelStyle: CustomTextStyles.style20w400
+                  .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
               tabs: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.r),
+                  child: Tab(
+                    text: 'Watch List', //TODO:localization
+                    iconMargin: EdgeInsets.only(bottom: 12.r),
+                    icon: SvgPicture.asset(
                       AppAssets.watchListIcon,
-                      height: 16.h,
-                      width: 30.w,
+                      height: 24.h,
+                      width: 38.w,
                     ),
-                    SizedBox(
-                      height: 10.4.h,
-                    ),
-                    Text(
-                      'Watch List', //TODO:localization
-                      style: CustomTextStyles.style20w400.copyWith(
-                          color: AppColors.white, fontFamily: 'Roboto'),
-                    )
-                  ],
+                  ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.r),
+                  child: Tab(
+                    text: 'History', //TODO:localization
+                    iconMargin: EdgeInsets.only(bottom: 12.r),
+                    icon: SvgPicture.asset(
                       AppAssets.historyIcon,
-                      height: 42.h,
-                      width: 42.w,
+                      height: 30.h,
+                      width: 36.w,
                     ),
-                    // SizedBox(
-                    //   height: 10.4.h,
-                    // ),
-                    Text(
-                      'History', //TODO:localization
-                      style: CustomTextStyles.style20w400.copyWith(
-                          color: AppColors.white, fontFamily: 'Roboto'),
-                    )
-                  ],
+                  ),
                 ),
+                // Padding(
+                //   padding: EdgeInsets.only(bottom: 6.r),
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       SvgPicture.asset(
+                //         AppAssets.watchListIcon,
+                //         height: 24.h,
+                //         width: 38.w,
+                //       ),
+                //       SizedBox(
+                //         height: 12.h,
+                //       ),
+                //       Text(
+                //         'Watch List', //TODO:localization
+                //         style: CustomTextStyles.style20w400.copyWith(
+                //             color: AppColors.white, fontFamily: 'Roboto'),
+                //       )
+                //     ],
+                //   ),
+                // ),
+                // Padding(
+                //   padding: EdgeInsets.only(bottom: 6.r),
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       SvgPicture.asset(
+                //         AppAssets.historyIcon,
+                //         height: 30.h,
+                //         width: 36.w,
+                //       ),
+                //       SizedBox(
+                //         height: 12.h,
+                //       ),
+                //       Text(
+                //         'History', //TODO:localization
+                //         style: CustomTextStyles.style20w400.copyWith(
+                //             color: AppColors.white, fontFamily: 'Roboto'),
+                //       )
+                //     ],
+                //   ),
+                // ),
               ],
             )
           ],

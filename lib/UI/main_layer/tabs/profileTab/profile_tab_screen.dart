@@ -18,16 +18,14 @@ class _ProfileTabScreenState extends State<ProfileTabScreen>
     return Scaffold(
       body: Column(
         children: [
+          ProfileTabHeader(
+            controller: controller,
+          ),
           Expanded(
-              flex: 7,
-              child: ProfileTabHeader(
-                controller: controller,
-              )),
-          Expanded(
-              flex: 8,
-              child: ProfileTabBody(
-                controller: controller,
-              )),
+            child: ProfileTabBody(
+              controller: controller,
+            ),
+          ),
         ],
       ),
     );
