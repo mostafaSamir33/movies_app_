@@ -1,4 +1,4 @@
-
+import 'package:flutter/material.dart';
 
 class AppAssets {
   //onboarding images
@@ -44,7 +44,6 @@ class AppAssets {
   static const String searchIcon = 'assets/icons/searchIcon.png';
   static const String profileIcon = 'assets/icons/profileIcon.png';
   static const String exploreIcon = 'assets/icons/exploreIcon.png';
-
   //===============AUTH=================================\\
   static const String profile1 =
       'assets/images/auth_images/profile/profile1.png';
@@ -67,7 +66,6 @@ class AppAssets {
   static const String forgetPassword =
       'assets/images/auth_images/Forgot password.png';
   static const String signinLogo = 'assets/images/auth_images/signinLogo.png';
-
   //===============AUTH_ICONS=================================\\
   static const String idIcon = 'assets/icons/idIcon.svg';
   static const String emailIcon = 'assets/icons/email.svg';
@@ -76,7 +74,6 @@ class AppAssets {
   static const String googleIcon = 'assets/icons/google.svg';
   static const String egIcon = 'assets/images/auth_images/EG.png';
   static const String enIcon = 'assets/images/auth_images/EN.png';
-
 //===============Home_Tap=================================\\
   static const String filmBlackWidow =
       'assets/images/home_tap/film_black_widow.jpg';
@@ -96,4 +93,12 @@ class AppAssets {
       'assets/icons/profile_tab_icons/history_icon.svg';
   static const String watchListIcon =
       'assets/icons/profile_tab_icons/watch_list_icon.svg';
+//===============exploreTab=================================\\
+  static const String avengers = 'assets/images/explore_tap/avengers.jpg';
+  static const String blackWidow = 'assets/images/explore_tap/black_widow.png';
+  static const String civil = 'assets/images/explore_tap/civil.jpg';
+  static const String doctorStrange =
+      'assets/images/explore_tap/doctor_strange.jpg';
+  static const String ironMan = 'assets/images/explore_tap/iron_man.jpg';
+  static const String joker = 'assets/images/explore_tap/joker.jpg';
 }

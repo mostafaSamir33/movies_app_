@@ -19,6 +19,7 @@ class _MainLayerScreenState extends State<MainLayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
