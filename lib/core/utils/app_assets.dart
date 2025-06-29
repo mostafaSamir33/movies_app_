@@ -83,4 +83,12 @@ class AppAssets {
   static const String theDarkKnight = 'assets/images/home_tap/the_dark_knight.jpg';
   static const String watchNow = 'assets/images/home_tap/watch_now.png';
 
+//===============exploreTab=================================\\
+  static const String avengers = 'assets/images/explore_tap/avengers.jpg';
+  static const String blackWidow = 'assets/images/explore_tap/black_widow.png';
+  static const String civil = 'assets/images/explore_tap/civil.jpg';
+  static const String doctorStrange =
+      'assets/images/explore_tap/doctor_strange.jpg';
+  static const String ironMan = 'assets/images/explore_tap/iron_man.jpg';
+  static const String joker = 'assets/images/explore_tap/joker.jpg';
 }
