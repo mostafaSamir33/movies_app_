@@ -181,48 +181,6 @@ class ProfileTabHeader extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(bottom: 6.r),
-                //   child: Column(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       SvgPicture.asset(
-                //         AppAssets.watchListIcon,
-                //         height: 24.h,
-                //         width: 38.w,
-                //       ),
-                //       SizedBox(
-                //         height: 12.h,
-                //       ),
-                //       Text(
-                //         'Watch List', //TODO:localization
-                //         style: CustomTextStyles.style20w400.copyWith(
-                //             color: AppColors.white, fontFamily: 'Roboto'),
-                //       )
-                //     ],
-                //   ),
-                // ),
-                // Padding(
-                //   padding: EdgeInsets.only(bottom: 6.r),
-                //   child: Column(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       SvgPicture.asset(
-                //         AppAssets.historyIcon,
-                //         height: 30.h,
-                //         width: 36.w,
-                //       ),
-                //       SizedBox(
-                //         height: 12.h,
-                //       ),
-                //       Text(
-                //         'History', //TODO:localization
-                //         style: CustomTextStyles.style20w400.copyWith(
-                //             color: AppColors.white, fontFamily: 'Roboto'),
-                //       )
-                //     ],
-                //   ),
-                // ),
               ],
             )
           ],
