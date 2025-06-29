@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
@@ -15,7 +16,6 @@ class Signupscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     TextEditingController passwordController = TextEditingController();
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
@@ -25,21 +25,23 @@ class Signupscreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () =>
-                Navigator.pushReplacementNamed(context, Signinscreen.routeName),
-            icon: Icon(Icons.arrow_back)),
+            onPressed: () => Navigator.of(context).pop(),
+            icon: Icon(
+              Icons.arrow_back,
+              size: 24.r,
+            )),
         title: Text(
           'Register',
         ),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16.r),
         child: ListView(
           children: [
             CarouselSlider(
               options: CarouselOptions(
-                height: size.height * .15,
+                height: 161.h,
                 viewportFraction: 0.4,
                 initialPage: 3,
                 enableInfiniteScroll: true,
@@ -64,7 +66,7 @@ class Signupscreen extends StatelessWidget {
             Align(
               alignment: Alignment(0, 0),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 10.r),
                 child: Text(
                   'Avatar',
                   style: CustomTextStyles.style20w400
@@ -99,15 +101,15 @@ class Signupscreen extends StatelessWidget {
             Customtextformfield(
               hintText: 'Phone Number',
               password: false,
-              prefixIconPath: AppAssets.phoneIcon,
+              prefixIconPath: AppAssets.phoneIcon1,
               controller: phoneController,
             ),
             CustomElevatedButtonFilled(
               buttonText: 'Create Account',
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).pop(),
             ),
             SizedBox(
-              height: size.height * .03,
+              height: 18.h,
             ),
             Align(
               alignment: Alignment(0, 0),
@@ -122,12 +124,14 @@ class Signupscreen extends StatelessWidget {
                           color: AppColors.yellow, fontWeight: FontWeight.bold),
                       text: 'Login',
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.pushReplacementNamed(
-                            context, Signinscreen.routeName),
+                        ..onTap = () => Navigator.of(context).pop(),
                     ),
                   ],
                 ),
               ),
+            ),
+            SizedBox(
+              height: 18.h,
             ),
             Customswitch(
               inactiveIcon: AppAssets.enIcon,

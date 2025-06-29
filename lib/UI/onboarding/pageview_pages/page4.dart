@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/custom_text_styles.dart';
@@ -83,7 +82,7 @@ class Page4 extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   CustomOutlinedButton(
-                    buttonText: 'Back',//TODO:localization
+                    buttonText: 'Back', //TODO:localization
                     onPressed:
                         () => controller.previousPage(
                           duration: Duration(seconds: 1),

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_prefs.dart';
-import 'package:movies_app/UI/screens/update_profile_screen.dart';
 
 import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/app_colors.dart';
@@ -72,7 +71,7 @@ class Page5 extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(
                         context,
-                      ).pushReplacementNamed(Signinscreen.routeName);
+                      ).pushReplacementNamed(SignInScreen.routeName);
                       AppPrefs.onboardingSetBool(
                         AppConstants.onboardingKey,
                         true,

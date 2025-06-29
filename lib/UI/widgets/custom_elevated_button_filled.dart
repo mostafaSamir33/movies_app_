@@ -7,15 +7,19 @@ import '../../core/utils/app_colors.dart';
 import '../../core/utils/custom_text_styles.dart';
 
 class CustomElevatedButtonFilled extends StatelessWidget {
-  final String buttonText;
+  final String? buttonText;
   final void Function() onPressed;
-  final bool isSinginPage;
+  final Widget? buttonTextWidget;
+  final Color? buttonColor;
+  final bool isSingInPage;
 
   const CustomElevatedButtonFilled({
     super.key,
-    required this.buttonText,
+    this.buttonText,
     required this.onPressed,
-    this.isSinginPage = false,
+    this.isSingInPage = false,
+    this.buttonTextWidget,
+    this.buttonColor,
   });
 
   @override
@@ -27,28 +31,28 @@ class CustomElevatedButtonFilled extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.r),
         ),
-        backgroundColor: AppColors.yellow,
+        backgroundColor: buttonColor ?? AppColors.yellow,
         minimumSize: Size(double.infinity.w, 56.h),
       ),
-      child: isSinginPage
+      child: isSingInPage
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(AppAssets.googleIcon),
-                SizedBox(
-                  width: size.width * .02,
-                ),
+                SizedBox(width: 11.w),
                 Text(
-                  buttonText,
-                  style: CustomTextStyles.style20w600
-                      .copyWith(color: AppColors.black),
+                  buttonText ?? '',
+                  style: CustomTextStyles.style20w600.copyWith(
+                    color: AppColors.black,
+                  ),
                 ),
               ],
             )
           : Text(
-              buttonText,
-              style:
-                  CustomTextStyles.style20w600.copyWith(color: AppColors.black),
+              buttonText ?? '',
+              style: CustomTextStyles.style20w600.copyWith(
+                color: AppColors.black,
+              ),
             ),
     );
   }

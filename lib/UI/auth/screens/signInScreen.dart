@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/screens/forgetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
@@ -10,38 +11,35 @@ import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 
-class Signinscreen extends StatefulWidget {
+class SignInScreen extends StatefulWidget {
   static const String routeName = '/Signinscreen';
 
+  const SignInScreen({super.key});
+
   @override
-  State<Signinscreen> createState() => _SigninscreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SigninscreenState extends State<Signinscreen> {
+class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Column(
             children: [
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: 28.h),
               Image(
                 image: AssetImage(AppAssets.signinLogo),
-                width: size.width * .28,
-                height: size.height * .12,
+                width: 121.w,
+                height: 118.h,
               ),
-              SizedBox(
-                height: size.height * .05,
-              ),
+              SizedBox(height: 69.h),
               Customtextformfield(
                 hintText: 'Email',
                 password: false,
@@ -57,78 +55,70 @@ class _SigninscreenState extends State<Signinscreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
-                  onTap: () =>
-                      Navigator.pushNamed(context, Forgetpassword.routeName),
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    Forgetpassword.routeName,
+                  ),
                   child: Text(
                     'Forget Password ?',
-                    style: CustomTextStyles.style14w400
-                        .copyWith(color: AppColors.yellow),
+                    style: CustomTextStyles.style14w400.copyWith(
+                      color: AppColors.yellow,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: size.height * .05,
-              ),
+              SizedBox(height: 34.h),
               CustomElevatedButtonFilled(
                 buttonText: 'Login',
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, MainLayerScreen.routeName),
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  MainLayerScreen.routeName,
+                  (route) => false,
+                ),
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: 23.h),
               RichText(
                 text: TextSpan(
                   children: [
-                    TextSpan(
-                      text: 'Don’t Have Account ? ',
-                    ),
+                    TextSpan(text: 'Don’t Have Account ? '),
                     TextSpan(
                       style: CustomTextStyles.style14w400.copyWith(
-                          color: AppColors.yellow, fontWeight: FontWeight.bold),
+                        color: AppColors.yellow,
+                        fontWeight: FontWeight.bold,
+                      ),
                       text: 'Create One',
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.pushReplacementNamed(
-                            context, Signupscreen.routeName),
+                        ..onTap = () => Navigator.pushNamed(
+                              context,
+                              Signupscreen.routeName,
+                            ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: 27.h),
               Row(
                 children: [
-                  Expanded(
-                      child: Divider(
-                    indent: 75,
-                  )),
+                  Expanded(child: Divider(indent: 75.r)),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 8.r),
                     child: Text(
                       'OR',
-                      style: CustomTextStyles.style16w400
-                          .copyWith(color: AppColors.yellow),
+                      style: CustomTextStyles.style16w400.copyWith(
+                        color: AppColors.yellow,
+                      ),
                     ),
                   ),
-                  Expanded(
-                    child: Divider(
-                      endIndent: 75,
-                    ),
-                  ),
+                  Expanded(child: Divider(endIndent: 75.r)),
                 ],
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: 28.h),
               CustomElevatedButtonFilled(
-                isSinginPage: true,
+                isSingInPage: true,
                 buttonText: 'Login With Google',
                 onPressed: () {},
               ),
-              SizedBox(
-                height: size.height * .03,
-              ),
+              SizedBox(height: 33.h),
               Customswitch(
                 inactiveIcon: AppAssets.enIcon,
                 activeIcon: AppAssets.egIcon,

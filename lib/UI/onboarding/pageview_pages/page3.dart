@@ -83,7 +83,7 @@ class Page3 extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   CustomOutlinedButton(
-                    buttonText: 'Back',//TODO:localization
+                    buttonText: 'Back', //TODO:localization
                     onPressed:
                         () => controller.previousPage(
                           duration: Duration(seconds: 1),
