@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
@@ -34,19 +35,19 @@ class Signupscreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding:  EdgeInsets.symmetric(horizontal: 16.r),
         child: ListView(
           children: [
             CarouselSlider(
               options: CarouselOptions(
                 height: size.height * .15,
-                viewportFraction: 0.4,
+                viewportFraction: 0.4.r,
                 initialPage: 3,
                 enableInfiniteScroll: true,
                 reverse: false,
                 autoPlay: false,
                 enlargeCenterPage: true,
-                enlargeFactor: 0.4,
+                enlargeFactor: 0.4.r,
                 scrollDirection: Axis.horizontal,
               ),
               items: List.generate(

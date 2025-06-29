@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
@@ -25,7 +26,7 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
+      padding:  EdgeInsets.only(bottom: 24.r),
       child: TextFormField(
         style: CustomTextStyles.style20w400.copyWith(color: AppColors.white),
         cursorColor: AppColors.white,
@@ -48,7 +49,7 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
                       Icon(isObscure ? Icons.visibility_off : Icons.visibility))
               : null,
           prefixIcon: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding:  EdgeInsets.all(16.0.r),
             child: SvgPicture.asset(
               widget.prefixIconPath,
               width: size.width * .02,
@@ -69,7 +70,7 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
 
   OutlineInputBorder customBorder() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.r),
     );
   }
 }
