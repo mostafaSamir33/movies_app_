@@ -16,7 +16,6 @@ class Signupscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     TextEditingController passwordController = TextEditingController();
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
@@ -26,28 +25,30 @@ class Signupscreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () =>
-                Navigator.of(context).pop(),
-            icon: Icon(Icons.arrow_back)),
+            onPressed: () => Navigator.of(context).pop(),
+            icon: Icon(
+              Icons.arrow_back,
+              size: 24.r,
+            )),
         title: Text(
           'Register',
         ),
         centerTitle: true,
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 16.r),
+        padding: EdgeInsets.symmetric(horizontal: 16.r),
         child: ListView(
           children: [
             CarouselSlider(
               options: CarouselOptions(
-                height: size.height * .15,
-                viewportFraction: 0.4.r,
+                height: 161.h,
+                viewportFraction: 0.4,
                 initialPage: 3,
                 enableInfiniteScroll: true,
                 reverse: false,
                 autoPlay: false,
                 enlargeCenterPage: true,
-                enlargeFactor: 0.4.r,
+                enlargeFactor: 0.4,
                 scrollDirection: Axis.horizontal,
               ),
               items: List.generate(
@@ -65,7 +66,7 @@ class Signupscreen extends StatelessWidget {
             Align(
               alignment: Alignment(0, 0),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 10.r),
                 child: Text(
                   'Avatar',
                   style: CustomTextStyles.style20w400
@@ -105,10 +106,10 @@ class Signupscreen extends StatelessWidget {
             ),
             CustomElevatedButtonFilled(
               buttonText: 'Create Account',
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).pop(),
             ),
             SizedBox(
-              height: size.height * .03,
+              height: 18.h,
             ),
             Align(
               alignment: Alignment(0, 0),
@@ -128,6 +129,9 @@ class Signupscreen extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            SizedBox(
+              height: 18.h,
             ),
             Customswitch(
               inactiveIcon: AppAssets.enIcon,

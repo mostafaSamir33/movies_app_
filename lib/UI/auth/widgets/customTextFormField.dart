@@ -26,7 +26,7 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding:  EdgeInsets.only(bottom: 24.r),
+      padding: EdgeInsets.only(bottom: 24.r),
       child: TextFormField(
         style: CustomTextStyles.style20w400.copyWith(color: AppColors.white),
         cursorColor: AppColors.white,
@@ -49,11 +49,11 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
                       Icon(isObscure ? Icons.visibility_off : Icons.visibility))
               : null,
           prefixIcon: Padding(
-            padding:  EdgeInsets.all(16.0.r),
+            padding: EdgeInsets.all(10.r),
             child: SvgPicture.asset(
               widget.prefixIconPath,
-              width: size.width * .02,
-              height: size.height * .03,
+              width: 25.w,
+              height: 25.h,
               colorFilter: ColorFilter.mode(
                 AppColors.white,
                 BlendMode.srcIn,

@@ -26,21 +26,20 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 20.r),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Column(
             children: [
-              SizedBox(height: size.height * .03),
+              SizedBox(height: 28.h),
               Image(
                 image: AssetImage(AppAssets.signinLogo),
-                width: size.width * .28,
-                height: size.height * .12,
+                width: 121.w,
+                height: 118.h,
               ),
-              SizedBox(height: size.height * .05),
+              SizedBox(height: 69.h),
               Customtextformfield(
                 hintText: 'Email',
                 password: false,
@@ -56,11 +55,10 @@ class _SignInScreenState extends State<SignInScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
-                  onTap:
-                      () => Navigator.pushNamed(
-                        context,
-                        Forgetpassword.routeName,
-                      ),
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    Forgetpassword.routeName,
+                  ),
                   child: Text(
                     'Forget Password ?',
                     style: CustomTextStyles.style14w400.copyWith(
@@ -69,16 +67,16 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: size.height * .05),
+              SizedBox(height: 34.h),
               CustomElevatedButtonFilled(
                 buttonText: 'Login',
-                onPressed:
-                    () => Navigator.pushReplacementNamed(
-                      context,
-                      MainLayerScreen.routeName,
-                    ),
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  MainLayerScreen.routeName,
+                  (route) => false,
+                ),
               ),
-              SizedBox(height: size.height * .03),
+              SizedBox(height: 23.h),
               RichText(
                 text: TextSpan(
                   children: [
@@ -89,23 +87,21 @@ class _SignInScreenState extends State<SignInScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                       text: 'Create One',
-                      recognizer:
-                          TapGestureRecognizer()
-                            ..onTap =
-                                () => Navigator.pushNamed(
-                                  context,
-                                  Signupscreen.routeName,
-                                ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => Navigator.pushNamed(
+                              context,
+                              Signupscreen.routeName,
+                            ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: size.height * .03),
+              SizedBox(height: 27.h),
               Row(
                 children: [
-                  Expanded(child: Divider(indent: 75)),
+                  Expanded(child: Divider(indent: 75.r)),
                   Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 8.r),
+                    padding: EdgeInsets.symmetric(horizontal: 8.r),
                     child: Text(
                       'OR',
                       style: CustomTextStyles.style16w400.copyWith(
@@ -113,16 +109,16 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                   ),
-                  Expanded(child: Divider(endIndent: 75)),
+                  Expanded(child: Divider(endIndent: 75.r)),
                 ],
               ),
-              SizedBox(height: size.height * .03),
+              SizedBox(height: 28.h),
               CustomElevatedButtonFilled(
                 isSingInPage: true,
                 buttonText: 'Login With Google',
                 onPressed: () {},
               ),
-              SizedBox(height: size.height * .03),
+              SizedBox(height: 33.h),
               Customswitch(
                 inactiveIcon: AppAssets.enIcon,
                 activeIcon: AppAssets.egIcon,

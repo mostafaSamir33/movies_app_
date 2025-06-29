@@ -31,30 +31,29 @@ class CustomElevatedButtonFilled extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.r),
         ),
-        backgroundColor:  buttonColor ??AppColors.yellow,
+        backgroundColor: buttonColor ?? AppColors.yellow,
         minimumSize: Size(double.infinity.w, 56.h),
       ),
-      child:
-          isSingInPage
-              ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(AppAssets.googleIcon),
-                  SizedBox(width: size.width * .02),
-                  Text(
-                    buttonText??'',
-                    style: CustomTextStyles.style20w600.copyWith(
-                      color: AppColors.black,
-                    ),
+      child: isSingInPage
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(AppAssets.googleIcon),
+                SizedBox(width: 11.w),
+                Text(
+                  buttonText ?? '',
+                  style: CustomTextStyles.style20w600.copyWith(
+                    color: AppColors.black,
                   ),
-                ],
-              )
-              : Text(
-                buttonText??'',
-                style: CustomTextStyles.style20w600.copyWith(
-                  color: AppColors.black,
                 ),
+              ],
+            )
+          : Text(
+              buttonText ?? '',
+              style: CustomTextStyles.style20w600.copyWith(
+                color: AppColors.black,
               ),
+            ),
     );
   }
 }
