@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/screens/forgetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
@@ -30,7 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding:  EdgeInsets.symmetric(horizontal: 20.r),
           child: Column(
             children: [
               SizedBox(height: size.height * .03),
@@ -104,7 +105,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   Expanded(child: Divider(indent: 75)),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:  EdgeInsets.symmetric(horizontal: 8.r),
                     child: Text(
                       'OR',
                       style: CustomTextStyles.style16w400.copyWith(
