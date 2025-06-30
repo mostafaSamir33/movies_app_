@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
-import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
@@ -11,6 +10,7 @@ import 'package:movies_app/core/models/profile_images_model.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
+import 'package:get/get.dart';
 
 class Signupscreen extends StatefulWidget {
   static const String routeName = '/Signupscreen';
@@ -31,7 +31,7 @@ class _SignupscreenState extends State<Signupscreen> {
     TextEditingController emailController = TextEditingController();
     TextEditingController confirmPasswordController = TextEditingController();
     TextEditingController phoneController = TextEditingController();
-    int selectedIndex = 0;
+    var selectedIndex = 3.obs;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -54,9 +54,9 @@ class _SignupscreenState extends State<Signupscreen> {
               CarouselSlider(
                 options: CarouselOptions(
                   onPageChanged: (index, reason) {
-                    setState(() {
-                      selectedIndex = index;
-                    });
+                    selectedIndex.value = index;
+
+                    print(selectedIndex);
                   },
                   height: 161.h,
                   viewportFraction: 0.4,
@@ -161,7 +161,7 @@ class _SignupscreenState extends State<Signupscreen> {
                         passwordController.text.trim(),
                         confirmPasswordController.text.trim(),
                         phoneController.text.trim(),
-                        selectedIndex);
+                        selectedIndex.value);
                   }
                 },
               ),
