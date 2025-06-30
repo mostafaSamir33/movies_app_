@@ -17,8 +17,7 @@ class AppPrefs {
   }
 
 //localization
-  static Future<void> localizationSetBool(
-      String key, bool value) async {
+  static Future<void> localizationSetBool(String key, bool value) async {
     await prefs.setBool(key, value);
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
 import 'package:movies_app/UI/auth/screens/forgetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
@@ -9,15 +10,15 @@ import 'package:movies_app/UI/screens/update_profile_screen.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_theme.dart';
 import 'package:provider/provider.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'UI/onboarding/onboarding_screens/onboarding_screen_2.dart';
 import 'core/providers/avatar_bottom_sheet_provider.dart';
-import 'core/utils/app_colors.dart';
 import 'core/utils/app_prefs.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPrefs.init();
+
   runApp(
     MultiProvider(
       providers: [

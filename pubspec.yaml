@@ -42,6 +42,8 @@ dependencies:
   google_fonts: ^6.2.1
   animated_widgets: ^1.1.0
   provider: ^6.1.5
+  http: ^1.4.0
+  google_sign_in: ^7.0.0
 
 
 
@@ -80,6 +82,8 @@ flutter:
 
      - assets/images/update_profile_images/
      - assets/icons/update_profile_icons/
+     - assets/icons/profile_tab_icons/
+     - assets/images/profile_tab_images/
 
   #   - images/a_dot_ham.jpeg
   

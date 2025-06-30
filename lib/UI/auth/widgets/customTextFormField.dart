@@ -10,11 +10,13 @@ class Customtextformfield extends StatefulWidget {
       required this.hintText,
       required this.password,
       required this.prefixIconPath,
-      required this.controller});
+      required this.controller,
+      this.validator});
   final String hintText;
   final bool password;
   final String prefixIconPath;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
   State<Customtextformfield> createState() => _CustomtextformfieldState();
@@ -27,6 +29,7 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
     return Padding(
       padding: EdgeInsets.only(bottom: 24.r),
       child: TextFormField(
+        validator: widget.validator,
         style: CustomTextStyles.style20w400.copyWith(color: AppColors.white),
         cursorColor: AppColors.white,
         controller: widget.controller,
@@ -62,6 +65,8 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
           border: customBorder(),
           enabledBorder: customBorder(),
           focusedBorder: customBorder(),
+          disabledBorder: customBorder(),
+          errorBorder: customBorder(),
         ),
       ),
     );
@@ -70,6 +75,7 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
   OutlineInputBorder customBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(16.r),
+      borderSide: BorderSide.none,
     );
   }
 }

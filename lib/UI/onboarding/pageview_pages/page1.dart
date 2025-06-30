@@ -47,7 +47,7 @@ class Page1 extends StatelessWidget {
                 right: 16.r,
               ),
               decoration: BoxDecoration(
-                color: AppColors.black,
+                color: AppColors.black1,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40.r),
                   topRight: Radius.circular(40.r),

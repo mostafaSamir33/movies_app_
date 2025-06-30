@@ -32,7 +32,7 @@ class _ExploreTabScreenState extends State<ExploreTabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.black1,
       body: SafeArea(
         child: Column(
           children: [
@@ -56,7 +56,7 @@ class _ExploreTabScreenState extends State<ExploreTabScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
-                        color: isSelected ? AppColors.amber : AppColors.black,
+                        color: isSelected ? AppColors.amber : AppColors.black1,
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(
                           color: AppColors.amber,
@@ -68,7 +68,7 @@ class _ExploreTabScreenState extends State<ExploreTabScreen> {
                           genres[index],
                           style: TextStyle(
                             color:
-                                isSelected ? AppColors.black : AppColors.amber,
+                                isSelected ? AppColors.black1 : AppColors.amber,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
