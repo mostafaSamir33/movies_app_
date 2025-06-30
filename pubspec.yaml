@@ -43,7 +43,6 @@ dependencies:
   animated_widgets: ^1.1.0
   provider: ^6.1.5
   http: ^1.4.0
-  get: ^4.7.2
 
 
 

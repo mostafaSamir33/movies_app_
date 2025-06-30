@@ -10,7 +10,6 @@ import 'package:movies_app/core/models/profile_images_model.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
-import 'package:get/get.dart';
 
 class Signupscreen extends StatefulWidget {
   static const String routeName = '/Signupscreen';
@@ -31,7 +30,7 @@ class _SignupscreenState extends State<Signupscreen> {
     TextEditingController emailController = TextEditingController();
     TextEditingController confirmPasswordController = TextEditingController();
     TextEditingController phoneController = TextEditingController();
-    var selectedIndex = 3.obs;
+    var selectedIndex = 3;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -54,8 +53,7 @@ class _SignupscreenState extends State<Signupscreen> {
               CarouselSlider(
                 options: CarouselOptions(
                   onPageChanged: (index, reason) {
-                    selectedIndex.value = index;
-
+                    selectedIndex = index;
                     print(selectedIndex);
                   },
                   height: 161.h,
@@ -161,7 +159,7 @@ class _SignupscreenState extends State<Signupscreen> {
                         passwordController.text.trim(),
                         confirmPasswordController.text.trim(),
                         phoneController.text.trim(),
-                        selectedIndex.value);
+                        selectedIndex);
                   }
                 },
               ),
