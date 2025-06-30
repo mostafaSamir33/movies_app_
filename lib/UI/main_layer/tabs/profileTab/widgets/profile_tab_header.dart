@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/screens/update_profile_screen.dart';
 import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileTabHeader extends StatelessWidget {
   final TabController controller;
@@ -119,7 +121,9 @@ class ProfileTabHeader extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        logout(context);
+                      },
                       style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14)),
@@ -186,6 +190,17 @@ class ProfileTabHeader extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> logout(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      SignInScreen.routeName,
+      (route) => false,
     );
   }
 }
