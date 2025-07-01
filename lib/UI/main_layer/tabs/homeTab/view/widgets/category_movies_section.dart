@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../../core/utils/app_colors.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
+import '../../../../../../core/utils/app_colors.dart';
 
 class CategoryMoviesSection extends StatelessWidget {
   final String title;
-  final List<Map<String, String>> movies;
+  final List<Movies> movies;
 
   const CategoryMoviesSection({
     super.key,
@@ -16,39 +18,6 @@ class CategoryMoviesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: GoogleFonts.poppins(
-                  color: AppColors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    "See More",
-                    style: GoogleFonts.poppins(
-                      color: AppColors.amber,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    size: 14,
-                    color: AppColors.amber,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
         const SizedBox(height: 12),
         SizedBox(
           height: 230,
@@ -68,8 +37,8 @@ class CategoryMoviesSection extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            movie['image']!,
+                          child: Image.network(
+                            movie.largeCoverImage ?? '',
                             width: 130,
                             height: 180,
                             fit: BoxFit.cover,
@@ -79,9 +48,10 @@ class CategoryMoviesSection extends StatelessWidget {
                           top: 5,
                           right: 5,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.7),
+                              color: Colors.black.withAlpha(178),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Row(
@@ -90,7 +60,7 @@ class CategoryMoviesSection extends StatelessWidget {
                                     size: 14, color: AppColors.amber),
                                 const SizedBox(width: 2),
                                 Text(
-                                  movie['rating']!,
+                                  movie.rating.toString(),
                                   style: GoogleFonts.montserrat(
                                     color: AppColors.white,
                                     fontSize: 12,
@@ -103,11 +73,16 @@ class CategoryMoviesSection extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 6),
-                    Text(
-                      movie['title']!,
-                      style: GoogleFonts.poppins(
-                        color: AppColors.white,
-                        fontSize: 14,
+                    SizedBox(
+                      width: 130.w,
+                      child: Text(
+                        movie.title ?? '',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                          color: AppColors.white,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ],
