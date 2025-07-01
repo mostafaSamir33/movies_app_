@@ -1,12 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 
-import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/app_colors.dart';
-import 'data/movies_data.dart';
 import 'watch_now_banner.dart';
 import 'available_now_movie_card.dart';
 
@@ -50,15 +47,16 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
           bottom: false,
           child: Column(
             children: [
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Image.asset(
-                  AppAssets.availableNow,
-                  width: 267.w,
-                  fit: BoxFit.contain,
-                ),
-              ),
+              const SizedBox(height: 100),
+
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              //   child: Image.asset(
+              //     AppAssets.availableNow,
+              //     width: 267.w,
+              //     fit: BoxFit.contain,
+              //   ),
+              // ),
               const SizedBox(height: 10),
               CarouselSlider.builder(
                 itemCount: widget.movies.length,

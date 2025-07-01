@@ -1,17 +1,10 @@
 import 'dart:convert';
-import 'dart:math';
-
 import 'package:http/http.dart' as http;
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_endpoints.dart';
 
 class MoviesListApi {
-  static List<int> pages = List.generate(
-    10,
-    (index) => index,
-  );
-
   static Future<List<Movies>?> getListMoviesByDate() async {
     Uri uri = Uri.https(AppConstants.moviesBaseUrl,
         AppEndpoints.listMoviesEndpoint, {'sort_by': 'date_added'});
@@ -31,7 +24,7 @@ class MoviesListApi {
         Uri.https(AppConstants.moviesBaseUrl, AppEndpoints.listMoviesEndpoint, {
       'genre': gener,
       'limit': '3',
-      'page': pages[Random().nextInt(pages.length)].toString()
+      'sort_by': 'date_added',
     });
     var response = await http.get(uri);
     var jsonResponse = jsonDecode(response.body);

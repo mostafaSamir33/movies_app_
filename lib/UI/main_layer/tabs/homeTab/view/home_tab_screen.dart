@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/modelView/moviesByDateCubit/movies_list_cubit.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/modelView/moviesByDateCubit/movies_list_cubit_states.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/modelView/moviesListByGenerCubit/movies_list_by_gener_cubit.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/modelView/moviesListByGenerCubit/movies_list_by_gener_cubit_states.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/view/widgets/available_now_section.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/view/widgets/category_movies_section.dart';
-import 'package:movies_app/UI/main_layer/tabs/homeTab/view/widgets/data/movies_data.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/view/widgets/category_row.dart';
+import 'package:movies_app/core/utils/app_assets.dart';
+import 'package:movies_app/core/utils/app_colors.dart';
 
 class HomeTabScreen extends StatelessWidget {
   const HomeTabScreen({super.key});
@@ -49,42 +53,187 @@ class HomeTabScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            BlocProvider(
-                create: (context) => MoviesListCubit()..getMoviesListByDate(),
-                child: BlocBuilder<MoviesListCubit, MoviesListCubitStates>(
-                  builder: (context, state) {
-                    switch (state) {
-                      case MoviesListInitialState():
-                      case MoviesListLoadingState():
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      case MoviesListFailureState():
-                        return Center(
-                          child: Text('${state.message}'),
-                        );
-                      case MoviesListSucessEmptyListState():
-                        return Center(
-                          child: Text('No Movies'),
-                        );
-                      case MoviesListSucessState():
-                        final List<Movies> movies = state.movies!;
-                        return AvailableNowSection(
-                          movies: movies,
-                        );
-                    }
-                  },
-                )), //list
+            Stack(
+              children: [
+                BlocProvider(
+                    create: (context) =>
+                        MoviesListCubit()..getMoviesListByDate(),
+                    child: BlocBuilder<MoviesListCubit, MoviesListCubitStates>(
+                      builder: (context, state) {
+                        switch (state) {
+                          case MoviesListInitialState():
+                          case MoviesListLoadingState():
+                            return SizedBox(
+                              height: 350.h,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.amber,
+                                ),
+                              ),
+                            );
+                          case MoviesListFailureState():
+                            return SizedBox(
+                              height: 350.h,
+                              child: Center(
+                                child: Text('${state.message}'),
+                              ),
+                            );
+                          case MoviesListSucessEmptyListState():
+                            return SizedBox(
+                              height: 350.h,
+                              child: Center(
+                                child: Text('No Movies'),
+                              ),
+                            );
+                          case MoviesListSucessState():
+                            final List<Movies> movies = state.movies!;
+                            return AvailableNowSection(
+                              movies: movies,
+                            );
+                        }
+                      },
+                    )),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0, vertical: 20),
+                    child: Image.asset(
+                      AppAssets.availableNow,
+                      width: 267.w,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 32),
-            CategoryMoviesSection(
-                title: selectedCategories[0], movies: actionMovies),
-            const SizedBox(height: 24),
-            CategoryMoviesSection(
-                title: selectedCategories[1], movies: actionMovies),
-            const SizedBox(height: 24),
-            CategoryMoviesSection(
-                title: selectedCategories[2], movies: actionMovies),
-            const SizedBox(height: 40),
+            CategoryRow(title: selectedCategories[0]), //list
+            BlocProvider(
+              create: (context) => MoviesListByGenerCubit(),
+              child: Column(
+                children: [
+                  BlocBuilder<MoviesListByGenerCubit,
+                          MoviesListByGenerCubitStates>(
+                      bloc: MoviesListByGenerCubit()
+                        ..getMoviesListByGener(selectedCategories[0]),
+                      builder: (context, state) {
+                        switch (state) {
+                          case MoviesListByGenerInitialState():
+                          case MoviesListByGenerLoadingState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.amber,
+                                ),
+                              ),
+                            );
+
+                          case MoviesListByGenerFailureState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text('${state.message}'),
+                              ),
+                            );
+
+                          case MoviesListByGenerSucessEmptyListState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text('No Movies'),
+                              ),
+                            );
+                          case MoviesListByGenerSucessState():
+                            final List<Movies> movies = state.movies!;
+                            return CategoryMoviesSection(
+                                title: selectedCategories[0], movies: movies);
+                        }
+                      }),
+                  const SizedBox(height: 24),
+                  CategoryRow(title: selectedCategories[1]),
+                  BlocBuilder<MoviesListByGenerCubit,
+                          MoviesListByGenerCubitStates>(
+                      bloc: MoviesListByGenerCubit()
+                        ..getMoviesListByGener(selectedCategories[1]),
+                      builder: (context, state) {
+                        switch (state) {
+                          case MoviesListByGenerInitialState():
+                          case MoviesListByGenerLoadingState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.amber,
+                                ),
+                              ),
+                            );
+
+                          case MoviesListByGenerFailureState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text('${state.message}'),
+                              ),
+                            );
+
+                          case MoviesListByGenerSucessEmptyListState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text('No Movies'),
+                              ),
+                            );
+                          case MoviesListByGenerSucessState():
+                            final List<Movies> movies = state.movies!;
+                            return CategoryMoviesSection(
+                                title: selectedCategories[1], movies: movies);
+                        }
+                      }),
+                  const SizedBox(height: 24),
+                  CategoryRow(title: selectedCategories[2]),
+                  BlocBuilder<MoviesListByGenerCubit,
+                          MoviesListByGenerCubitStates>(
+                      bloc: MoviesListByGenerCubit()
+                        ..getMoviesListByGener(selectedCategories[2]),
+                      builder: (context, state) {
+                        switch (state) {
+                          case MoviesListByGenerInitialState():
+                          case MoviesListByGenerLoadingState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.amber,
+                                ),
+                              ),
+                            );
+
+                          case MoviesListByGenerFailureState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text('${state.message}'),
+                              ),
+                            );
+
+                          case MoviesListByGenerSucessEmptyListState():
+                            return SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text('No Movies'),
+                              ),
+                            );
+                          case MoviesListByGenerSucessState():
+                            final List<Movies> movies = state.movies!;
+                            return CategoryMoviesSection(
+                                title: selectedCategories[2], movies: movies);
+                        }
+                      }),
+                  const SizedBox(height: 40),
+                ],
+              ),
+            ),
           ],
         ),
       ),
