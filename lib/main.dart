@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
-import 'package:movies_app/UI/auth/screens/forgetPassword.dart';
+import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';

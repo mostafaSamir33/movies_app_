@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
 import 'package:movies_app/UI/auth/Service/googleServices.dart';
-import 'package:movies_app/UI/auth/screens/forgetPassword.dart';
+import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
@@ -74,16 +74,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      Forgetpassword.routeName,
-                    ),
-                    child: Text(
-                      'Forget Password ?',
-                      style: CustomTextStyles.style14w400.copyWith(
-                        color: AppColors.yellow,
-                      ),
+                  child: Text(
+                    'Forget Password ?',
+                    style: CustomTextStyles.style14w400.copyWith(
+                      color: AppColors.yellow,
                     ),
                   ),
                 ),
