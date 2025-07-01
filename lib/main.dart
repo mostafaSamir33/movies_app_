@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           OnboardingScreen2.routeName: (_) => OnboardingScreen2(),
           UpdateProfileScreen.routeName: (_) => UpdateProfileScreen(),
           MainLayerScreen.routeName: (_) => const MainLayerScreen(),
-          Forgetpassword.routeName: (_) => Forgetpassword(),
+          ResetPassword.routeName: (_) => ResetPassword(),
           Signupscreen.routeName: (_) => Signupscreen(),
         },
         initialRoute:

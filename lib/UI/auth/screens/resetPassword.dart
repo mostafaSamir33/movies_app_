@@ -5,13 +5,15 @@ import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 
-class Forgetpassword extends StatelessWidget {
+class ResetPassword extends StatelessWidget {
   static const String routeName = '/Forgetpassword';
   TextEditingController oldPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
 
   final AuthService _authService = AuthService();
   final formkey = GlobalKey<FormState>();
+
+  ResetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
