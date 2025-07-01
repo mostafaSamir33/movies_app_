@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../../core/utils/app_colors.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
+import '../../../../../../core/utils/app_colors.dart';
 
 class AvailableNowMovieCard extends StatelessWidget {
-  final Map<String, String> movie;
+  final Movies movie;
   final bool isCenter;
 
   const AvailableNowMovieCard({
@@ -25,8 +26,8 @@ class AvailableNowMovieCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              movie['image']!,
+            child: Image.network(
+              movie.largeCoverImage ?? '',
               fit: BoxFit.cover,
             ),
           ),
@@ -45,7 +46,7 @@ class AvailableNowMovieCard extends StatelessWidget {
                   const Icon(Icons.star, size: 14, color: AppColors.amber),
                   const SizedBox(width: 2),
                   Text(
-                    movie['rating']!,
+                    movie.rating.toString(),
                     style: GoogleFonts.poppins(
                       color: AppColors.white,
                       fontSize: 12,
