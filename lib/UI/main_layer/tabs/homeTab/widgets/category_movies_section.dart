@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../core/utils/app_colors.dart';
-import 'data/movies_data.dart';
-class ActionMoviesSection extends StatelessWidget {
-  const ActionMoviesSection({super.key});
+
+class CategoryMoviesSection extends StatelessWidget {
+  final String title;
+  final List<Map<String, String>> movies;
+
+  const CategoryMoviesSection({
+    super.key,
+    required this.title,
+    required this.movies,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,7 +22,7 @@ class ActionMoviesSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Action",
+                title,
                 style: GoogleFonts.poppins(
                   color: AppColors.white,
                   fontSize: 20,
@@ -39,7 +47,6 @@ class ActionMoviesSection extends StatelessWidget {
                 ],
               ),
             ],
-
           ),
         ),
         const SizedBox(height: 12),
@@ -47,10 +54,10 @@ class ActionMoviesSection extends StatelessWidget {
           height: 230,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: actionMovies.length,
+            itemCount: movies.length,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemBuilder: (context, index) {
-              final movie = actionMovies[index];
+              final movie = movies[index];
               return Padding(
                 padding: const EdgeInsets.only(right: 12),
                 child: Column(
@@ -79,8 +86,8 @@ class ActionMoviesSection extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                const Icon(Icons.star, size: 14, color: AppColors.amber,
-                                ),
+                                const Icon(Icons.star,
+                                    size: 14, color: AppColors.amber),
                                 const SizedBox(width: 2),
                                 Text(
                                   movie['rating']!,
@@ -98,7 +105,10 @@ class ActionMoviesSection extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       movie['title']!,
-                      style: GoogleFonts.poppins(color: AppColors.white),
+                      style: GoogleFonts.poppins(
+                        color: AppColors.white,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),

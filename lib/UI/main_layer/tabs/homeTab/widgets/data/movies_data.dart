@@ -1,4 +1,5 @@
 import '../../../../../../core/utils/app_assets.dart';
+
 final List<Map<String, String>> availableNowMovies = [
   {
     'image': AppAssets.filmBaby,
@@ -25,7 +26,7 @@ final List<Map<String, String>> actionMovies = [
   },
   {
     'image': AppAssets.theDarkKnight,
-    'title': 'Dark Knight',
+    'title': 'The Dark Knight',
     'rating': '8.9',
   },
   {
@@ -34,3 +35,4 @@ final List<Map<String, String>> actionMovies = [
     'rating': '6.8',
   },
 ];
+
