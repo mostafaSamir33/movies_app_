@@ -33,7 +33,7 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
                 AppColors.black1.withAlpha(153),
                 Colors.black,
               ],
-              stops: [0.0, 0.5, 1.0],
+              stops: [0.0, 0.4, 1.0],
             ).createShader(rect);
           },
           blendMode: BlendMode.darken,
@@ -47,7 +47,7 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
           bottom: false,
           child: Column(
             children: [
-              const SizedBox(height: 100),
+              SizedBox(height: 100.h),
 
               // Padding(
               //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
