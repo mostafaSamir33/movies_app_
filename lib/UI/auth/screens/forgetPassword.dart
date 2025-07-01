@@ -49,12 +49,7 @@ class Forgetpassword extends StatelessWidget {
               CustomElevatedButtonFilled(
                 buttonText: 'Verify Email',
                 onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    resetPassword(
-                      context,
-                      forgetPasswordController.text,
-                    );
-                  }
+                  formkey.currentState!.validate();
                 },
               ),
             ],
@@ -62,16 +57,5 @@ class Forgetpassword extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void resetPassword(BuildContext context, String email) async {
-    try {
-      final response = await _authService.forgetPassword(email);
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Check your email for reset link')));
-    } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
   }
 }

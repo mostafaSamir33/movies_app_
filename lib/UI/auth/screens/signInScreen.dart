@@ -158,11 +158,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Login Successful')));
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        MainLayerScreen.routeName,
-        (route) => false,
-      );
+      Navigator.pushReplacementNamed(context, MainLayerScreen.routeName);
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Error: $e')));
