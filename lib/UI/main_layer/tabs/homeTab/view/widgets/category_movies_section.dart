@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import '../../../../../../core/utils/app_colors.dart';
 
@@ -20,11 +19,11 @@ class CategoryMoviesSection extends StatelessWidget {
       children: [
         const SizedBox(height: 12),
         SizedBox(
-          height: 230,
+          height: 230.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: movies.length,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.r),
             itemBuilder: (context, index) {
               final movie = movies[index];
               return Padding(
@@ -39,32 +38,33 @@ class CategoryMoviesSection extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
                             movie.largeCoverImage ?? '',
-                            width: 130,
-                            height: 180,
+                            width: 130.w,
+                            height: 180.h,
                             fit: BoxFit.cover,
                           ),
                         ),
                         Positioned(
                           top: 5,
-                          right: 5,
+                          left: 5,
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
                               color: Colors.black.withAlpha(178),
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(6.r),
                             ),
                             child: Row(
                               children: [
                                 const Icon(Icons.star,
-                                    size: 14, color: AppColors.amber),
+                                    size: 15, color: AppColors.amber),
                                 const SizedBox(width: 2),
                                 Text(
-                                  movie.rating.toString(),
-                                  style: GoogleFonts.montserrat(
-                                    color: AppColors.white,
-                                    fontSize: 12,
-                                  ),
+                                  (movie.rating ?? 0).toString(),
+                                  style: TextStyle(
+                                      color: AppColors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Roboto'),
                                 ),
                               ],
                             ),
@@ -79,10 +79,10 @@ class CategoryMoviesSection extends StatelessWidget {
                         movie.title ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.poppins(
-                          color: AppColors.white,
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 14,
+                            fontFamily: 'Roboto'),
                       ),
                     ),
                   ],

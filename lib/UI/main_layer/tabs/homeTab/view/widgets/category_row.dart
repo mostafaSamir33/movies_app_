@@ -1,7 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class CategoryRow extends StatelessWidget {
@@ -21,20 +19,21 @@ class CategoryRow extends StatelessWidget {
         children: [
           Text(
             title,
-            style: GoogleFonts.poppins(
-              color: AppColors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(
+                color: AppColors.white,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto'),
           ),
           Row(
             children: [
               Text(
                 "See More",
-                style: GoogleFonts.poppins(
-                  color: AppColors.amber,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(
+                    color: AppColors.amber,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16.sp,
+                    fontFamily: 'Roboto'),
               ),
               const SizedBox(width: 4),
               const Icon(
