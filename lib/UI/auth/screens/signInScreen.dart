@@ -132,7 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   isSingInPage: true,
                   buttonText: 'Login With Google',
                   onPressed: () {
-                    signin();
+                    googleSignin();
                   },
                 ),
                 SizedBox(height: 33.h),
@@ -161,13 +161,16 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  signin() async {
+  googleSignin() async {
     final user = await Googleservices.login();
     if (user == null) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Login failed')));
     } else {
-      Navigator.pushReplacementNamed(context, MainLayerScreen.routeName);
+      Navigator.pushReplacementNamed(
+        context,
+        MainLayerScreen.routeName,
+      );
     }
   }
 }
