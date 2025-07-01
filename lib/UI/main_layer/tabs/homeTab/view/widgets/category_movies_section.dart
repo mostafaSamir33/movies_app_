@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../../core/utils/app_colors.dart';
+import '../../../../../../core/utils/app_colors.dart';
 
 class CategoryMoviesSection extends StatelessWidget {
   final String title;
@@ -79,7 +79,8 @@ class CategoryMoviesSection extends StatelessWidget {
                           top: 5,
                           right: 5,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
                               color: Colors.black.withOpacity(0.7),
                               borderRadius: BorderRadius.circular(6),

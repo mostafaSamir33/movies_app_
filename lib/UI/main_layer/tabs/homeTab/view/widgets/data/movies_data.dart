@@ -1,4 +1,4 @@
-import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../../core/utils/app_assets.dart';
 
 final List<Map<String, String>> availableNowMovies = [
   {
@@ -35,4 +35,3 @@ final List<Map<String, String>> actionMovies = [
     'rating': '6.8',
   },
 ];
-

@@ -2,15 +2,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 
-import '../../../../../core/utils/app_assets.dart';
-import '../../../../../core/utils/app_colors.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/utils/app_colors.dart';
 import 'data/movies_data.dart';
 import 'watch_now_banner.dart';
 import 'available_now_movie_card.dart';
 
 class AvailableNowSection extends StatefulWidget {
-  const AvailableNowSection({super.key});
+  const AvailableNowSection({super.key, required this.movies});
+  final List<Movies> movies;
 
   @override
   State<AvailableNowSection> createState() => _AvailableNowSectionState();
@@ -18,10 +20,10 @@ class AvailableNowSection extends StatefulWidget {
 
 class _AvailableNowSectionState extends State<AvailableNowSection> {
   int _currentIndex = 1;
-  String bgImage = availableNowMovies[1]['image']!;
 
   @override
   Widget build(BuildContext context) {
+    String bgImage = widget.movies[_currentIndex].largeCoverImage!;
     return Stack(
       children: [
         ShaderMask(
@@ -38,7 +40,7 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
             ).createShader(rect);
           },
           blendMode: BlendMode.darken,
-          child: Image.asset(
+          child: Image.network(
             bgImage,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -59,9 +61,9 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
               ),
               const SizedBox(height: 10),
               CarouselSlider.builder(
-                itemCount: availableNowMovies.length,
+                itemCount: widget.movies.length,
                 itemBuilder: (context, index, realIdx) {
-                  final movie = availableNowMovies[index];
+                  final movie = widget.movies[index];
                   final isCenter = index == _currentIndex;
 
                   return AvailableNowMovieCard(
@@ -78,7 +80,7 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
                   onPageChanged: (index, reason) {
                     setState(() {
                       _currentIndex = index;
-                      bgImage = availableNowMovies[_currentIndex]['image']!;
+                      bgImage = widget.movies[_currentIndex].largeCoverImage!;
                     });
                   },
                 ),
