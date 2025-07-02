@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/app_colors.dart';
+import '../../core/utils/app_colors.dart';
 
 class MovieCard extends StatelessWidget {
   final String imagePath;

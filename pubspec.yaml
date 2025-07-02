@@ -86,6 +86,7 @@ flutter:
      - assets/icons/profile_tab_icons/
      - assets/icons/movie_details_icon/
      - assets/images/profile_tab_images/
+     - assets/images/search_tap/
 
   #   - images/a_dot_ham.jpeg
   

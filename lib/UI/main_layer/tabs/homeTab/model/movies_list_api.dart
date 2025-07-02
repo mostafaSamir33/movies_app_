@@ -12,7 +12,6 @@ class MoviesListApi {
     var jsonResponse = jsonDecode(response.body);
     MoviesListResponse data = MoviesListResponse.fromJson(jsonResponse);
     if (data.status == 'ok' && response.statusCode == 200) {
-      //print('Movies:: ${data.data?.movies}');
       return data.data?.movies ?? [];
     } else {
       throw data.statusMessage!;
@@ -30,10 +29,30 @@ class MoviesListApi {
     var jsonResponse = jsonDecode(response.body);
     MoviesListResponse data = MoviesListResponse.fromJson(jsonResponse);
     if (data.status == 'ok' && response.statusCode == 200) {
-      //print('Movies:: ${data.data?.movies![1].title}');
       return data.data?.movies ?? [];
     } else {
       throw data.statusMessage!;
+    }
+  }
+
+  static Future<List<Movies>?> getMoviesByQuery(String query) async {
+    Uri uri = Uri.https(
+      AppConstants.moviesBaseUrl,
+      AppEndpoints.listMoviesEndpoint,
+      {
+        'query_term': query,
+        'sort_by': 'date_added',
+      },
+    );
+
+    final response = await http.get(uri);
+    final jsonResponse = jsonDecode(response.body);
+    final MoviesListResponse data = MoviesListResponse.fromJson(jsonResponse);
+
+    if (data.status == 'ok' && response.statusCode == 200) {
+      return data.data?.movies ?? [];
+    } else {
+      throw data.statusMessage ?? 'Unknown error';
     }
   }
 }

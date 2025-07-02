@@ -102,6 +102,8 @@ class AppAssets {
   static const String ironMan = 'assets/images/explore_tap/iron_man.jpg';
   static const String joker = 'assets/images/explore_tap/joker.jpg';
 
+  //===============searchTap=================================\\
+  static const String empty = 'assets/images/search_tap/empty.png';
   //===============Movie Details Screen Icons=================================\\
   static const String playerIcon =
       'assets/icons/movie_details_icon/playerIcon.png';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/movie_card.dart';
+import 'package:movies_app/UI/widgets/movie_card.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class SimilarSectionView extends StatelessWidget {

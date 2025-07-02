@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/modelView/explore_movies_cubit.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
-import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/movie_card.dart';
+import 'package:movies_app/UI/widgets/movie_card.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class ExploreMoviesGrid extends StatelessWidget {
