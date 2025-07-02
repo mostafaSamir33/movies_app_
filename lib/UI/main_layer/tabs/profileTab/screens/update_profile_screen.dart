@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/widgets/avatar_bottom_sheet_icon.dart';
 import 'package:movies_app/core/models/avatar_bottom_sheet_model.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
@@ -7,14 +8,14 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/providers/avatar_bottom_sheet_provider.dart';
-import '../widgets/custom_elevated_button_filled.dart';
-import '../widgets/custom_text_form_field.dart';
+import '../../../../../core/providers/avatar_bottom_sheet_provider.dart';
+import '../../../../widgets/custom_elevated_button_filled.dart';
+import '../../../../widgets/custom_text_form_field.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   static const String routeName = '/updateProfileScreen';
 
-  const  UpdateProfileScreen({super.key});
+  const UpdateProfileScreen({super.key});
 
   @override
   State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
@@ -24,6 +25,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    ProfileData profileData =
+        ModalRoute.of(context)!.settings.arguments as ProfileData;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -82,17 +85,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                               physics: NeverScrollableScrollPhysics(),
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    crossAxisSpacing: 18,
-                                    mainAxisSpacing: 18,
-                                    childAspectRatio: 108 / 105,
-                                  ),
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 18,
+                                mainAxisSpacing: 18,
+                                childAspectRatio: 108 / 105,
+                              ),
                               itemBuilder: (context, index) {
                                 return AvatarBottomSheetIcon(
-                                  avatarImage:
-                                      AvatarBottomSheetModel
-                                          .avatarImages[index]
-                                          .avatarImage,
+                                  avatarImage: AvatarBottomSheetModel
+                                      .avatarImages[index].avatarImage,
                                   index: index,
                                 );
                               },
@@ -116,18 +117,19 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
             ),
             Padding(
               padding: EdgeInsets.only(top: 34.r, bottom: 20.r),
-              child: CustomTextFormField(
+              child: CustomTextFormFieldOnboarding(
                 hintText: 'Name', //TODO:localization
                 prefixIcon: AppAssets.personIcon,
-                controller: TextEditingController(text: 'John Safwat'),
+                controller: TextEditingController(text: profileData.name ?? ''),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 30.r),
-              child: CustomTextFormField(
+              child: CustomTextFormFieldOnboarding(
                 hintText: 'Phone Number', //TODO:localization
                 prefixIcon: AppAssets.phoneIcon1,
-                controller: TextEditingController(text: '01200000000'),
+                controller:
+                    TextEditingController(text: profileData.phone ?? ''),
               ),
             ),
             Align(

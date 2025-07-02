@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
-class Customswitch extends StatefulWidget {
+class CustomSwitch extends StatefulWidget {
   final String inactiveIcon;
   final String activeIcon;
 
-  Customswitch({
+  const CustomSwitch({super.key,
     required this.inactiveIcon,
     required this.activeIcon,
   });
 
   @override
-  State<Customswitch> createState() => _CustomswitchState();
+  State<CustomSwitch> createState() => _CustomSwitchState();
 }
 
-class _CustomswitchState extends State<Customswitch> {
+class _CustomSwitchState extends State<CustomSwitch> {
   bool _value = false;
   @override
   Widget build(BuildContext context) {

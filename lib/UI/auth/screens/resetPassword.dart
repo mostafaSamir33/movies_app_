@@ -35,7 +35,7 @@ class Forgetpassword extends StatelessWidget {
                 image: AssetImage(AppAssets.forgetPassword),
                 fit: BoxFit.cover,
               ),
-              Customtextformfield(
+              CustomTextFormFieldAuth(
                 hintText: 'old password',
                 password: true,
                 prefixIconPath: AppAssets.passwordIcon,
@@ -48,7 +48,7 @@ class Forgetpassword extends StatelessWidget {
                   return null;
                 },
               ),
-              Customtextformfield(
+              CustomTextFormFieldAuth(
                 hintText: 'new password',
                 password: true,
                 prefixIconPath: AppAssets.passwordIcon,

@@ -76,7 +76,7 @@ class Page4 extends StatelessWidget {
                     buttonText: 'Next', //TODO:localization
                     onPressed:
                         () => controller.nextPage(
-                          duration: Duration(seconds: 1),
+                          duration: Duration(milliseconds: 500),
                           curve: Curves.easeInOut,
                         ),
                   ),
@@ -85,7 +85,7 @@ class Page4 extends StatelessWidget {
                     buttonText: 'Back', //TODO:localization
                     onPressed:
                         () => controller.previousPage(
-                          duration: Duration(seconds: 1),
+                          duration: Duration(milliseconds: 500),
                           curve: Curves.easeInOut,
                         ),
                   ),

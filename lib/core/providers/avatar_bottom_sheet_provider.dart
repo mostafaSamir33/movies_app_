@@ -14,11 +14,8 @@ class AvatarBottomSheetProvider extends ChangeNotifier {
   }
 
   void initialAvatar() {
-    if (selectedAvatar == null) {
-      selectedIndex = 7;
       selectedAvatar =
           AvatarBottomSheetModel.avatarImages[selectedIndex ?? 7].avatarImage;
       notifyListeners();
     }
-  }
 }

@@ -1,43 +1,47 @@
 import 'dart:convert';
-import 'package:google_sign_in/google_sign_in.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:movies_app/core/utils/app_prefs.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
+import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
+
+import '../../../core/providers/token_provider.dart';
+import '../../main_layer/tabs/profileTab/models/profile_response_model.dart';
 
 class AuthService {
   final String baseUrl = "https://route-movie-apis.vercel.app";
 
-
-  Future<Map<String, dynamic>> login(String email, String password) async {
+  Future<Map<String, dynamic>> login(
+      String email, String password, BuildContext context) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/login'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"email": email, "password": password}),
     );
     final data = _processResponse(response);
-
     if (data.containsKey('data')) {
       final token = data['data'];
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', token);
+      context.read<TokenProvider>().token = token;
       print('Token saved: $token');
     }
+
+    ProfileData? profileData = await ProfileApi.getProfile(context);
+    context.read<AvatarBottomSheetProvider>().selectedIndex =
+        profileData?.avaterId ?? 7;
+    context.read<AvatarBottomSheetProvider>().initialAvatar();
 
     return data;
   }
 
-  static Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('token');
-  }
-
   Future<Map<String, dynamic>> register(
+      BuildContext context,
       String name,
       String email,
       String password,
       String confirmPassword,
       String phone,
-      int avaterId) async {
+      int avatarId) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/register'),
       headers: {"Content-Type": "application/json"},
@@ -47,15 +51,18 @@ class AuthService {
         "password": password,
         "phone": phone,
         "confirmPassword": confirmPassword,
-        'avaterId': avaterId,
+        'avaterId': avatarId,
       }),
     );
     print('$email,$password,$name,$phone,$confirmPassword');
+    context.read<AvatarBottomSheetProvider>().selectedIndex = avatarId;
+    context.read<AvatarBottomSheetProvider>().initialAvatar();
     return _processResponse(response);
   }
 
-  Future<Map<String, dynamic>> resetpassword(String email) async {
-    final token = await getToken();
+  Future<Map<String, dynamic>> resetpassword(
+      String email, BuildContext context) async {
+    final token = context.watch<TokenProvider>().token;
     if (token == null) throw Exception('Token not found, please login first');
 
     final response = await http.patch(
@@ -78,10 +85,4 @@ class AuthService {
       throw Exception(jsonDecode(response.body)['message'] ?? 'Request failed');
     }
   }
-
-
-
-
-
 }
-
