@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
-import 'package:movies_app/core/utils/custom_text_styles.dart';
+import 'package:provider/provider.dart';
 
 class GenreSelector extends StatelessWidget {
   final List<String> genres;
@@ -19,6 +20,7 @@ class GenreSelector extends StatelessWidget {
     return SizedBox(
       height: 42,
       child: ListView.builder(
+        controller: context.watch<SelectedCatProvider>().scrollController,
         scrollDirection: Axis.horizontal,
         itemCount: genres.length,
         padding: const EdgeInsets.symmetric(horizontal: 12),
