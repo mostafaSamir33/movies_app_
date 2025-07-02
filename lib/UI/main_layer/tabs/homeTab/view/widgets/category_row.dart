@@ -30,7 +30,9 @@ class CategoryRow extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              context.read<SelectedCatProvider>().selectCat(title);
+              context.read<SelectedCatProvider>().selectCat(
+                    title,
+                  );
               currentIndex.value = 2;
             },
             child: Row(
