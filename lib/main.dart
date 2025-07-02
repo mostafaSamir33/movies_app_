@@ -29,7 +29,7 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => SelectedCatProvider(),
-        )
+        ),
         ChangeNotifierProvider(
           create: (context) => TokenProvider(),
         ),

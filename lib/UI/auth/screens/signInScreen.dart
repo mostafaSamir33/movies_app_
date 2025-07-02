@@ -11,6 +11,8 @@ import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 
+import '../Service/googleServices.dart';
+
 class SignInScreen extends StatefulWidget {
   static const String routeName = '/Signinscreen';
 

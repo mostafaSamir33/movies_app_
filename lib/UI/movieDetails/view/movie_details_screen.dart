@@ -44,7 +44,7 @@ class MovieDetailsScreen extends StatelessWidget {
       body: ListView(
         children: [
           MovieSectionView(), //take obgect of movie
-          CoustomWatchElevatedBoutton(
+          CustomWatchElevatedButton(
             title: 'Watch',
             onPressed: () {},
           ),

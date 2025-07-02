@@ -29,7 +29,7 @@ class ScreenShotsSectionView extends StatelessWidget {
                 color: AppColors.white),
           ),
           ClipRRect(
-            borderRadius: BorderRadiusGeometry.circular(16),
+            borderRadius: BorderRadius.circular(16),
             child: Image.network(
               screenShot1,
               height: 176.h,
@@ -37,7 +37,7 @@ class ScreenShotsSectionView extends StatelessWidget {
             ),
           ),
           ClipRRect(
-            borderRadius: BorderRadiusGeometry.circular(16),
+            borderRadius: BorderRadius.circular(16),
             child: Image.network(
               screenShot2,
               height: 176.h,
@@ -45,7 +45,7 @@ class ScreenShotsSectionView extends StatelessWidget {
             ),
           ),
           ClipRRect(
-            borderRadius: BorderRadiusGeometry.circular(16),
+            borderRadius: BorderRadius.circular(16),
             child: Image.network(
               screenShot3,
               height: 176.h,

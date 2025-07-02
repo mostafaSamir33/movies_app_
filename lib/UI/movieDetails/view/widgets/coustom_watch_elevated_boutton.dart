@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
-class CoustomWatchElevatedBoutton extends StatelessWidget {
-  const CoustomWatchElevatedBoutton(
+class CustomWatchElevatedButton extends StatelessWidget {
+  const CustomWatchElevatedButton(
       {super.key, required this.title, this.onPressed});
   final String title;
   final void Function()? onPressed;
@@ -17,7 +17,7 @@ class CoustomWatchElevatedBoutton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             padding: EdgeInsets.all(16),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.circular(16)),
+                borderRadius: BorderRadius.circular(16)),
             backgroundColor: AppColors.red,
             foregroundColor: AppColors.white,
             minimumSize: Size(double.infinity, 58.h)),
