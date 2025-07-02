@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/movie_card.dart';
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/app_colors.dart';
+import 'package:movies_app/UI/main_layer/tabs/exploreTab/modelView/explore_movies_cubit.dart';
+import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/explore_movies_grid.dart';
+import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/genre_selector.dart';
+import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/app_constants.dart';
 
 class ExploreTabScreen extends StatefulWidget {
   const ExploreTabScreen({super.key});
@@ -10,90 +12,53 @@ class ExploreTabScreen extends StatefulWidget {
   State<ExploreTabScreen> createState() => _ExploreTabScreenState();
 }
 
-class _ExploreTabScreenState extends State<ExploreTabScreen> {
-  final List<String> genres = [
-    'Action',
-    'Adventure',
-    'Animation',
-    'Biography',
-    'Comedy'
-  ];
-  int selectedGenreIndex = 0;
+class _ExploreTabScreenState extends State<ExploreTabScreen>
+    with AutomaticKeepAliveClientMixin {
+  final genres = AppConstants.genresList;
 
-  final List<String> exploreImages = [
-    AppAssets.blackWidow,
-    AppAssets.joker,
-    AppAssets.ironMan,
-    AppAssets.civil,
-    AppAssets.avengers,
-    AppAssets.doctorStrange,
-  ];
+  int selectedGenreIndex = 0;
+  late ExploreMoviesCubit exploreCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    exploreCubit = ExploreMoviesCubit();
+    exploreCubit.fetchMovies(genres[selectedGenreIndex]);
+  }
+
+  @override
+  void didUpdateWidget(covariant ExploreTabScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    exploreCubit.fetchMovies(genres[selectedGenreIndex]);
+  }
+
+  @override
+  bool get wantKeepAlive => false;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: AppColors.black1,
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 12),
-            SizedBox(
-              height: 42,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: genres.length,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                itemBuilder: (context, index) {
-                  final isSelected = index == selectedGenreIndex;
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGenreIndex = index;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 6),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: isSelected ? AppColors.amber : AppColors.black1,
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: AppColors.amber,
-                          width: 1.5,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          genres[index],
-                          style: TextStyle(
-                            color:
-                                isSelected ? AppColors.black1 : AppColors.amber,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+            GenreSelector(
+              genres: genres,
+              selectedIndex: selectedGenreIndex,
+              onGenreSelected: (index) {
+                setState(() {
+                  selectedGenreIndex = index;
+                });
+                exploreCubit.fetchMovies(genres[index]);
+              },
             ),
             const SizedBox(height: 16),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: GridView.builder(
-                  itemCount: exploreImages.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.65,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                  ),
-                  itemBuilder: (context, index) {
-                    return MovieCard(imagePath: exploreImages[index]);
-                  },
-                ),
+                child: ExploreMoviesGrid(exploreCubit: exploreCubit),
               ),
             ),
           ],

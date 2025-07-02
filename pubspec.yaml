@@ -43,8 +43,9 @@ dependencies:
   animated_widgets: ^1.1.0
   provider: ^6.1.5
   http: ^1.4.0
-  google_sign_in: ^7.0.0
+  google_sign_in: ^6.1.0
   flutter_bloc: ^9.1.1
+  bloc: ^9.0.0
 
 
 

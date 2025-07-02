@@ -3,8 +3,13 @@ import '../../../../../core/utils/app_colors.dart';
 
 class MovieCard extends StatelessWidget {
   final String imagePath;
+  final double? rating;
 
-  const MovieCard({super.key, required this.imagePath});
+  const MovieCard({
+    super.key,
+    required this.imagePath,
+    this.rating,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +20,27 @@ class MovieCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
             blurRadius: 6,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Stack(
+          fit: StackFit.expand,
           children: [
-            Image.asset(
+            Image.network(
               imagePath,
               fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
+              errorBuilder: (_, __, ___) => const Center(
+                child: Icon(Icons.broken_image, color: Colors.white),
+              ),
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: CircularProgressIndicator(color: AppColors.amber),
+                );
+              },
             ),
             Positioned(
               top: 8,
@@ -39,17 +52,17 @@ class MovieCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Row(
-                  children: const [
+                  children: [
                     Text(
-                      '7.7',
-                      style: TextStyle(
+                      (rating ?? 0).toStringAsFixed(1),
+                      style: const TextStyle(
                         color: AppColors.amber,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(width: 3),
-                    Icon(
+                    const SizedBox(width: 3),
+                    const Icon(
                       Icons.star,
                       color: AppColors.amber,
                       size: 14,

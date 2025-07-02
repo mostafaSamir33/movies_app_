@@ -54,7 +54,7 @@ class AuthService {
     return _processResponse(response);
   }
 
-  Future<Map<String, dynamic>> forgetPassword(String email) async {
+  Future<Map<String, dynamic>> resetpassword(String email) async {
     final token = await getToken();
     if (token == null) throw Exception('Token not found, please login first');
 

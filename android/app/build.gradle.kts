@@ -14,7 +14,21 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+     signingConfigs {
+        create("release") {
+            keyAlias = "mykey"
+            keyPassword = "123456"
+            storeFile = file("mykey.jks")
+            storePassword = "123456"
+        }
+    }
 
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
+        }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
@@ -41,4 +55,4 @@ android {
 
 flutter {
     source = "../.."
-}
+}}

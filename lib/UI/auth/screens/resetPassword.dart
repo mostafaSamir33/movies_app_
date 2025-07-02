@@ -5,11 +5,15 @@ import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 
-class Forgetpassword extends StatelessWidget {
+class ResetPassword extends StatelessWidget {
   static const String routeName = '/Forgetpassword';
-  TextEditingController forgetPasswordController = TextEditingController();
+  TextEditingController oldPasswordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+
   final AuthService _authService = AuthService();
   final formkey = GlobalKey<FormState>();
+
+  ResetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class Forgetpassword extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             icon: Icon(Icons.arrow_back)),
         title: Text(
-          'Forget Password',
+          'reset Password',
         ),
         centerTitle: true,
       ),
@@ -34,27 +38,35 @@ class Forgetpassword extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Customtextformfield(
-                hintText: 'Email',
-                password: false,
-                prefixIconPath: AppAssets.emailIcon,
-                controller: forgetPasswordController,
+                hintText: 'old password',
+                password: true,
+                prefixIconPath: AppAssets.passwordIcon,
+                controller: oldPasswordController,
                 validator: (value) {
                   if (value == null || value.isEmpty)
-                    return 'Email is required';
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                      .hasMatch(value)) return 'Enter valid email';
+                    return 'Password is required';
+                  if (value.length < 6)
+                    return 'Password must be at least 6 characters';
+                  return null;
+                },
+              ),
+              Customtextformfield(
+                hintText: 'new password',
+                password: true,
+                prefixIconPath: AppAssets.passwordIcon,
+                controller: newPasswordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty)
+                    return 'Password is required';
+                  if (value.length < 6)
+                    return 'Password must be at least 6 characters';
                   return null;
                 },
               ),
               CustomElevatedButtonFilled(
-                buttonText: 'Verify Email',
+                buttonText: 'change password',
                 onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    resetPassword(
-                      context,
-                      forgetPasswordController.text,
-                    );
-                  }
+                  formkey.currentState!.validate();
                 },
               ),
             ],
@@ -62,16 +74,5 @@ class Forgetpassword extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void resetPassword(BuildContext context, String email) async {
-    try {
-      final response = await _authService.forgetPassword(email);
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Check your email for reset link')));
-    } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
   }
 }
