@@ -19,7 +19,7 @@ class CategoryMoviesSection extends StatelessWidget {
       children: [
         const SizedBox(height: 12),
         SizedBox(
-          height: 230.h,
+          height: 240.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: movies.length,
