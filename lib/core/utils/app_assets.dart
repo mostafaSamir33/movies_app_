@@ -101,4 +101,12 @@ class AppAssets {
       'assets/images/explore_tap/doctor_strange.jpg';
   static const String ironMan = 'assets/images/explore_tap/iron_man.jpg';
   static const String joker = 'assets/images/explore_tap/joker.jpg';
+
+  //===============Movie Details Screen Icons=================================\\
+  static const String playerIcon =
+      'assets/icons/movie_details_icon/playerIcon.png';
+  static const String loveIcon = 'assets/icons/movie_details_icon/loveIcon.png';
+  static const String watchIcon =
+      'assets/icons/movie_details_icon/watchIcon.png';
+  static const String starIcon = 'assets/icons/movie_details_icon/starIcon.png';
 }
