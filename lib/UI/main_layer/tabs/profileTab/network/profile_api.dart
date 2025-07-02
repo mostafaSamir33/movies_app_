@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
 import 'package:movies_app/core/providers/token_provider.dart';
 
 import '../models/profile_response_model.dart';
@@ -17,7 +18,6 @@ class ProfileApi {
     http.Response response = await http.get(
       uri,
       headers: {
-        "Content-Type": "application/json",
         if (token != null) "Authorization": "Bearer $token",
       },
     );
@@ -30,27 +30,51 @@ class ProfileApi {
     }
   }
 
-  static Future<dynamic> updateProfile() async {
-    Uri uri = Uri.https(baseUrl, 'profile');
-    http.Response response = await http.get(uri);
+  static Future<Map<String, dynamic>> updateProfile(
+      BuildContext context, String name, String phone) async {
+    final String? token = context.read<TokenProvider>().token;
+
+    Uri uri = Uri.parse('$baseUrl/profile');
+    http.Response response = await http.patch(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+        if (token != null) "Authorization": "Bearer $token",
+      },
+      body: jsonEncode({
+        "name": name,
+        // "password": password,
+        "phone": phone,
+        'avaterId': context.read<AvatarBottomSheetProvider>().avatarId,
+      }),
+    );
+
     Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-    // ArticleResponseModel data = ArticleResponseModel.fromJson(jsonResponse);
-    // if (data.status == 'ok' && response.statusCode == 200) {
-    //   return data.articles;
-    // } else {
-    //   throw data.message ?? 'something went wrong';
-    // }
+    if (response.statusCode == 200) {
+      return jsonResponse;
+    } else {
+      throw jsonResponse['message'] ?? 'Request failed';
+    }
   }
 
-  static Future<dynamic> deleteProfile() async {
-    Uri uri = Uri.https(baseUrl, 'profile');
-    http.Response response = await http.get(uri);
+  static Future<Map<String, dynamic>> deleteProfile(
+      BuildContext context) async {
+    final String? token = context.read<TokenProvider>().token;
+
+    Uri uri = Uri.parse('$baseUrl/profile');
+    http.Response response = await http.delete(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+        if (token != null) "Authorization": "Bearer $token",
+      },
+    );
+
     Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-    // ArticleResponseModel data = ArticleResponseModel.fromJson(jsonResponse);
-    // if (data.status == 'ok' && response.statusCode == 200) {
-    //   return data.articles;
-    // } else {
-    //   throw data.message ?? 'something went wrong';
-    // }
+    if (response.statusCode == 200) {
+      return jsonResponse;
+    } else {
+      throw jsonResponse['message'] ?? 'Request failed';
+    }
   }
 }

@@ -29,6 +29,8 @@ class AuthService {
     ProfileData? profileData = await ProfileApi.getProfile(context);
     context.read<AvatarBottomSheetProvider>().selectedIndex =
         profileData?.avaterId ?? 7;
+    context.read<AvatarBottomSheetProvider>().avatarId =
+        profileData?.avaterId ?? 7;
     context.read<AvatarBottomSheetProvider>().initialAvatar();
 
     return data;
@@ -56,6 +58,7 @@ class AuthService {
     );
     print('$email,$password,$name,$phone,$confirmPassword');
     context.read<AvatarBottomSheetProvider>().selectedIndex = avatarId;
+    context.read<AvatarBottomSheetProvider>().avatarId = avatarId;
     context.read<AvatarBottomSheetProvider>().initialAvatar();
     return _processResponse(response);
   }

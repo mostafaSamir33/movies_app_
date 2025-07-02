@@ -1,10 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/widgets/profile_tab_body.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/widgets/profile_tab_header.dart';
-import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/custom_text_styles.dart';
@@ -20,6 +18,20 @@ class ProfileTabScreen extends StatefulWidget {
 
 class _ProfileTabScreenState extends State<ProfileTabScreen>
     with TickerProviderStateMixin {
+  late Future<ProfileData?> _profileFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _profileFuture = ProfileApi.getProfile(context);
+  }
+
+  void _reloadProfile() {
+    setState(() {
+      _profileFuture = ProfileApi.getProfile(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     TabController controller = TabController(
@@ -51,6 +63,7 @@ class _ProfileTabScreenState extends State<ProfileTabScreen>
               ProfileTabHeader(
                 controller: controller,
                 profileData: profileData,
+                onProfileUpdated: _reloadProfile,
               ),
               Expanded(
                 child: ProfileTabBody(

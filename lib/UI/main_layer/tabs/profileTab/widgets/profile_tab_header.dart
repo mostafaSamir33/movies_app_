@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
-import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
 import 'package:movies_app/core/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -13,13 +14,22 @@ import '../../../../../core/models/avatar_bottom_sheet_model.dart';
 import '../models/profile_response_model.dart';
 import '../screens/update_profile_screen.dart';
 
-class ProfileTabHeader extends StatelessWidget {
+class ProfileTabHeader extends StatefulWidget {
   final TabController controller;
   final ProfileData? profileData;
+  final VoidCallback onProfileUpdated;
 
   const ProfileTabHeader(
-      {super.key, required this.controller, required this.profileData});
+      {super.key,
+      required this.controller,
+      required this.profileData,
+      required this.onProfileUpdated});
 
+  @override
+  State<ProfileTabHeader> createState() => _ProfileTabHeaderState();
+}
+
+class _ProfileTabHeaderState extends State<ProfileTabHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,10 +49,7 @@ class ProfileTabHeader extends StatelessWidget {
                     children: [
                       Image.asset(
                         AvatarBottomSheetModel
-                            .avatarImages[context
-                                    .watch<AvatarBottomSheetProvider>()
-                                    .selectedIndex ??
-                                7]
+                            .avatarImages[widget.profileData?.avaterId ?? 7]
                             .avatarImage,
                         height: 118.h,
                         width: 118.w,
@@ -51,8 +58,14 @@ class ProfileTabHeader extends StatelessWidget {
                         height: 14.h,
                       ),
                       Text(
-                        profileData?.name ??
-                            'User Name', //TODO:change to user name
+                        widget.profileData?.name != null
+                            ? (widget.profileData?.name)!
+                                .split(' ')
+                                .take(2)
+                                .join(' ')
+                                .substring(0)
+                                .toUpperCase()
+                            : 'User Name',
                         style: CustomTextStyles.style20w700.copyWith(
                             color: AppColors.white, fontFamily: 'Roboto'),
                       )
@@ -107,10 +120,15 @@ class ProfileTabHeader extends StatelessWidget {
                   Expanded(
                     flex: 5,
                     child: FilledButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(
+                      onPressed: () async {
+                        log(context.read<TokenProvider>().token.toString());
+                        final updated = await Navigator.of(context).pushNamed(
                             UpdateProfileScreen.routeName,
-                            arguments: profileData);
+                            arguments: widget.profileData);
+
+                        if (updated == true) {
+                          widget.onProfileUpdated();
+                        }
                       },
                       style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -167,7 +185,7 @@ class ProfileTabHeader extends StatelessWidget {
               ),
             ),
             TabBar(
-              controller: controller,
+              controller: widget.controller,
               indicatorWeight: 3.r,
               indicatorColor: AppColors.yellow,
               indicatorSize: TabBarIndicatorSize.tab,

@@ -223,19 +223,40 @@ class _SignupscreenState extends State<Signupscreen> {
           response['message'].toString().toLowerCase().contains('success')) {
         print('xxxxxxxx');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Registration Successful')),
+          SnackBar(
+            content: Text(
+              'Registration Successful',
+              style: CustomTextStyles.style20w600
+                  .copyWith(color: AppColors.black1),
+            ),
+            backgroundColor: AppColors.yellow,
+          ),
         );
 
         Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(response['message'] ?? 'Registration failed')),
+          SnackBar(
+            content: Text(
+              response['message'] ?? 'Registration failed',
+              style: CustomTextStyles.style20w600
+                  .copyWith(color: AppColors.black1),
+            ),
+            backgroundColor: AppColors.yellow,
+          ),
         );
         print('-------------');
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
+        SnackBar(
+          content: Text(
+            'Error: $e',
+            style:
+                CustomTextStyles.style20w600.copyWith(color: AppColors.white),
+          ),
+          backgroundColor: AppColors.red,
+        ),
       );
       print(e);
     }

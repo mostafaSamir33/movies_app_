@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/avatar_bottom_sheet_icon.dart';
 import 'package:movies_app/core/models/avatar_bottom_sheet_model.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
@@ -9,6 +10,7 @@ import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/providers/avatar_bottom_sheet_provider.dart';
+import '../../../../auth/screens/signInScreen.dart';
 import '../../../../widgets/custom_elevated_button_filled.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 
@@ -23,10 +25,30 @@ class UpdateProfileScreen extends StatefulWidget {
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen>
     with TickerProviderStateMixin {
+  ProfileData? profileData;
+
+  TextEditingController? nameController;
+  TextEditingController? phoneController;
+
+  bool _initDone = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_initDone) return;
+      _initDone = true;
+      profileData = ModalRoute.of(context)!.settings.arguments as ProfileData;
+      context
+          .read<AvatarBottomSheetProvider>()
+          .initialAvatar(avatarId: profileData?.avaterId);
+      nameController = TextEditingController(text: profileData?.name ?? '');
+      phoneController = TextEditingController(text: profileData?.phone ?? '');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    ProfileData profileData =
-        ModalRoute.of(context)!.settings.arguments as ProfileData;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -120,7 +142,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
               child: CustomTextFormFieldOnboarding(
                 hintText: 'Name', //TODO:localization
                 prefixIcon: AppAssets.personIcon,
-                controller: TextEditingController(text: profileData.name ?? ''),
+                controller: nameController,
               ),
             ),
             Padding(
@@ -128,8 +150,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
               child: CustomTextFormFieldOnboarding(
                 hintText: 'Phone Number', //TODO:localization
                 prefixIcon: AppAssets.phoneIcon1,
-                controller:
-                    TextEditingController(text: profileData.phone ?? ''),
+                controller: phoneController,
               ),
             ),
             Align(
@@ -149,7 +170,87 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: CustomElevatedButtonFilled(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    useSafeArea: true,
+                    builder: (context) => AlertDialog(
+                      title: Text(
+                        'Delete Account',
+                        style: CustomTextStyles.style36w500
+                            .copyWith(color: AppColors.red),
+                      ),
+                      backgroundColor: AppColors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                      alignment: Alignment.center,
+                      actionsAlignment: MainAxisAlignment.center,
+                      content: Text(
+                        'Are you sure you want to delete the account?',
+                        style: CustomTextStyles.style20w600
+                            .copyWith(color: AppColors.black1),
+                        textAlign: TextAlign.center,
+                      ),
+                      icon: Icon(
+                        Icons.delete,
+                        color: AppColors.red,
+                      ),
+                      actions: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.yellow,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16))),
+                              child: Text(
+                                'No',
+                                style: CustomTextStyles.style20w600
+                                    .copyWith(color: AppColors.black1),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20.w,
+                            ),
+                            ElevatedButton(
+                              onPressed: () async{
+                                await ProfileApi.deleteProfile(context);
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text(
+                                    'Profile deleted successfully',
+                                    style: CustomTextStyles.style20w600
+                                        .copyWith(color: AppColors.black1),
+                                  ),
+                                  backgroundColor: AppColors.yellow,
+                                ));
+
+                                // Navigator.of(context).pop();
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  SignInScreen.routeName,
+                                  (route) => false,
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.red,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16))),
+                              child: Text(
+                                'Yes',
+                                style: CustomTextStyles.style20w600
+                                    .copyWith(color: AppColors.white),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
                 buttonColor: AppColors.red,
                 buttonTextWidget: Text(
                   'Delete Account', //TODO:localization
@@ -161,7 +262,36 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
               ),
             ),
             CustomElevatedButtonFilled(
-              onPressed: () {},
+              onPressed: () async {
+                context.read<AvatarBottomSheetProvider>().changeAvatarId();
+                String name = nameController?.text.trim() ?? '';
+                String phone = phoneController?.text.trim() ?? '';
+                try {
+                  await ProfileApi.updateProfile(context, name, phone);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Profile updated successfully",
+                        style: CustomTextStyles.style20w600
+                            .copyWith(color: AppColors.black1),
+                      ),
+                      backgroundColor: AppColors.yellow,
+                    ),
+                  );
+                  Navigator.of(context).pop(true);
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Failed to update: $e",
+                        style: CustomTextStyles.style20w600
+                            .copyWith(color: AppColors.white),
+                      ),
+                      backgroundColor: AppColors.red,
+                    ),
+                  );
+                }
+              },
               buttonTextWidget: Text(
                 'Update Data', //TODO:localization
                 style: CustomTextStyles.style20w400.copyWith(

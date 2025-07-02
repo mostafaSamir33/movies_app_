@@ -153,12 +153,22 @@ class _SignInScreenState extends State<SignInScreen> {
     try {
       final response = await _authService.login(email, password, context);
 
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login Successful')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Login Successful',
+          style: CustomTextStyles.style20w600.copyWith(color: AppColors.black1),
+        ),
+        backgroundColor: AppColors.yellow,
+      ));
       Navigator.pushReplacementNamed(context, MainLayerScreen.routeName);
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Error: $e',
+          style: CustomTextStyles.style20w600.copyWith(color: AppColors.white),
+        ),
+        backgroundColor: AppColors.red,
+      ));
     }
   }
 }
