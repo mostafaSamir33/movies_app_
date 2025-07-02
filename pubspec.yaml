@@ -78,7 +78,6 @@ flutter:
      - assets/images/onboarding_images/
      - assets/icons/
      - assets/images/auth_images/
-     - assets/images/auth_images/profile/
      - assets/images/home_tap/
      - assets/images/explore_tap/
      - assets/images/update_profile_images/

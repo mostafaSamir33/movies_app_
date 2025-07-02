@@ -2,8 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
-import 'package:movies_app/UI/auth/Service/googleServices.dart';
-import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
@@ -12,7 +10,6 @@ import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String routeName = '/Signinscreen';
@@ -28,6 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,29 +44,34 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 118.h,
                 ),
                 SizedBox(height: 69.h),
-                Customtextformfield(
+                CustomTextFormFieldAuth(
                   hintText: 'Email',
                   password: false,
                   prefixIconPath: AppAssets.emailIcon,
                   controller: emailController,
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Email is required';
+                    }
                     if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                        .hasMatch(value)) return 'Enter valid email';
+                        .hasMatch(value)) {
+                      return 'Enter valid email';
+                    }
                     return null;
                   },
                 ),
-                Customtextformfield(
+                CustomTextFormFieldAuth(
                   hintText: 'Password',
                   password: true,
                   prefixIconPath: AppAssets.passwordIcon,
                   controller: passwordController,
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Password is required';
-                    if (value.length < 6)
+                    }
+                    if (value.length < 6) {
                       return 'Password must be at least 6 characters';
+                    }
                     return null;
                   },
                 ),
@@ -136,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                 ),
                 SizedBox(height: 33.h),
-                Customswitch(
+                CustomSwitch(
                   inactiveIcon: AppAssets.enIcon,
                   activeIcon: AppAssets.egIcon,
                 ),
@@ -150,14 +153,24 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void loginUser(BuildContext context, String email, String password) async {
     try {
-      final response = await _authService.login(email, password);
+      final response = await _authService.login(email, password, context);
 
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login Successful')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Login Successful',
+          style: CustomTextStyles.style20w600.copyWith(color: AppColors.black1),
+        ),
+        backgroundColor: AppColors.yellow,
+      ));
       Navigator.pushReplacementNamed(context, MainLayerScreen.routeName);
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Error: $e',
+          style: CustomTextStyles.style20w600.copyWith(color: AppColors.white),
+        ),
+        backgroundColor: AppColors.red,
+      ));
     }
   }
 

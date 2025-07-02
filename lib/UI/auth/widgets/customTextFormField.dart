@@ -4,14 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 
-class Customtextformfield extends StatefulWidget {
-  const Customtextformfield(
+class CustomTextFormFieldAuth extends StatefulWidget {
+  const CustomTextFormFieldAuth(
       {super.key,
       required this.hintText,
       required this.password,
       required this.prefixIconPath,
       required this.controller,
       this.validator});
+
   final String hintText;
   final bool password;
   final String prefixIconPath;
@@ -19,21 +20,24 @@ class Customtextformfield extends StatefulWidget {
   final String? Function(String?)? validator;
 
   @override
-  State<Customtextformfield> createState() => _CustomtextformfieldState();
+  State<CustomTextFormFieldAuth> createState() =>
+      _CustomTextFormFieldAuthState();
 }
 
-class _CustomtextformfieldState extends State<Customtextformfield> {
-  bool isObscure = false;
+class _CustomTextFormFieldAuthState extends State<CustomTextFormFieldAuth> {
+  bool isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 24.r),
       child: TextFormField(
+        onTapOutside: (event) => FocusScope.of(context).unfocus(),
         validator: widget.validator,
         style: CustomTextStyles.style20w400.copyWith(color: AppColors.white),
         cursorColor: AppColors.white,
         controller: widget.controller,
-        obscureText: isObscure,
+        obscureText: widget.password ? isObscure : false,
         decoration: InputDecoration(
           suffixIconColor: AppColors.white,
           hintStyle:

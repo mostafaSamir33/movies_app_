@@ -5,12 +5,12 @@ import 'package:flutter_svg/svg.dart';
 import '../../core/utils/app_colors.dart';
 import '../../core/utils/custom_text_styles.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormFieldOnboarding extends StatelessWidget {
   final String prefixIcon;
   final String hintText;
   final TextEditingController? controller;
 
-  const CustomTextFormField({
+  const CustomTextFormFieldOnboarding({
     super.key,
     required this.prefixIcon,
     required this.hintText,

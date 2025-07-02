@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
 import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
@@ -8,10 +7,12 @@ import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
 import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.dart';
-import 'package:movies_app/UI/screens/update_profile_screen.dart';
+import 'package:movies_app/core/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_theme.dart';
 import 'package:provider/provider.dart';
+
+import 'UI/main_layer/tabs/profileTab/screens/update_profile_screen.dart';
 import 'UI/onboarding/onboarding_screens/onboarding_screen_2.dart';
 import 'core/providers/avatar_bottom_sheet_provider.dart';
 import 'core/utils/app_prefs.dart';
@@ -29,6 +30,9 @@ Future<void> main() async {
         ChangeNotifierProvider(
           create: (context) => SelectedCatProvider(),
         )
+        ChangeNotifierProvider(
+          create: (context) => TokenProvider(),
+        ),
       ],
       child: const MyApp(),
     ),

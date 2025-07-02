@@ -1,20 +1,35 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
-import 'package:movies_app/UI/screens/update_profile_screen.dart';
-import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
+import 'package:movies_app/core/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileTabHeader extends StatelessWidget {
+import '../../../../../core/models/avatar_bottom_sheet_model.dart';
+import '../models/profile_response_model.dart';
+import '../screens/update_profile_screen.dart';
+
+class ProfileTabHeader extends StatefulWidget {
   final TabController controller;
+  final ProfileData? profileData;
+  final VoidCallback onProfileUpdated;
 
-  const ProfileTabHeader({super.key, required this.controller});
+  const ProfileTabHeader(
+      {super.key,
+      required this.controller,
+      required this.profileData,
+      required this.onProfileUpdated});
 
+  @override
+  State<ProfileTabHeader> createState() => _ProfileTabHeaderState();
+}
+
+class _ProfileTabHeaderState extends State<ProfileTabHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,10 +48,9 @@ class ProfileTabHeader extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        context
-                                .watch<AvatarBottomSheetProvider>()
-                                .selectedAvatar ??
-                            AppAssets.avatarImage8,
+                        AvatarBottomSheetModel
+                            .avatarImages[widget.profileData?.avaterId ?? 7]
+                            .avatarImage,
                         height: 118.h,
                         width: 118.w,
                       ),
@@ -44,7 +58,14 @@ class ProfileTabHeader extends StatelessWidget {
                         height: 14.h,
                       ),
                       Text(
-                        'John Safwat', //TODO:change to user name
+                        widget.profileData?.name != null
+                            ? (widget.profileData?.name)!
+                                .split(' ')
+                                .take(2)
+                                .join(' ')
+                                .substring(0)
+                                .toUpperCase()
+                            : 'User Name',
                         style: CustomTextStyles.style20w700.copyWith(
                             color: AppColors.white, fontFamily: 'Roboto'),
                       )
@@ -99,9 +120,15 @@ class ProfileTabHeader extends StatelessWidget {
                   Expanded(
                     flex: 5,
                     child: FilledButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(UpdateProfileScreen.routeName);
+                      onPressed: () async {
+                        log(context.read<TokenProvider>().token.toString());
+                        final updated = await Navigator.of(context).pushNamed(
+                            UpdateProfileScreen.routeName,
+                            arguments: widget.profileData);
+
+                        if (updated == true) {
+                          widget.onProfileUpdated();
+                        }
                       },
                       style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -122,7 +149,12 @@ class ProfileTabHeader extends StatelessWidget {
                     flex: 3,
                     child: FilledButton(
                       onPressed: () {
-                        logout(context);
+                        context.read<TokenProvider>().token = null;
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          SignInScreen.routeName,
+                          (route) => false,
+                        );
                       },
                       style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -142,6 +174,8 @@ class ProfileTabHeader extends StatelessWidget {
                           ),
                           SvgPicture.asset(
                             AppAssets.exitIcon,
+                            height: 18.h,
+                            width: 16.4.w,
                           )
                         ],
                       ),
@@ -151,7 +185,7 @@ class ProfileTabHeader extends StatelessWidget {
               ),
             ),
             TabBar(
-              controller: controller,
+              controller: widget.controller,
               indicatorWeight: 3.r,
               indicatorColor: AppColors.yellow,
               indicatorSize: TabBarIndicatorSize.tab,
@@ -190,17 +224,6 @@ class ProfileTabHeader extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Future<void> logout(BuildContext context) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('token');
-
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      SignInScreen.routeName,
-      (route) => false,
     );
   }
 }

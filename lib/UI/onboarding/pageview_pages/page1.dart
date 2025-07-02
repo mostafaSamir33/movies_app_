@@ -76,7 +76,7 @@ class Page1 extends StatelessWidget {
                     buttonText: 'Next', //TODO:localization
                     onPressed:
                         () => controller.nextPage(
-                          duration: Duration(seconds: 1),
+                          duration: Duration(milliseconds: 500),
                           curve: Curves.easeInOut,
                         ),
                   ),
