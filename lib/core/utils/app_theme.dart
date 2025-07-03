@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
-class Apptheme {
+class AppTheme {
   static ThemeData themeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.black1,

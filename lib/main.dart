@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: Apptheme.themeData,
+        theme: AppTheme.themeData,
         themeMode: ThemeMode.light,
         routes: {
           SignInScreen.routeName: (_) => SignInScreen(),

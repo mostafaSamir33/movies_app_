@@ -57,17 +57,21 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                       SizedBox(
                         height: 14.h,
                       ),
-                      Text(
-                        widget.profileData?.name != null
-                            ? (widget.profileData?.name)!
-                                .split(' ')
-                                .take(2)
-                                .join(' ')
-                                .substring(0)
-                                .toUpperCase()
-                            : 'User Name',
-                        style: CustomTextStyles.style20w700.copyWith(
-                            color: AppColors.white, fontFamily: 'Roboto'),
+                      SizedBox(
+                        width: 118.w,
+                        child: Text(
+                          widget.profileData?.name != null
+                              ? (widget.profileData?.name)!
+                                  .split(' ')
+                                  .take(2)
+                                  .join(' ')
+                                  .substring(0)
+                                  .toUpperCase()
+                              : 'User Name',
+                          style: CustomTextStyles.style20w700.copyWith(
+                              color: AppColors.white, fontFamily: 'Roboto'),
+                          textAlign: TextAlign.center,
+                        ),
                       )
                     ],
                   ),

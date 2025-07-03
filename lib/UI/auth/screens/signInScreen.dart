@@ -137,7 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   isSingInPage: true,
                   buttonText: 'Login With Google',
                   onPressed: () {
-                    googleSignin();
+                    googleSignIn();
                   },
                 ),
                 SizedBox(height: 33.h),
@@ -176,11 +176,16 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  googleSignin() async {
-    final user = await Googleservices.login();
+  googleSignIn() async {
+    final user = await GoogleServices.login();
     if (user == null) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login failed')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Login failed',
+          style: CustomTextStyles.style20w600.copyWith(color: AppColors.white),
+        ),
+        backgroundColor: AppColors.red,
+      ));
     } else {
       Navigator.pushReplacementNamed(
         context,
