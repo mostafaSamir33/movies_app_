@@ -15,6 +15,7 @@ class MoviesListByGenerCubit extends Cubit<MoviesListByGenerCubitStates> {
           await MoviesListApi.getListMoviesByGener(gener2);
       List<Movies>? moviesListSectino3 =
           await MoviesListApi.getListMoviesByGener(gener3);
+
       if (moviesListSectino1 == null || moviesListSectino1.isEmpty) {
         emit(MoviesListByGenerSucessEmptyListState());
         return;
@@ -27,12 +28,13 @@ class MoviesListByGenerCubit extends Cubit<MoviesListByGenerCubitStates> {
         emit(MoviesListByGenerSucessEmptyListState());
         return;
       }
+
       emit(MoviesListByGenerSucessState(
-          moviesSection1: moviesListSectino1,
-          moviesSection2: moviesListSectino2,
-          moviesSection3: moviesListSectino3));
+        moviesSection1: moviesListSectino1,
+        moviesSection2: moviesListSectino2,
+        moviesSection3: moviesListSectino3,
+      ));
     } catch (e) {
-      //TODO : handling error cases
       emit(MoviesListByGenerFailureState(message: e.toString()));
     }
   }

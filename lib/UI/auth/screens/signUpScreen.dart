@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
+import 'package:movies_app/UI/auth/Service/AuthService .dart';
 import 'package:movies_app/UI/auth/cubit/auth_cubit.dart';
 import 'package:movies_app/UI/auth/cubit/auth_state.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
@@ -62,13 +62,15 @@ class _SignupscreenState extends State<Signupscreen> {
                     enlargeFactor: 0.4,
                   ),
                   items: List.generate(
-                      AvatarBottomSheetModel.avatarImages.length,
-                      (index) => index).map((i) {
+                    AvatarBottomSheetModel.avatarImages.length,
+                    (index) => index,
+                  ).map((i) {
                     return Builder(
                       builder: (context) {
                         return Image(
-                          image: AssetImage(AvatarBottomSheetModel
-                              .avatarImages[i].avatarImage),
+                          image: AssetImage(
+                            AvatarBottomSheetModel.avatarImages[i].avatarImage,
+                          ),
                         );
                       },
                     );
@@ -198,8 +200,9 @@ class _SignupscreenState extends State<Signupscreen> {
                         TextSpan(text: 'Already Have Account ? '),
                         TextSpan(
                           style: CustomTextStyles.style14w400.copyWith(
-                              color: AppColors.yellow,
-                              fontWeight: FontWeight.bold),
+                            color: AppColors.yellow,
+                            fontWeight: FontWeight.bold,
+                          ),
                           text: 'Login',
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Navigator.of(context).pop(),
