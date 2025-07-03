@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
           UpdateProfileScreen.routeName: (_) => UpdateProfileScreen(),
           MainLayerScreen.routeName: (_) => const MainLayerScreen(),
           ResetPassword.routeName: (_) => ResetPassword(),
-          Signupscreen.routeName: (_) => Signupscreen(),
+          SignUpScreen.routeName: (_) => SignUpScreen(),
           MovieDetailsScreen.routeName: (context) {
             Movies movie = ModalRoute.of(context)!.settings.arguments as Movies;
             return MovieDetailsScreen(

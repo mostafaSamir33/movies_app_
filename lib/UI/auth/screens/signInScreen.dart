@@ -26,9 +26,10 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  final AuthService _authService = AuthService();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  final formkey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: Form(
-            key: formkey,
+            key: formKey,
             child: Column(
               children: [
                 SizedBox(height: 28.h),
@@ -92,7 +93,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomElevatedButtonFilled(
                   buttonText: 'Login',
                   onPressed: () {
-                    if (formkey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       loginUser(context, emailController.text,
                           passwordController.text);
                     }
@@ -112,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => Navigator.pushNamed(
                                 context,
-                                Signupscreen.routeName,
+                                SignUpScreen.routeName,
                               ),
                       ),
                     ],
@@ -203,7 +204,7 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.r),
               child: Form(
-                key: formkey,
+                key: formKey,
                 child: Column(
                   children: [
                     SizedBox(height: 28.h),
@@ -285,7 +286,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         return CustomElevatedButtonFilled(
                           buttonText: 'Login',
                           onPressed: () {
-                            if (formkey.currentState!.validate()) {
+                            if (formKey.currentState!.validate()) {
                               context.read<AuthCubit>().login(
                                     emailController.text.trim(),
                                     passwordController.text.trim(),
@@ -310,7 +311,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Navigator.pushNamed(
                                     context,
-                                    Signupscreen.routeName,
+                                    SignUpScreen.routeName,
                                   ),
                           ),
                         ],

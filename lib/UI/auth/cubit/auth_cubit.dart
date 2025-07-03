@@ -55,7 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
   void loginWithGoogle(BuildContext context) async {
     emit(AuthLoading());
     try {
-      final user = await Googleservices.login();
+      final user = await GoogleServices.login();
 
       if (user == null) {
         emit(AuthFailure("Google Sign-In Cancelled"));
