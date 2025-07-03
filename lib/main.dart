@@ -5,6 +5,7 @@ import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
 import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.dart';
 import 'package:movies_app/core/providers/token_provider.dart';
@@ -60,7 +61,12 @@ class MyApp extends StatelessWidget {
           MainLayerScreen.routeName: (_) => const MainLayerScreen(),
           ResetPassword.routeName: (_) => ResetPassword(),
           Signupscreen.routeName: (_) => Signupscreen(),
-          MovieDetailsScreen.routeName: (_) => MovieDetailsScreen(),
+          MovieDetailsScreen.routeName: (context) {
+            Movies movie = ModalRoute.of(context)!.settings.arguments as Movies;
+            return MovieDetailsScreen(
+              movie: movie,
+            );
+          }
         },
         initialRoute:
             AppPrefs.onboardingGetBool(AppConstants.onboardingKey) == null

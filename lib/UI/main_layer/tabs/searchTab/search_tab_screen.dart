@@ -87,6 +87,7 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                         itemBuilder: (context, index) {
                           final movie = movies[index];
                           return MovieCard(
+                            movie: movie,
                             imagePath: movie.mediumCoverImage ?? '',
                             rating: movie.rating,
                           );

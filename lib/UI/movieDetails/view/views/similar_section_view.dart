@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/widgets/movie_card.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class SimilarSectionView extends StatelessWidget {
-  const SimilarSectionView({super.key});
+  const SimilarSectionView({super.key, required this.suggestionMovies});
+  final List<Movies> suggestionMovies;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class SimilarSectionView extends StatelessWidget {
             height: 16.h,
           ),
           GridView.builder(
+            padding: EdgeInsets.all(0),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,11 +37,11 @@ class SimilarSectionView extends StatelessWidget {
               mainAxisSpacing: 16.h,
             ),
             itemBuilder: (context, index) => MovieCard(
-              imagePath:
-                  "https://yts.mx/assets/images/movies/Titanic_1997/medium-cover.jpg",
-              rating: 9,
+              movie: suggestionMovies[index],
+              imagePath: suggestionMovies[index].mediumCoverImage ?? '',
+              rating: suggestionMovies[index].rating,
             ),
-            itemCount: 4,
+            itemCount: suggestionMovies.length,
           )
         ],
       ),

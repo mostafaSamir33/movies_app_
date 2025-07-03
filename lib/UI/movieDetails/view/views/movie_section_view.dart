@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class MovieSectionView extends StatelessWidget {
-  const MovieSectionView({super.key});
+  const MovieSectionView({super.key, required this.movie});
+  final MovieDetails movie;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,7 @@ class MovieSectionView extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(
-                  "https://yts.mx/assets/images/movies/Titanic_1997/large-cover.jpg"))),
+              image: NetworkImage(movie.largeCoverImage ?? ''))),
       child: Container(
         width: double.infinity,
         height: 641.h,
@@ -38,7 +39,7 @@ class MovieSectionView extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                'Doctor Strange in the Multiverse of Madness',
+                movie.title ?? '',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 24.sp,
@@ -49,14 +50,16 @@ class MovieSectionView extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
-              Text(
-                '2020',
-                style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.whiteGrey,
-                    fontFamily: 'Roboto'),
-              ),
+              movie.year == null
+                  ? SizedBox()
+                  : Text(
+                      (movie.year).toString(),
+                      style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.whiteGrey,
+                          fontFamily: 'Roboto'),
+                    ),
               SizedBox(
                 height: 16.h,
               ),

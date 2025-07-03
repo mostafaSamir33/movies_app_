@@ -2,10 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
+import 'package:movies_app/UI/widgets/movie_card.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import 'watch_now_banner.dart';
-import 'available_now_movie_card.dart';
 
 class AvailableNowSection extends StatefulWidget {
   const AvailableNowSection({super.key, required this.movies});
@@ -31,9 +31,9 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
               colors: [
                 AppColors.black1.withAlpha(204),
                 AppColors.black1.withAlpha(153),
-                Colors.black,
+                AppColors.black1,
               ],
-              stops: [0.0, 0.4, 1.0],
+              stops: [0.3, 0.4, 1.0],
             ).createShader(rect);
           },
           blendMode: BlendMode.darken,
@@ -48,25 +48,15 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
           child: Column(
             children: [
               SizedBox(height: 100.h),
-
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              //   child: Image.asset(
-              //     AppAssets.availableNow,
-              //     width: 267.w,
-              //     fit: BoxFit.contain,
-              //   ),
-              // ),
               const SizedBox(height: 10),
               CarouselSlider.builder(
                 itemCount: widget.movies.length,
                 itemBuilder: (context, index, realIdx) {
                   final movie = widget.movies[index];
-                  final isCenter = index == _currentIndex;
-
-                  return AvailableNowMovieCard(
+                  return MovieCard(
                     movie: movie,
-                    isCenter: isCenter,
+                    imagePath: movie.largeCoverImage ?? '',
+                    rating: movie.rating,
                   );
                 },
                 options: CarouselOptions(

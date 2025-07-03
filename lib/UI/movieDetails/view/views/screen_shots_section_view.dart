@@ -28,28 +28,37 @@ class ScreenShotsSectionView extends StatelessWidget {
                 fontFamily: 'Roboto',
                 color: AppColors.white),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              screenShot1,
-              height: 176.h,
-              fit: BoxFit.cover,
+          SizedBox(
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                screenShot1,
+                height: 176.h,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              screenShot2,
-              height: 176.h,
-              fit: BoxFit.cover,
+          SizedBox(
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                screenShot2,
+                height: 176.h,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              screenShot3,
-              height: 176.h,
-              fit: BoxFit.cover,
+          SizedBox(
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                screenShot3,
+                height: 176.h,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ],

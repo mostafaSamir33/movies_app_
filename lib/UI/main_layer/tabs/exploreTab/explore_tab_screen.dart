@@ -3,7 +3,6 @@ import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/modelView/explore_movies_cubit.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/explore_movies_grid.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/genre_selector.dart';
-import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:provider/provider.dart';
 
@@ -46,31 +45,29 @@ class _ExploreTabScreenState extends State<ExploreTabScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      backgroundColor: AppColors.black1,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 12),
-            GenreSelector(
-              genres: genres,
-              selectedIndex: selectedGenreIndex,
-              onGenreSelected: (index) {
-                setState(() {
-                  selectedGenreIndex = index;
-                });
-                exploreCubit.fetchMovies(genres[index]);
-              },
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          const SizedBox(height: 12),
+          GenreSelector(
+            genres: genres,
+            selectedIndex: selectedGenreIndex,
+            onGenreSelected: (index) {
+              setState(() {
+                selectedGenreIndex = index;
+              });
+              exploreCubit.fetchMovies(genres[index]);
+            },
+          ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: ExploreMoviesGrid(exploreCubit: exploreCubit),
             ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: ExploreMoviesGrid(exploreCubit: exploreCubit),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
