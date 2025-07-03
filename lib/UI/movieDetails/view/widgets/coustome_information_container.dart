@@ -24,13 +24,15 @@ class CoustomeInformationContainer extends StatelessWidget {
           SizedBox(
             width: 14,
           ),
-          Text(
-            data,
-            style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Roboto',
-                color: AppColors.white),
+          SizedBox(
+            child: Text(
+              data,
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Roboto',
+                  color: AppColors.white),
+            ),
           )
         ],
       ),

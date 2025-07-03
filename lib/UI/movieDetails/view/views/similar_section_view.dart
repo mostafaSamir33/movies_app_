@@ -27,6 +27,7 @@ class SimilarSectionView extends StatelessWidget {
             height: 16.h,
           ),
           GridView.builder(
+            padding: EdgeInsets.all(0),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -37,9 +38,8 @@ class SimilarSectionView extends StatelessWidget {
             ),
             itemBuilder: (context, index) => MovieCard(
               movie: suggestionMovies[index],
-              imagePath:
-                  "https://yts.mx/assets/images/movies/Titanic_1997/medium-cover.jpg",
-              rating: 9,
+              imagePath: suggestionMovies[index].mediumCoverImage ?? '',
+              rating: suggestionMovies[index].rating,
             ),
             itemCount: suggestionMovies.length,
           )

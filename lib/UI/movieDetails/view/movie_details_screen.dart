@@ -13,6 +13,8 @@ import 'package:movies_app/UI/movieDetails/view/widgets/coustom_watch_elevated_b
 import 'package:movies_app/UI/movieDetails/view/widgets/coustome_information_container.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/movie_details_cubit.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/movie_details_cubit_states.dart';
+import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit.dart';
+import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit_states.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
@@ -71,7 +73,9 @@ class MovieDetailsScreen extends StatelessWidget {
                   );
                 case MovieDetailsSuccessState():
                   MovieDetails movieDetails = state.movie;
+
                   return ListView(
+                    padding: EdgeInsets.zero,
                     children: [
                       MovieSectionView(
                         movie: movieDetails,
@@ -83,32 +87,40 @@ class MovieDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: 16,
                       ),
-                      Row(
-                        //take 3 data
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          movieDetails.likeCount == null
-                              ? SizedBox()
-                              : CoustomeInformationContainer(
-                                  icon: AppAssets.loveIcon,
-                                  data: movieDetails.likeCount.toString()),
-                          movieDetails.runtime == null
-                              ? SizedBox()
-                              : CoustomeInformationContainer(
-                                  icon: AppAssets.watchIcon,
-                                  data: movieDetails.runtime.toString()),
-                          movieDetails.rating == null
-                              ? SizedBox()
-                              : CoustomeInformationContainer(
-                                  icon: AppAssets.starIcon,
-                                  data: movieDetails.rating.toString()),
-                        ],
+                      SizedBox(
+                        height: 50.h,
+                        child: ListView(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              movieDetails.likeCount == null
+                                  ? SizedBox()
+                                  : CoustomeInformationContainer(
+                                      icon: AppAssets.loveIcon,
+                                      data: movieDetails.likeCount.toString()),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              movieDetails.runtime == null
+                                  ? SizedBox()
+                                  : CoustomeInformationContainer(
+                                      icon: AppAssets.watchIcon,
+                                      data: movieDetails.runtime.toString()),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              movieDetails.rating == null
+                                  ? SizedBox()
+                                  : CoustomeInformationContainer(
+                                      icon: AppAssets.starIcon,
+                                      data: movieDetails.rating.toString()),
+                            ]),
                       ),
                       SizedBox(
                         height: 16,
                       ),
                       ScreenShotsSectionView(
-                          //take 3 screen shots
                           screenShot1: movieDetails.largeScreenshotImage1 ??
                               "https://yts.mx/assets/images/movies/Titanic_1997/large-screenshot1.jpg",
                           screenShot2: movieDetails.largeScreenshotImage2 ??
@@ -118,25 +130,54 @@ class MovieDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: 16,
                       ),
-                      //SimilarSectionView(), //take list of suggestMovies
+                      BlocProvider(
+                          create: (context) => MovieSuggestionCubit(),
+                          child: BlocBuilder<MovieSuggestionCubit,
+                              MovieSuggestionCubitStates>(
+                            bloc: MovieSuggestionCubit()
+                              ..getMovieSuggestion(movie.id.toString()),
+                            builder: (context, state) {
+                              switch (state) {
+                                case MovieSuggestionInitialState():
+                                case MovieSuggestionLoadingState():
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.amber,
+                                    ),
+                                  );
+                                case MovieSuggestionFailureState():
+                                  return Center(
+                                    child: Text('Error:${state.message}'),
+                                  );
+                                case MovieSuggestionSuccessEmptyListState():
+                                  return Center(
+                                    child: Text('No Movies!'),
+                                  );
+                                case MovieSuggestionSuccessState():
+                                  return SimilarSectionView(
+                                    suggestionMovies: state.movies,
+                                  );
+                              }
+                            },
+                          )),
                       SizedBox(
                         height: 16,
                       ),
                       SummarySectionView(
                         summary: movieDetails.descriptionFull,
-                      ), //summary
+                      ),
                       SizedBox(
                         height: 16,
                       ),
                       CastSectionView(
                         cast: movieDetails.cast ?? [],
-                      ), //list of cast
+                      ),
                       SizedBox(
                         height: 16,
                       ),
                       GenersSectionView(
                         geners: movieDetails.genres,
-                      ), //list of geners
+                      ),
                       SizedBox(
                         height: 50.h,
                       ),

@@ -25,6 +25,7 @@ class GenersSectionView extends StatelessWidget {
             height: 16.h,
           ),
           GridView.builder(
+            padding: EdgeInsets.all(0),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,7 +35,7 @@ class GenersSectionView extends StatelessWidget {
                 childAspectRatio: 3),
             itemBuilder: (context, index) => Container(
               height: 40.h,
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               decoration: BoxDecoration(
                 color: AppColors.grey,
                 borderRadius: BorderRadius.circular(12),
