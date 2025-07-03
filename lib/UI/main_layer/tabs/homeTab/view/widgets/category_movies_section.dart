@@ -35,6 +35,7 @@ class CategoryMoviesSection extends StatelessWidget {
                 width: 150.w,
                 height: 220.h,
                 child: MovieCard(
+                  movie: movie,
                   imagePath: movie.largeCoverImage ?? '',
                   rating: movie.rating,
                 ),

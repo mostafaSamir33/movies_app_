@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class GenersSectionView extends StatelessWidget {
-  const GenersSectionView({super.key});
+  const GenersSectionView({super.key, required this.geners});
+  final List<String>? geners;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class GenersSectionView extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'Action',
+                  geners?[index] ?? '',
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
@@ -49,7 +50,7 @@ class GenersSectionView extends StatelessWidget {
                 ),
               ),
             ),
-            itemCount: 4,
+            itemCount: geners?.length ?? 0,
           )
         ],
       ),
