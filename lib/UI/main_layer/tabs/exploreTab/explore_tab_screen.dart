@@ -46,31 +46,29 @@ class _ExploreTabScreenState extends State<ExploreTabScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      backgroundColor: AppColors.black1,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 12),
-            GenreSelector(
-              genres: genres,
-              selectedIndex: selectedGenreIndex,
-              onGenreSelected: (index) {
-                setState(() {
-                  selectedGenreIndex = index;
-                });
-                exploreCubit.fetchMovies(genres[index]);
-              },
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          const SizedBox(height: 12),
+          GenreSelector(
+            genres: genres,
+            selectedIndex: selectedGenreIndex,
+            onGenreSelected: (index) {
+              setState(() {
+                selectedGenreIndex = index;
+              });
+              exploreCubit.fetchMovies(genres[index]);
+            },
+          ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: ExploreMoviesGrid(exploreCubit: exploreCubit),
             ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: ExploreMoviesGrid(exploreCubit: exploreCubit),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
