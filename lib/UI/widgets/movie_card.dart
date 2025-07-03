@@ -51,24 +51,26 @@ class MovieCard extends StatelessWidget {
                   color: Colors.black.withOpacity(0.6),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Row(
-                  children: [
-                    Text(
-                      (rating ?? 0).toStringAsFixed(1),
-                      style: const TextStyle(
-                        color: AppColors.amber,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
+                child: rating == null
+                    ? SizedBox()
+                    : Row(
+                        children: [
+                          Text(
+                            (rating ?? 0).toStringAsFixed(1),
+                            style: const TextStyle(
+                              color: AppColors.amber,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(width: 3),
+                          const Icon(
+                            Icons.star,
+                            color: AppColors.amber,
+                            size: 14,
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(width: 3),
-                    const Icon(
-                      Icons.star,
-                      color: AppColors.amber,
-                      size: 14,
-                    ),
-                  ],
-                ),
               ),
             ),
           ],

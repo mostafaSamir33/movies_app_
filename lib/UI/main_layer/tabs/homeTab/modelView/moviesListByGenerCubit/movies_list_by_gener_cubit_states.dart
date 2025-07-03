@@ -13,12 +13,19 @@ class MoviesListByGenerFailureState extends MoviesListByGenerCubitStates {
 }
 
 class MoviesListByGenerSucessState extends MoviesListByGenerCubitStates {
-  final List<Movies>? movies;
+  final List<Movies>? moviesSection1;
+  final List<Movies>? moviesSection2;
+  final List<Movies>? moviesSection3;
 
-  MoviesListByGenerSucessState({required this.movies});
+  MoviesListByGenerSucessState(
+      {required this.moviesSection1,
+      required this.moviesSection2,
+      required this.moviesSection3});
 }
 
 class MoviesListByGenerSucessEmptyListState
     extends MoviesListByGenerCubitStates {
-  final List<Movies>? movies = [];
+  final List<Movies>? moviesSection1 = [];
+  final List<Movies>? moviesSection2 = [];
+  final List<Movies>? moviesSection3 = [];
 }
