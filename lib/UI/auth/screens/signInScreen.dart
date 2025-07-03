@@ -33,176 +33,162 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => AuthCubit(AuthService()),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.r),
-            child: Form(
-              key: formkey,
-              child: Column(
-                children: [
-                  SizedBox(height: 28.h),
-                  Image(
-                    image: AssetImage(AppAssets.signinLogo),
-                    width: 121.w,
-                    height: 118.h,
-                  ),
-                  SizedBox(height: 69.h),
-                  CustomTextFormFieldAuth(
-                    hintText: 'Email',
-                    password: false,
-                    prefixIconPath: AppAssets.emailIcon,
-                    controller: emailController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Email is required';
-                      }
-                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                          .hasMatch(value)) {
-                        return 'Enter valid email';
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomTextFormFieldAuth(
-                    hintText: 'Password',
-                    password: true,
-                    prefixIconPath: AppAssets.passwordIcon,
-                    controller: passwordController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Password is required';
-                      }
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
-                      return null;
-                    },
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Forget Password ?',
-                      style: CustomTextStyles.style14w400.copyWith(
-                        color: AppColors.yellow,
+      child: Builder(builder: (context) {
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.r),
+              child: Form(
+                key: formkey,
+                child: Column(
+                  children: [
+                    SizedBox(height: 28.h),
+                    Image(
+                      image: AssetImage(AppAssets.signinLogo),
+                      width: 121.w,
+                      height: 118.h,
+                    ),
+                    SizedBox(height: 69.h),
+                    CustomTextFormFieldAuth(
+                      hintText: 'Email',
+                      password: false,
+                      prefixIconPath: AppAssets.emailIcon,
+                      controller: emailController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Email is required';
+                        }
+                        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                            .hasMatch(value)) {
+                          return 'Enter valid email';
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomTextFormFieldAuth(
+                      hintText: 'Password',
+                      password: true,
+                      prefixIconPath: AppAssets.passwordIcon,
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Password is required';
+                        }
+                        if (value.length < 6) {
+                          return 'Password must be at least 6 characters';
+                        }
+                        return null;
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'Forget Password ?',
+                        style: CustomTextStyles.style14w400.copyWith(
+                          color: AppColors.yellow,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 34.h),
+                    SizedBox(height: 34.h),
+                    BlocConsumer<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthLoading) {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (_) =>
+                                Center(child: CircularProgressIndicator()),
+                          );
+                        } else {
+                          Navigator.pop(context);
+                        }
 
-              
-                  BlocConsumer<AuthCubit, AuthState>(
-                    listener: (context, state) {
-                      if (state is AuthLoading) {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (_) =>
-                              Center(child: CircularProgressIndicator()),
+                        if (state is AuthSuccess) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(state.message),
+                            backgroundColor: AppColors.yellow,
+                          ));
+                          Navigator.pushReplacementNamed(
+                              context, MainLayerScreen.routeName);
+                        } else if (state is AuthFailure) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(state.message),
+                            backgroundColor: AppColors.red,
+                          ));
+                        }
+                      },
+                      builder: (context, state) {
+                        return CustomElevatedButtonFilled(
+                          buttonText: 'Login',
+                          onPressed: () {
+                            if (formkey.currentState!.validate()) {
+                              context.read<AuthCubit>().login(
+                                    emailController.text.trim(),
+                                    passwordController.text.trim(),
+                                    context,
+                                  );
+                            }
+                          },
                         );
-                      } else {
-                        Navigator.pop(context); 
-                      }
-
-                      if (state is AuthSuccess) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(state.message),
-                          backgroundColor: AppColors.yellow,
-                        ));
-                        Navigator.pushReplacementNamed(
-                            context, MainLayerScreen.routeName);
-                      } else if (state is AuthFailure) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(state.message),
-                          backgroundColor: AppColors.red,
-                        ));
-                      }
-                    },
-                    builder: (context, state) {
-                      return CustomElevatedButtonFilled(
-                        buttonText: 'Login',
-                        onPressed: () {
-                          if (formkey.currentState!.validate()) {
-                            context.read<AuthCubit>().login(
-                                  emailController.text,
-                                  passwordController.text,
-                                  context,
-                                );
-                          }
-                        },
-                      );
-                    },
-                  ),
-
-                  SizedBox(height: 23.h),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(text: 'Don’t Have Account ? '),
-                        TextSpan(
-                          style: CustomTextStyles.style14w400.copyWith(
-                            color: AppColors.yellow,
-                            fontWeight: FontWeight.bold,
+                      },
+                    ),
+                    SizedBox(height: 23.h),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(text: 'Don’t Have Account ? '),
+                          TextSpan(
+                            style: CustomTextStyles.style14w400.copyWith(
+                              color: AppColors.yellow,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            text: 'Create One',
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.pushNamed(
+                                    context,
+                                    Signupscreen.routeName,
+                                  ),
                           ),
-                          text: 'Create One',
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => Navigator.pushNamed(
-                                  context,
-                                  Signupscreen.routeName,
-                                ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 27.h),
+                    Row(
+                      children: [
+                        Expanded(child: Divider(indent: 75.r)),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.r),
+                          child: Text(
+                            'OR',
+                            style: CustomTextStyles.style16w400.copyWith(
+                              color: AppColors.yellow,
+                            ),
+                          ),
                         ),
+                        Expanded(child: Divider(endIndent: 75.r)),
                       ],
                     ),
-                  ),
-                  SizedBox(height: 27.h),
-                  Row(
-                    children: [
-                      Expanded(child: Divider(indent: 75.r)),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.r),
-                        child: Text(
-                          'OR',
-                          style: CustomTextStyles.style16w400.copyWith(
-                            color: AppColors.yellow,
-                          ),
-                        ),
-                      ),
-                      Expanded(child: Divider(endIndent: 75.r)),
-                    ],
-                  ),
-                  SizedBox(height: 28.h),
-                  CustomElevatedButtonFilled(
-                    isSingInPage: true,
-                    buttonText: 'Login With Google',
-                    onPressed: () {
-                      googleSignin();
-                    },
-                  ),
-                  SizedBox(height: 33.h),
-                  CustomSwitch(
-                    inactiveIcon: AppAssets.enIcon,
-                    activeIcon: AppAssets.egIcon,
-                  ),
-                ],
+                    SizedBox(height: 28.h),
+                    CustomElevatedButtonFilled(
+                      isSingInPage: true,
+                      buttonText: 'Login With Google',
+                      onPressed: () {
+                        context.read<AuthCubit>().loginWithGoogle(context);
+                      },
+                    ),
+                    SizedBox(height: 33.h),
+                    CustomSwitch(
+                      inactiveIcon: AppAssets.enIcon,
+                      activeIcon: AppAssets.egIcon,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
-  }
-
-  googleSignin() async {
-    final user = await Googleservices.login();
-    if (user == null) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login failed')));
-    } else {
-      Navigator.pushReplacementNamed(
-        context,
-        MainLayerScreen.routeName,
-      );
-    }
   }
 }
