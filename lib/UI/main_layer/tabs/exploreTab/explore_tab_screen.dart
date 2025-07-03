@@ -3,7 +3,6 @@ import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/modelView/explore_movies_cubit.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/explore_movies_grid.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/widgets/genre_selector.dart';
-import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:provider/provider.dart';
 
