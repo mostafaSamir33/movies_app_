@@ -166,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     if (!value.startsWith('+')) {
                       return 'Phone number must start with +';
                     }
-                    if (value.length != 12) {
+                    if (value.length != 13) {
                       return 'Phone number must be exactly 12 characters';
                     }
                     if (!RegExp(r'^\+\d{11}$').hasMatch(value)) {

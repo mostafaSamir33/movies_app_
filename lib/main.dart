@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
@@ -14,7 +15,6 @@ import 'package:movies_app/core/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_theme.dart';
 import 'package:provider/provider.dart';
-
 import 'UI/main_layer/tabs/profileTab/screens/update_profile_screen.dart';
 import 'UI/onboarding/onboarding_screens/onboarding_screen_2.dart';
 import 'core/providers/avatar_bottom_sheet_provider.dart';
@@ -23,7 +23,8 @@ import 'core/utils/app_prefs.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPrefs.init();
-
+  final tokenProvider = TokenProvider();
+  await tokenProvider.loadToken();
   runApp(
     MultiProvider(
       providers: [
@@ -47,6 +48,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokenProvider = Provider.of<TokenProvider>(context);
+
     return ScreenUtilInit(
       designSize: Size(430, 932),
       minTextAdapt: true,
@@ -55,6 +58,16 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.themeData,
         themeMode: ThemeMode.light,
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('en'),
+          Locale('ar'),
+        ],
         routes: {
           SignInScreen.routeName: (_) => SignInScreen(),
           OnboardingScreen1.routeName: (_) => OnboardingScreen1(),
@@ -73,11 +86,18 @@ class MyApp extends StatelessWidget {
             );
           }
         },
-        initialRoute:
-            AppPrefs.onboardingGetBool(AppConstants.onboardingKey) == null
-                ? OnboardingScreen1.routeName
-                : SignInScreen.routeName,
+        initialRoute: getInitialRoute(tokenProvider),
       ),
     );
+  }
+
+  String getInitialRoute(TokenProvider tokenProvider) {
+    if (AppPrefs.onboardingGetBool(AppConstants.onboardingKey) == null) {
+      return OnboardingScreen1.routeName;
+    } else if (tokenProvider.token != null) {
+      return MainLayerScreen.routeName;
+    } else {
+      return SignInScreen.routeName;
+    }
   }
 }
