@@ -26,9 +26,16 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
   }
 
   void _onSearch(String value) {
-    if (value.trim().isEmpty) return;
-    setState(() => hasSearched = true);
-    _searchCubit.searchMovies(value);
+    if (value.trim().isEmpty) {
+      setState(() {
+        hasSearched = false;
+      });
+    } else {
+      setState(() {
+        hasSearched = true;
+      });
+      _searchCubit.searchMovies(value);
+    }
   }
 
   @override
@@ -42,7 +49,7 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
             children: [
               CustomSearchField(
                 controller: _controller,
-                onSubmitted: _onSearch,
+                onChanged: _onSearch,
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -53,7 +60,7 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                       return Center(
                         child: Image.asset(
                           AppAssets.empty,
-                          width: 160,
+                          width: 110,
                           fit: BoxFit.contain,
                         ),
                       );
@@ -69,7 +76,7 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                       return Center(
                         child: Image.asset(
                           AppAssets.empty,
-                          width: 160,
+                          width: 124,
                           fit: BoxFit.contain,
                         ),
                       );

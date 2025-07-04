@@ -4,12 +4,12 @@ import 'package:movies_app/core/utils/app_colors.dart';
 
 class CustomSearchField extends StatelessWidget {
   final TextEditingController controller;
-  final void Function(String) onSubmitted;
+  final void Function(String) onChanged;
 
   const CustomSearchField({
     super.key,
     required this.controller,
-    required this.onSubmitted,
+    required this.onChanged,
   });
 
   @override
@@ -32,7 +32,7 @@ class CustomSearchField extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: controller,
-              onSubmitted: onSubmitted,
+              onChanged: onChanged,
               style: const TextStyle(color: AppColors.white),
               decoration: const InputDecoration(
                 hintText: 'Search',
