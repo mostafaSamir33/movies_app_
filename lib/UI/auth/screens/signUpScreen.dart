@@ -14,22 +14,24 @@ import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 
-class Signupscreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   static const String routeName = '/Signupscreen';
 
+  const SignUpScreen({super.key});
+
   @override
-  State<Signupscreen> createState() => _SignupscreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignupscreenState extends State<Signupscreen> {
-  final formkey = GlobalKey<FormState>();
+class _SignUpScreenState extends State<SignUpScreen> {
+  final formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final phoneController = TextEditingController();
 
-  int selectedIndex = 3;
+  int selectedIndex = 7;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _SignupscreenState extends State<Signupscreen> {
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.r),
           child: Form(
-            key: formkey,
+            key: formKey,
             child: ListView(
               children: [
                 CarouselSlider(
@@ -102,10 +104,13 @@ class _SignupscreenState extends State<Signupscreen> {
                   prefixIconPath: AppAssets.emailIcon,
                   controller: emailController,
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Email is required';
+                    }
                     if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                        .hasMatch(value)) return 'Enter valid email';
+                        .hasMatch(value)) {
+                      return 'Enter valid email';
+                    }
                     return null;
                   },
                 ),
@@ -115,10 +120,12 @@ class _SignupscreenState extends State<Signupscreen> {
                   prefixIconPath: AppAssets.passwordIcon,
                   controller: passwordController,
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Password is required';
-                    if (value.length < 6)
+                    }
+                    if (value.length < 6) {
                       return 'Password must be at least 6 characters';
+                    }
                     return null;
                   },
                 ),
@@ -128,10 +135,12 @@ class _SignupscreenState extends State<Signupscreen> {
                   prefixIconPath: AppAssets.passwordIcon,
                   controller: confirmPasswordController,
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Confirm your password';
-                    if (value != passwordController.text)
+                    }
+                    if (value != passwordController.text) {
                       return 'Passwords do not match';
+                    }
                     return null;
                   },
                 ),
@@ -141,8 +150,9 @@ class _SignupscreenState extends State<Signupscreen> {
                   prefixIconPath: AppAssets.phoneIcon1,
                   controller: phoneController,
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Phone number is required';
+                    }
                     return null;
                   },
                 ),
@@ -176,7 +186,7 @@ class _SignupscreenState extends State<Signupscreen> {
                     return CustomElevatedButtonFilled(
                       buttonText: 'Create Account',
                       onPressed: () {
-                        if (formkey.currentState!.validate()) {
+                        if (formKey.currentState!.validate()) {
                           context.read<AuthCubit>().register(
                                 nameController.text.trim(),
                                 emailController.text.trim(),

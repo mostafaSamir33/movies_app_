@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
 import 'package:movies_app/UI/movieDetails/view/widgets/cast_card.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class CastSectionView extends StatelessWidget {
-  const CastSectionView({super.key});
+  const CastSectionView({super.key, required this.cast});
+
+  final List<Cast> cast;
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +28,26 @@ class CastSectionView extends StatelessWidget {
             height: 16.h,
           ),
           ListView.separated(
-            separatorBuilder: (context, index) => SizedBox(
-              height: 8.h,
-            ),
-            itemCount: 4,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => CastCard(
-                imagePath:
-                    "https://yts.mx/assets/images/actors/thumb/nm0939130.jpg",
-                name: 'Hayley Atwell',
-                character: 'Captain Carter'),
-          )
+              padding: EdgeInsets.zero,
+              separatorBuilder: (context, index) => SizedBox(
+                    height: 8.h,
+                  ),
+              itemCount: cast.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                Cast castMember = cast[index];
+                return CastCard(
+                    imagePath: castMember.urlSmallImage ??
+                        'https://static.vecteezy.com/system/resources/previews/014/194/232/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg',
+                    name: (castMember.name == null || castMember.name == '')
+                        ? 'No Name Available'
+                        : castMember.name!,
+                    character: (castMember.characterName == null ||
+                            castMember.characterName == '')
+                        ? 'No Character Available'
+                        : castMember.characterName!);
+              })
         ],
       ),
     );

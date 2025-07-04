@@ -11,7 +11,7 @@ class ResetPassword extends StatelessWidget {
   TextEditingController newPasswordController = TextEditingController();
 
   final AuthService _authService = AuthService();
-  final formkey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   ResetPassword({super.key});
 
@@ -30,7 +30,7 @@ class ResetPassword extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.r),
         child: Form(
-          key: formkey,
+          key: formKey,
           child: ListView(
             children: [
               Image(
@@ -66,7 +66,7 @@ class ResetPassword extends StatelessWidget {
               CustomElevatedButtonFilled(
                 buttonText: 'change password',
                 onPressed: () {
-                  formkey.currentState!.validate();
+                  formKey.currentState!.validate();
                 },
               ),
             ],

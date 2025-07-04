@@ -33,25 +33,31 @@ class CastCard extends StatelessWidget {
             spacing: 10,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Name : $name',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.white,
-                    fontFamily: 'Roboto'),
+              SizedBox(
+                width: 280.w,
+                child: Text(
+                  'Name : $name',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.white,
+                      fontFamily: 'Roboto'),
+                ),
               ),
-              Text(
-                'Character : $character',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.white,
-                    fontFamily: 'Roboto'),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              SizedBox(
+                width: 280.w,
+                child: Text(
+                  'Character : $character',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.white,
+                      fontFamily: 'Roboto'),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               )
             ],
           )
