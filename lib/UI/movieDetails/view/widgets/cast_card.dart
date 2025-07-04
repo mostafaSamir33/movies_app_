@@ -26,16 +26,16 @@ class CastCard extends StatelessWidget {
             child: Image.network(
               imagePath,
               height: 70.h,
+              width: 70.w,
               fit: BoxFit.cover,
             ),
           ),
-          Column(
-            spacing: 10,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 280.w,
-                child: Text(
+          Expanded(
+            child: Column(
+              spacing: 10,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   'Name : $name',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -45,11 +45,8 @@ class CastCard extends StatelessWidget {
                       color: AppColors.white,
                       fontFamily: 'Roboto'),
                 ),
-              ),
-              SizedBox(
-                width: 280.w,
-                child: Text(
-                  'Character : $character',
+                Text(
+                  'Character: $character',
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
@@ -57,9 +54,9 @@ class CastCard extends StatelessWidget {
                       fontFamily: 'Roboto'),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           )
         ],
       ),

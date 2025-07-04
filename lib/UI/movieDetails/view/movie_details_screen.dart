@@ -11,6 +11,8 @@ import 'package:movies_app/UI/movieDetails/view/views/similar_section_view.dart'
 import 'package:movies_app/UI/movieDetails/view/views/summary_section_view.dart';
 import 'package:movies_app/UI/movieDetails/view/widgets/coustom_watch_elevated_boutton.dart';
 import 'package:movies_app/UI/movieDetails/view/widgets/coustome_information_container.dart';
+import 'package:movies_app/UI/movieDetails/viewModel/favourite_cubit.dart';
+
 import 'package:movies_app/UI/movieDetails/viewModel/movie_details_cubit.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/movie_details_cubit_states.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit.dart';
@@ -18,12 +20,24 @@ import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit_stat
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
-class MovieDetailsScreen extends StatelessWidget {
+class MovieDetailsScreen extends StatefulWidget {
   static const String routeName = '/movieDetailsScreen';
 
   const MovieDetailsScreen({super.key, required this.movie});
 
   final Movies movie;
+
+  @override
+  State<MovieDetailsScreen> createState() => _MovieDetailsScreenState();
+}
+
+class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<FavouriteCubit>().isFav = widget.movie.isFav;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +58,34 @@ class MovieDetailsScreen extends StatelessWidget {
           ),
         ),
         actions: [
-          Icon(
-            Icons.bookmark,
-            size: 30,
-          ),
+          GestureDetector(
+              onTap: () {
+                context
+                    .read<FavouriteCubit>()
+                    .editMovieFav(context, widget.movie);
+              },
+              child: context.watch<FavouriteCubit>().isFav
+                  ? Icon(
+                      Icons.bookmark,
+                      size: 30,
+                      color: AppColors.amber,
+                    )
+                  : Icon(
+                      Icons.bookmark,
+                      size: 30,
+                    )
+
+              // widget.movie.isFav
+              //     ? Icon(
+              //         Icons.bookmark,
+              //         size: 30,
+              //         color: AppColors.amber,
+              //       )
+              //     : Icon(
+              //         Icons.bookmark,
+              //         size: 30,
+              //       ),
+              ),
           SizedBox(
             width: 22,
           )
@@ -59,7 +97,8 @@ class MovieDetailsScreen extends StatelessWidget {
       body: BlocProvider(
         create: (context) => MovieDetailsCubit(),
         child: BlocBuilder<MovieDetailsCubit, MovieDetailsCubitStates>(
-            bloc: MovieDetailsCubit()..getMovieDetails(movie.imdbCode ?? ''),
+            bloc: MovieDetailsCubit()
+              ..getMovieDetails(widget.movie.imdbCode ?? ''),
             builder: (context, state) {
               switch (state) {
                 case MovieDetailsInitialState():
@@ -75,7 +114,7 @@ class MovieDetailsScreen extends StatelessWidget {
                   );
                 case MovieDetailsSuccessState():
                   MovieDetails movieDetails = state.movie;
-
+                  print(widget.movie.imdbCode);
                   return ListView(
                     padding: EdgeInsets.zero,
                     children: [
@@ -124,7 +163,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       ),
                       ScreenShotsSectionView(
                           screenShot1: movieDetails.largeScreenshotImage1 ??
-                              "https://yts.mx/assets/images/movies/Titanic_1997/large-screenshot1.jpg",
+                              'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg',
                           screenShot2: movieDetails.largeScreenshotImage2 ??
                               'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg',
                           screenShot3: movieDetails.largeScreenshotImage3 ??
@@ -137,7 +176,7 @@ class MovieDetailsScreen extends StatelessWidget {
                           child: BlocBuilder<MovieSuggestionCubit,
                               MovieSuggestionCubitStates>(
                             bloc: MovieSuggestionCubit()
-                              ..getMovieSuggestion(movie.id.toString()),
+                              ..getMovieSuggestion(widget.movie.id.toString()),
                             builder: (context, state) {
                               switch (state) {
                                 case MovieSuggestionInitialState():

@@ -4,6 +4,7 @@ class AppConstants {
 
   // -----> Api baseUrl
   static const String moviesBaseUrl = 'yts.mx';
+  static const String moviesAddDeleteBaseUrl = 'route-movie-apis.vercel.app';
 
   // -----> Movie genres
   static const List<String> genresList = [

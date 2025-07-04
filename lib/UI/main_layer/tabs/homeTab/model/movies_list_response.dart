@@ -105,6 +105,7 @@ class Movies {
   List<Torrents>? torrents;
   String? dateUploaded;
   int? dateUploadedUnix;
+  bool isFav = false;
 
   Movies(
       {this.id,

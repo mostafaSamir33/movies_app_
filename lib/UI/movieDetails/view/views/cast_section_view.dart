@@ -27,27 +27,36 @@ class CastSectionView extends StatelessWidget {
           SizedBox(
             height: 16.h,
           ),
-          ListView.separated(
-              padding: EdgeInsets.zero,
-              separatorBuilder: (context, index) => SizedBox(
-                    height: 8.h,
-                  ),
-              itemCount: cast.length,
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                Cast castMember = cast[index];
-                return CastCard(
-                    imagePath: castMember.urlSmallImage ??
-                        'https://static.vecteezy.com/system/resources/previews/014/194/232/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg',
-                    name: (castMember.name == null || castMember.name == '')
-                        ? 'No Name Available'
-                        : castMember.name!,
-                    character: (castMember.characterName == null ||
-                            castMember.characterName == '')
-                        ? 'No Character Available'
-                        : castMember.characterName!);
-              })
+          cast.isEmpty
+              ? Text(
+                  'No Cast Available',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Roboto',
+                      color: AppColors.white),
+                )
+              : ListView.separated(
+                  padding: EdgeInsets.zero,
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: 8.h,
+                      ),
+                  itemCount: cast.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    Cast castMember = cast[index];
+                    return CastCard(
+                        imagePath: castMember.urlSmallImage ??
+                            'https://static.vecteezy.com/system/resources/previews/014/194/232/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg',
+                        name: (castMember.name == null || castMember.name == '')
+                            ? 'No Name Available'
+                            : castMember.name!,
+                        character: (castMember.characterName == null ||
+                                castMember.characterName == '')
+                            ? 'No Character Available'
+                            : castMember.characterName!);
+                  })
         ],
       ),
     );
