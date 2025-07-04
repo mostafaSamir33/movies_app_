@@ -126,6 +126,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     if (value.length < 6) {
                       return 'Password must be at least 6 characters';
                     }
+                    if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                      return 'Password must contain at least one uppercase letter';
+                    }
+                    if (!RegExp(r'[0-9]').hasMatch(value)) {
+                      return 'Password must contain at least one number';
+                    }
+                    if (!RegExp(r'[!@#\$&*~%^()\-_+=<>?/.,;:{}\[\]]')
+                        .hasMatch(value)) {
+                      return 'Password must contain at least one special character';
+                    }
                     return null;
                   },
                 ),
@@ -152,6 +162,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Phone number is required';
+                    }
+                    if (!value.startsWith('+')) {
+                      return 'Phone number must start with +';
+                    }
+                    if (value.length != 12) {
+                      return 'Phone number must be exactly 12 characters';
+                    }
+                    if (!RegExp(r'^\+\d{11}$').hasMatch(value)) {
+                      return 'Phone number must contain only digits after +';
                     }
                     return null;
                   },
