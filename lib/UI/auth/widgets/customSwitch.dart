@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/UI/auth/providers/switch_provider.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class CustomSwitch extends StatefulWidget {
   final String inactiveIcon;
   final String activeIcon;
 
-  const CustomSwitch({super.key,
+  const CustomSwitch({
+    super.key,
     required this.inactiveIcon,
     required this.activeIcon,
   });
@@ -18,12 +21,11 @@ class _CustomSwitchState extends State<CustomSwitch> {
   bool _value = false;
   @override
   Widget build(BuildContext context) {
+    final switchProvider = context.watch<SwitchProvider>();
     return Switch(
-      value: _value,
+      value: switchProvider.isActive,
       onChanged: (value) {
-        _value = value;
-
-        setState(() {});
+        switchProvider.toggleSwitch(value);
       },
       activeColor: AppColors.yellow,
       inactiveThumbColor: AppColors.yellow,

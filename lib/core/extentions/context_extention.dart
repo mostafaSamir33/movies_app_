@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/generated/l10n.dart';
 // import 'package:news_app/l10n/app_localizations.dart';
 
 extension ContextExtension on BuildContext {
@@ -18,6 +19,9 @@ extension ContextExtension on BuildContext {
     return Theme.of(this);
   }
 
+  S getLocalization() {
+    return S.of(this);
+  }
   // AppLocalizations getLocalization(){
   //   return AppLocalizations.of(this)!;
   // }

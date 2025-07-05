@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/auth/providers/switch_provider.dart';
 import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
@@ -14,6 +15,7 @@ import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.
 import 'package:movies_app/core/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_theme.dart';
+import 'package:movies_app/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'UI/main_layer/tabs/profileTab/screens/update_profile_screen.dart';
 import 'UI/onboarding/onboarding_screens/onboarding_screen_2.dart';
@@ -28,6 +30,9 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_) => SwitchProvider(),
+        ),
         ChangeNotifierProvider(
           create: (context) => AvatarBottomSheetProvider(),
         ),
@@ -59,15 +64,15 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.themeData,
         themeMode: ThemeMode.light,
         localizationsDelegates: [
-          AppLocalizations.delegate,
+          S.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: [
-          Locale('en'),
-          Locale('ar'),
-        ],
+        locale: context.watch<SwitchProvider>().isActive == false
+            ? Locale('en')
+            : Locale('ar'),
+        supportedLocales: S.delegate.supportedLocales,
         routes: {
           SignInScreen.routeName: (_) => SignInScreen(),
           OnboardingScreen1.routeName: (_) => OnboardingScreen1(),
