@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/genre_translator.dart';
 import 'package:provider/provider.dart';
 
 class GenreSelector extends StatelessWidget {
@@ -41,7 +42,7 @@ class GenreSelector extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  genres[index],
+                  genres[index].getGenreLocalizedName(context),
                   style: TextStyle(
                     color: isSelected ? AppColors.black1 : AppColors.amber,
                     fontWeight: FontWeight.w500,

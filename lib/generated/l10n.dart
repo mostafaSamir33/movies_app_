@@ -28,10 +28,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name =
-        (locale.countryCode?.isEmpty ?? false)
-            ? locale.languageCode
-            : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -488,6 +487,166 @@ class S {
   /// `User Name`
   String get userName {
     return Intl.message('User Name', name: 'userName', desc: '', args: []);
+  }
+
+  /// `Action`
+  String get genreAction {
+    return Intl.message('Action', name: 'genreAction', desc: '', args: []);
+  }
+
+  /// `Adventure`
+  String get genreAdventure {
+    return Intl.message(
+      'Adventure',
+      name: 'genreAdventure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Animation`
+  String get genreAnimation {
+    return Intl.message(
+      'Animation',
+      name: 'genreAnimation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biography`
+  String get genreBiography {
+    return Intl.message(
+      'Biography',
+      name: 'genreBiography',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comedy`
+  String get genreComedy {
+    return Intl.message('Comedy', name: 'genreComedy', desc: '', args: []);
+  }
+
+  /// `Crime`
+  String get genreCrime {
+    return Intl.message('Crime', name: 'genreCrime', desc: '', args: []);
+  }
+
+  /// `Documentary`
+  String get genreDocumentary {
+    return Intl.message(
+      'Documentary',
+      name: 'genreDocumentary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Drama`
+  String get genreDrama {
+    return Intl.message('Drama', name: 'genreDrama', desc: '', args: []);
+  }
+
+  /// `Family`
+  String get genreFamily {
+    return Intl.message('Family', name: 'genreFamily', desc: '', args: []);
+  }
+
+  /// `Fantasy`
+  String get genreFantasy {
+    return Intl.message('Fantasy', name: 'genreFantasy', desc: '', args: []);
+  }
+
+  /// `Film-Noir`
+  String get genreFilmNoir {
+    return Intl.message('Film-Noir', name: 'genreFilmNoir', desc: '', args: []);
+  }
+
+  /// `Game-Show`
+  String get genreGameShow {
+    return Intl.message('Game-Show', name: 'genreGameShow', desc: '', args: []);
+  }
+
+  /// `History`
+  String get genreHistory {
+    return Intl.message('History', name: 'genreHistory', desc: '', args: []);
+  }
+
+  /// `Horror`
+  String get genreHorror {
+    return Intl.message('Horror', name: 'genreHorror', desc: '', args: []);
+  }
+
+  /// `Music`
+  String get genreMusic {
+    return Intl.message('Music', name: 'genreMusic', desc: '', args: []);
+  }
+
+  /// `Musical`
+  String get genreMusical {
+    return Intl.message('Musical', name: 'genreMusical', desc: '', args: []);
+  }
+
+  /// `Mystery`
+  String get genreMystery {
+    return Intl.message('Mystery', name: 'genreMystery', desc: '', args: []);
+  }
+
+  /// `News`
+  String get genreNews {
+    return Intl.message('News', name: 'genreNews', desc: '', args: []);
+  }
+
+  /// `Reality-TV`
+  String get genreRealityTV {
+    return Intl.message(
+      'Reality-TV',
+      name: 'genreRealityTV',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Romance`
+  String get genreRomance {
+    return Intl.message('Romance', name: 'genreRomance', desc: '', args: []);
+  }
+
+  /// `Sci-Fi`
+  String get genreSciFi {
+    return Intl.message('Sci-Fi', name: 'genreSciFi', desc: '', args: []);
+  }
+
+  /// `Short`
+  String get genreShort {
+    return Intl.message('Short', name: 'genreShort', desc: '', args: []);
+  }
+
+  /// `Sport`
+  String get genreSport {
+    return Intl.message('Sport', name: 'genreSport', desc: '', args: []);
+  }
+
+  /// `Talk-Show`
+  String get genreTalkShow {
+    return Intl.message('Talk-Show', name: 'genreTalkShow', desc: '', args: []);
+  }
+
+  /// `Thriller`
+  String get genreThriller {
+    return Intl.message('Thriller', name: 'genreThriller', desc: '', args: []);
+  }
+
+  /// `War`
+  String get genreWar {
+    return Intl.message('War', name: 'genreWar', desc: '', args: []);
+  }
+
+  /// `Western`
+  String get genreWestern {
+    return Intl.message('Western', name: 'genreWestern', desc: '', args: []);
   }
 }
 
