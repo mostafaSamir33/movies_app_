@@ -54,7 +54,7 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
                 itemBuilder: (context, index, realIdx) {
                   final movie = widget.movies[index];
                   return MovieCard(
-                    movie: movie,
+                    movieId: movie.imdbCode,
                     imagePath: movie.largeCoverImage ?? '',
                     rating: movie.rating,
                   );

@@ -38,7 +38,7 @@ class SimilarSectionView extends StatelessWidget {
               mainAxisSpacing: 16.h,
             ),
             itemBuilder: (context, index) => MovieCard(
-              movie: suggestionMovies[index],
+              movieId: suggestionMovies[index].imdbCode,
               imagePath: suggestionMovies[index].mediumCoverImage ?? '',
               rating: suggestionMovies[index].rating,
             ),
