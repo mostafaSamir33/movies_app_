@@ -121,7 +121,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         if (state is AuthSuccess) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(state.message),
-                            backgroundColor: AppColors.yellow,
+                            backgroundColor: AppColors.green,
                           ));
                           Navigator.pushReplacementNamed(
                               context, MainLayerScreen.routeName);
