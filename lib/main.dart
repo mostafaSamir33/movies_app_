@@ -12,7 +12,7 @@ import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/favourite_cubit.dart';
 import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.dart';
-import 'package:movies_app/core/providers/token_provider.dart';
+import 'package:movies_app/UI/auth/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_theme.dart';
 import 'package:movies_app/generated/l10n.dart';
@@ -25,8 +25,6 @@ import 'core/utils/app_prefs.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPrefs.init();
-  final tokenProvider = TokenProvider();
-  await tokenProvider.loadToken();
   runApp(
     MultiProvider(
       providers: [
@@ -40,7 +38,7 @@ Future<void> main() async {
           create: (context) => SelectedCatProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => TokenProvider(),
+          create: (context) => TokenProvider()..loadToken(),
         ),
       ],
       child: const MyApp(),
@@ -53,8 +51,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokenProvider = Provider.of<TokenProvider>(context);
-
+    final tokenProvider = context.watch<TokenProvider>();
+    if (!tokenProvider.isTokenLoaded) {
+      return const MaterialApp(
+        home: Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        ),
+      );
+    }
     return ScreenUtilInit(
       designSize: Size(430, 932),
       minTextAdapt: true,

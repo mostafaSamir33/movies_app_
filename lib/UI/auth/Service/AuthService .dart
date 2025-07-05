@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/core/providers/avatar_bottom_sheet_provider.dart';
 
-import '../../../core/providers/token_provider.dart';
+import '../providers/token_provider.dart';
 import '../../main_layer/tabs/profileTab/models/profile_response_model.dart';
 
 class AuthService {
@@ -21,7 +21,7 @@ class AuthService {
     );
     final data = _processResponse(response);
     if (data.containsKey('data')) {
-      final token = data['data'];
+      final String token = data['data'];
       context.read<TokenProvider>().token = token;
       print('Token saved: $token');
     }

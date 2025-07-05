@@ -3,8 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TokenProvider extends ChangeNotifier {
   String? _token;
+  bool _isTokenLoaded = false;
 
   String? get token => _token;
+  bool get isTokenLoaded => _isTokenLoaded;
 
   set token(String? value) {
     _token = value;
@@ -15,6 +17,7 @@ class TokenProvider extends ChangeNotifier {
   Future<void> loadToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _token = prefs.getString('token');
+    _isTokenLoaded = true;
     notifyListeners();
   }
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
-import 'package:movies_app/core/providers/token_provider.dart';
+import 'package:movies_app/UI/auth/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';

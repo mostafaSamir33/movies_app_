@@ -169,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     if (value.length != 13) {
                       return 'Phone number must be exactly 12 characters';
                     }
-                    if (!RegExp(r'^\+\d{11}$').hasMatch(value)) {
+                    if (!RegExp(r'^\+\d{12}$').hasMatch(value)) {
                       return 'Phone number must contain only digits after +';
                     }
                     return null;
