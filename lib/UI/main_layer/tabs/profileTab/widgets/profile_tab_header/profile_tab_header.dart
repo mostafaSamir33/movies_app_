@@ -10,20 +10,22 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../core/models/avatar_bottom_sheet_model.dart';
-import '../models/profile_response_model.dart';
-import '../screens/update_profile_screen.dart';
+import '../../../../../../core/models/avatar_bottom_sheet_model.dart';
+import '../../models/profile_response_model.dart';
+import '../../screens/update_profile_screen.dart';
 
 class ProfileTabHeader extends StatefulWidget {
   final TabController controller;
   final ProfileData? profileData;
   final VoidCallback onProfileUpdated;
+  final int? favouriteMoviesLength;
 
   const ProfileTabHeader(
       {super.key,
       required this.controller,
       required this.profileData,
-      required this.onProfileUpdated});
+      required this.onProfileUpdated,
+      required this.favouriteMoviesLength});
 
   @override
   State<ProfileTabHeader> createState() => _ProfileTabHeaderState();
@@ -32,6 +34,7 @@ class ProfileTabHeader extends StatefulWidget {
 class _ProfileTabHeaderState extends State<ProfileTabHeader> {
   @override
   Widget build(BuildContext context) {
+    log('Avatar path: ${AvatarBottomSheetModel.avatarImages[widget.profileData?.avaterId ?? 7].avatarImage}');
     return Container(
       decoration: BoxDecoration(color: AppColors.black2),
       child: SafeArea(
@@ -78,7 +81,8 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                   Column(
                     children: [
                       Text(
-                        '12', //TODO: change to the exactly number
+                        '${widget.favouriteMoviesLength ?? 0}',
+                        //TODO: change to the exactly number
                         style: CustomTextStyles.style36w500.copyWith(
                             fontWeight: FontWeight.w700,
                             color: AppColors.white,

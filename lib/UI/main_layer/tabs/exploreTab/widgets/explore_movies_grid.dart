@@ -4,6 +4,7 @@ import 'package:movies_app/UI/main_layer/tabs/exploreTab/modelView/explore_movie
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/widgets/movie_card.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/custom_text_styles.dart';
 
 class ExploreMoviesGrid extends StatelessWidget {
   final ExploreMoviesCubit exploreCubit;
@@ -41,7 +42,12 @@ class ExploreMoviesGrid extends StatelessWidget {
               },
             );
           } else {
-            return const Center(child: Text('No Movies Found'));
+            return Center(
+                child: Text(
+              'No Movies Found',
+              style:
+                  CustomTextStyles.style20w600.copyWith(color: AppColors.white),
+            ));
           }
         },
       ),
