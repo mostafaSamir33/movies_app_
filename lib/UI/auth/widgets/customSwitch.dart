@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:movies_app/UI/auth/providers/switch_provider.dart';
-import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:movies_app/core/utils/app_colors.dart';
 
-class CustomSwitch extends StatefulWidget {
+class CustomSwitch extends StatelessWidget {
   final String inactiveIcon;
   final String activeIcon;
 
@@ -14,26 +16,37 @@ class CustomSwitch extends StatefulWidget {
   });
 
   @override
-  State<CustomSwitch> createState() => _CustomSwitchState();
-}
-
-class _CustomSwitchState extends State<CustomSwitch> {
-  bool _value = false;
-  @override
   Widget build(BuildContext context) {
     final switchProvider = context.watch<SwitchProvider>();
-    return Switch(
+
+    return FlutterSwitch(
+      width: 90.w,
+      height: 40.h,
+      toggleSize: 36.w,
+      activeToggleColor: AppColors.yellow,
+      inactiveToggleColor: AppColors.yellow,
       value: switchProvider.isActive,
-      onChanged: (value) {
-        switchProvider.toggleSwitch(value);
-      },
+      borderRadius: 30.0.r,
+      toggleColor: Colors.transparent,
+      padding: 2.0.r,
       activeColor: AppColors.yellow,
-      inactiveThumbColor: AppColors.yellow,
-      inactiveTrackColor: AppColors.grey,
-      activeTrackColor: AppColors.yellow,
-      inactiveThumbImage: AssetImage(widget.inactiveIcon),
-      activeThumbImage: AssetImage(widget.activeIcon),
-      trackOutlineColor: MaterialStateProperty.all(AppColors.yellow),
+      inactiveColor: AppColors.grey,
+      showOnOff: false,
+      inactiveIcon: Image.asset(
+        inactiveIcon,
+        width: 38.w,
+        height: 38.h,
+        fit: BoxFit.cover,
+      ),
+      activeIcon: Image.asset(
+        activeIcon,
+        width: 38.w,
+        height: 38.h,
+        fit: BoxFit.cover,
+      ),
+      onToggle: (val) {
+        switchProvider.toggleSwitch(val);
+      },
     );
   }
 }
