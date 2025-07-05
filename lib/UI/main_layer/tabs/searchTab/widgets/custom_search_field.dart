@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
@@ -34,9 +35,9 @@ class CustomSearchField extends StatelessWidget {
               controller: controller,
               onChanged: onChanged,
               style: const TextStyle(color: AppColors.white),
-              decoration: const InputDecoration(
-                hintText: 'Search',
-                hintStyle: TextStyle(color: AppColors.white),
+              decoration: InputDecoration(
+                hintText: context.getLocalization().search,
+                hintStyle: const TextStyle(color: AppColors.white),
                 border: InputBorder.none,
               ),
             ),

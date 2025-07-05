@@ -65,10 +65,9 @@ class OnboardingScreen1 extends StatelessWidget {
                 ),
                 CustomElevatedButtonFilled(
                   buttonText: 'Explore Now', //TODO:localization
-                  onPressed:
-                      () => Navigator.of(
-                        context,
-                      ).pushReplacementNamed(OnboardingScreen2.routeName),
+                  onPressed: () => Navigator.of(
+                    context,
+                  ).pushReplacementNamed(OnboardingScreen2.routeName),
                 ),
               ],
             ),

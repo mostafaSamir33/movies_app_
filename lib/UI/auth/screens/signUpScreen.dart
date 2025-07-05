@@ -9,6 +9,7 @@ import 'package:movies_app/UI/auth/cubit/auth_state.dart';
 import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/models/avatar_bottom_sheet_model.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -42,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: Icon(Icons.arrow_back, size: 24.r)),
-          title: Text('Register'),
+          title: Text(context.getLocalization().register),
           centerTitle: true,
         ),
         body: Padding(
@@ -83,94 +84,94 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.r),
                     child: Text(
-                      'Avatar',
+                      context.getLocalization().avatar,
                       style: CustomTextStyles.style20w400
                           .copyWith(color: AppColors.white),
                     ),
                   ),
                 ),
                 CustomTextFormFieldAuth(
-                  hintText: 'Name',
+                  hintText: context.getLocalization().nameHint,
                   password: false,
                   prefixIconPath: AppAssets.idIcon,
                   controller: nameController,
                   validator: (value) => value == null || value.isEmpty
-                      ? 'Name is required'
+                      ? context.getLocalization().nameRequired
                       : null,
                 ),
                 CustomTextFormFieldAuth(
-                  hintText: 'Email',
+                  hintText: context.getLocalization().emailHint,
                   password: false,
                   prefixIconPath: AppAssets.emailIcon,
                   controller: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Email is required';
+                      return context.getLocalization().emailRequired;
                     }
                     if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
                         .hasMatch(value)) {
-                      return 'Enter valid email';
+                      return context.getLocalization().invalidEmail;
                     }
                     return null;
                   },
                 ),
                 CustomTextFormFieldAuth(
-                  hintText: 'Password',
+                  hintText: context.getLocalization().passwordHint,
                   password: true,
                   prefixIconPath: AppAssets.passwordIcon,
                   controller: passwordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Password is required';
+                      return context.getLocalization().passwordRequired;
                     }
                     if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
+                      return context.getLocalization().passwordMinLength;
                     }
                     if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                      return 'Password must contain at least one uppercase letter';
+                      return context.getLocalization().passwordUppercase;
                     }
                     if (!RegExp(r'[0-9]').hasMatch(value)) {
-                      return 'Password must contain at least one number';
+                      return context.getLocalization().passwordNumber;
                     }
                     if (!RegExp(r'[!@#\$&*~%^()\-_+=<>?/.,;:{}\[\]]')
                         .hasMatch(value)) {
-                      return 'Password must contain at least one special character';
+                      return context.getLocalization().passwordSpecial;
                     }
                     return null;
                   },
                 ),
                 CustomTextFormFieldAuth(
-                  hintText: 'Confirm Password',
+                  hintText: context.getLocalization().confirmPasswordHint,
                   password: true,
                   prefixIconPath: AppAssets.passwordIcon,
                   controller: confirmPasswordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Confirm your password';
+                      return context.getLocalization().confirmPasswordRequired;
                     }
                     if (value != passwordController.text) {
-                      return 'Passwords do not match';
+                      return context.getLocalization().passwordsDoNotMatch;
                     }
                     return null;
                   },
                 ),
                 CustomTextFormFieldAuth(
-                  hintText: 'Phone Number',
+                  hintText: context.getLocalization().phoneHint,
                   password: false,
                   prefixIconPath: AppAssets.phoneIcon1,
                   controller: phoneController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Phone number is required';
+                      return context.getLocalization().phoneRequired;
                     }
                     if (!value.startsWith('+')) {
-                      return 'Phone number must start with +';
+                      return context.getLocalization().phoneStartWithPlus;
                     }
                     if (value.length != 13) {
-                      return 'Phone number must be exactly 12 characters';
+                      return context.getLocalization().phoneExactLength;
                     }
                     if (!RegExp(r'^\+\d{12}$').hasMatch(value)) {
-                      return 'Phone number must contain only digits after +';
+                      return context.getLocalization().phoneOnlyDigits;
                     }
                     return null;
                   },
@@ -211,7 +212,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                   builder: (context, state) {
                     return CustomElevatedButtonFilled(
-                      buttonText: 'Create Account',
+                      buttonText: context.getLocalization().createAccount,
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           context.read<AuthCubit>().register(
@@ -234,13 +235,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(text: 'Already Have Account ? '),
+                        TextSpan(
+                            text: context.getLocalization().alreadyHaveAccount),
                         TextSpan(
                           style: CustomTextStyles.style14w400.copyWith(
                             color: AppColors.yellow,
                             fontWeight: FontWeight.bold,
                           ),
-                          text: 'Login',
+                          text: context.getLocalization().login,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Navigator.of(context).pop(),
                         ),

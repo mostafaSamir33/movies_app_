@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
 import 'package:movies_app/UI/auth/Service/googleServices.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -13,7 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       await authService.login(email, password, context);
-      emit(AuthSuccess('Login Successful'));
+      emit(AuthSuccess(context.getLocalization().loginSuccess));
     } catch (e) {
       emit(AuthFailure(e.toString().replaceAll('Exception:', '').trim()));
     }
@@ -43,9 +44,9 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (res['message'] != null &&
           res['message'].toLowerCase().contains('success')) {
-        emit(AuthSuccess('Registration Successful'));
+        emit(AuthSuccess(context.getLocalization().registrationSuccess));
       } else {
-        emit(AuthFailure(res['message'] ?? 'Registration failed'));
+        emit(AuthFailure(res['message'] ?? context.getLocalization().registrationFailed));
       }
     } catch (e) {
       emit(AuthFailure(e.toString().replaceAll('Exception:', '').trim()));
@@ -58,11 +59,11 @@ class AuthCubit extends Cubit<AuthState> {
       final user = await GoogleServices.login();
 
       if (user == null) {
-        emit(AuthFailure("Google Sign-In Cancelled"));
+        emit(AuthFailure(context.getLocalization().googleCancelled));
       } else {
         String username = user.displayName ?? user.email.split("@").first;
 
-        emit(AuthSuccess("Welcome $username"));
+        emit(AuthSuccess(context.getLocalization().loginSuccess));
       }
     } catch (e) {
       emit(AuthFailure(e.toString().replaceAll('Exception:', '').trim()));

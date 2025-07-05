@@ -22,9 +22,102 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "Email": MessageLookupByLibrary.simpleMessage("Email"),
-    "Or": MessageLookupByLibrary.simpleMessage("Or"),
-    "name": MessageLookupByLibrary.simpleMessage("name"),
-    "title": MessageLookupByLibrary.simpleMessage("title"),
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Already Have Account ? ",
+    ),
+    "avatar": MessageLookupByLibrary.simpleMessage("Avatar"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "confirmPasswordHint": MessageLookupByLibrary.simpleMessage(
+      "Confirm Password",
+    ),
+    "confirmPasswordRequired": MessageLookupByLibrary.simpleMessage(
+      "Confirm your password",
+    ),
+    "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
+    "createOne": MessageLookupByLibrary.simpleMessage("Create One"),
+    "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
+    "deleteAccountMessage": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete the account?",
+    ),
+    "donotHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Don’t Have Account ? ",
+    ),
+    "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+    "emailHint": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required"),
+    "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forget Password ?"),
+    "googleCancelled": MessageLookupByLibrary.simpleMessage(
+      "Google Sign-In Cancelled",
+    ),
+    "history": MessageLookupByLibrary.simpleMessage("History"),
+    "invalidEmail": MessageLookupByLibrary.simpleMessage("Enter valid email"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginSuccess": MessageLookupByLibrary.simpleMessage("Login Successful"),
+    "loginWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Login With Google",
+    ),
+    "nameHint": MessageLookupByLibrary.simpleMessage("Name"),
+    "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
+    "newPasswordHint": MessageLookupByLibrary.simpleMessage("New Password"),
+    "no": MessageLookupByLibrary.simpleMessage("No"),
+    "oldPasswordHint": MessageLookupByLibrary.simpleMessage("Old Password"),
+    "or": MessageLookupByLibrary.simpleMessage("Or"),
+    "passwordHint": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordMinLength": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 6 characters",
+    ),
+    "passwordNumber": MessageLookupByLibrary.simpleMessage(
+      "Password must contain at least one number",
+    ),
+    "passwordRequired": MessageLookupByLibrary.simpleMessage(
+      "Password is required",
+    ),
+    "passwordSpecial": MessageLookupByLibrary.simpleMessage(
+      "Password must contain at least one special character",
+    ),
+    "passwordUppercase": MessageLookupByLibrary.simpleMessage(
+      "Password must contain at least one uppercase letter",
+    ),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords do not match",
+    ),
+    "phoneExactLength": MessageLookupByLibrary.simpleMessage(
+      "Phone number must be exactly 13 characters",
+    ),
+    "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "phoneOnlyDigits": MessageLookupByLibrary.simpleMessage(
+      "Phone number must contain only digits after +",
+    ),
+    "phoneRequired": MessageLookupByLibrary.simpleMessage(
+      "Phone number is required",
+    ),
+    "phoneStartWithPlus": MessageLookupByLibrary.simpleMessage(
+      "Phone number must start with +",
+    ),
+    "pickAvatar": MessageLookupByLibrary.simpleMessage("Pick Avatar"),
+    "profileDeleted": MessageLookupByLibrary.simpleMessage(
+      "Profile deleted successfully",
+    ),
+    "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
+      "Failed to update: ",
+    ),
+    "profileUpdated": MessageLookupByLibrary.simpleMessage(
+      "Profile updated successfully",
+    ),
+    "register": MessageLookupByLibrary.simpleMessage("Register"),
+    "registrationFailed": MessageLookupByLibrary.simpleMessage(
+      "Registration failed",
+    ),
+    "registrationSuccess": MessageLookupByLibrary.simpleMessage(
+      "Registration Successful",
+    ),
+    "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "search": MessageLookupByLibrary.simpleMessage("search"),
+    "updateData": MessageLookupByLibrary.simpleMessage("Update Data"),
+    "userName": MessageLookupByLibrary.simpleMessage("User Name"),
+    "watchList": MessageLookupByLibrary.simpleMessage("Watch List"),
+    "wishList": MessageLookupByLibrary.simpleMessage("Wish List"),
+    "yes": MessageLookupByLibrary.simpleMessage("Yes"),
   };
 }

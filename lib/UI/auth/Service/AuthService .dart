@@ -23,7 +23,6 @@ class AuthService {
     if (data.containsKey('data')) {
       final String token = data['data'];
       context.read<TokenProvider>().token = token;
-      print('Token saved: $token');
     }
 
     ProfileData? profileData = await ProfileApi.getProfile(context);
@@ -56,7 +55,6 @@ class AuthService {
         'avaterId': avatarId,
       }),
     );
-    print('$email,$password,$name,$phone,$confirmPassword');
     context.read<AvatarBottomSheetProvider>().selectedIndex = avatarId;
     context.read<AvatarBottomSheetProvider>().avatarId = avatarId;
     context.read<AvatarBottomSheetProvider>().initialAvatar();

@@ -8,6 +8,7 @@ import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
@@ -53,42 +54,42 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     SizedBox(height: 69.h),
                     CustomTextFormFieldAuth(
-                      hintText: 'Email',
+                      hintText: context.getLocalization().emailHint,
                       password: false,
                       prefixIconPath: AppAssets.emailIcon,
                       controller: emailController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Email is required';
+                          return context.getLocalization().emailRequired;
                         }
                         if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
                             .hasMatch(value)) {
-                          return 'Enter valid email';
+                          return context.getLocalization().invalidEmail;
                         }
                         return null;
                       },
                     ),
                     CustomTextFormFieldAuth(
-                      hintText: 'Password',
+                      hintText: context.getLocalization().passwordHint,
                       password: true,
                       prefixIconPath: AppAssets.passwordIcon,
                       controller: passwordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Password is required';
+                          return context.getLocalization().passwordRequired;
                         }
                         if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
+                          return context.getLocalization().passwordMinLength;
                         }
                         if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                          return 'Password must contain at least one uppercase letter';
+                          return context.getLocalization().passwordUppercase;
                         }
                         if (!RegExp(r'[0-9]').hasMatch(value)) {
-                          return 'Password must contain at least one number';
+                          return context.getLocalization().passwordNumber;
                         }
                         if (!RegExp(r'[!@#\$&*~%^()\-_+=<>?/.,;:{}\[\]]')
                             .hasMatch(value)) {
-                          return 'Password must contain at least one special character';
+                          return context.getLocalization().passwordSpecial;
                         }
                         return null;
                       },
@@ -96,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        'Forget Password ?',
+                        context.getLocalization().forgetPassword,
                         style: CustomTextStyles.style14w400.copyWith(
                           color: AppColors.yellow,
                         ),
@@ -140,7 +141,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       builder: (context, state) {
                         return CustomElevatedButtonFilled(
-                          buttonText: 'Login',
+                          buttonText: context.getLocalization().login,
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               context.read<AuthCubit>().login(
@@ -157,13 +158,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     RichText(
                       text: TextSpan(
                         children: [
-                          TextSpan(text: 'Don’t Have Account ? '),
+                          TextSpan(
+                              text: context.getLocalization().donotHaveAccount),
                           TextSpan(
                             style: CustomTextStyles.style14w400.copyWith(
                               color: AppColors.yellow,
                               fontWeight: FontWeight.bold,
                             ),
-                            text: 'Create One',
+                            text: context.getLocalization().createOne,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Navigator.pushNamed(
                                     context,
@@ -180,7 +182,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.r),
                           child: Text(
-                            S.of(context).Or,
+                            S.of(context).or,
                             style: CustomTextStyles.style16w400.copyWith(
                               color: AppColors.yellow,
                             ),
@@ -192,7 +194,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 28.h),
                     CustomElevatedButtonFilled(
                       isSingInPage: true,
-                      buttonText: 'Login With Google',
+                      buttonText: context.getLocalization().loginWithGoogle,
                       onPressed: () {
                         context.read<AuthCubit>().loginWithGoogle(context);
                       },
