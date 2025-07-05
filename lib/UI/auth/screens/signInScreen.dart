@@ -8,13 +8,11 @@ import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
-import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:movies_app/generated/l10n.dart';
 
-import '../Service/googleServices.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 
@@ -120,14 +118,22 @@ class _SignInScreenState extends State<SignInScreen> {
 
                         if (state is AuthSuccess) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(state.message),
+                            content: Text(
+                              state.message,
+                              style: CustomTextStyles.style20w600
+                                  .copyWith(color: AppColors.black1),
+                            ),
                             backgroundColor: AppColors.yellow,
                           ));
                           Navigator.pushReplacementNamed(
                               context, MainLayerScreen.routeName);
                         } else if (state is AuthFailure) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(state.message),
+                            content: Text(
+                              state.message,
+                              style: CustomTextStyles.style20w600
+                                  .copyWith(color: AppColors.white),
+                            ),
                             backgroundColor: AppColors.red,
                           ));
                         }

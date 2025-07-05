@@ -13,8 +13,6 @@ import 'package:movies_app/UI/movieDetails/view/views/similar_section_view.dart'
 import 'package:movies_app/UI/movieDetails/view/views/summary_section_view.dart';
 import 'package:movies_app/UI/movieDetails/view/widgets/coustom_watch_elevated_boutton.dart';
 import 'package:movies_app/UI/movieDetails/view/widgets/coustome_information_container.dart';
-import 'package:movies_app/UI/movieDetails/viewModel/favourite_cubit.dart';
-
 import 'package:movies_app/UI/movieDetails/viewModel/movie_details_cubit.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/movie_details_cubit_states.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit.dart';
@@ -86,6 +84,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         if (isMarked) {
                           isMarked = false;
                           setState(() {});
+                          await WatchListAndHistoryMoviesApi.removeMovieFromFav(
+                              movie?.imdbCode ?? favouriteMovie?.movieId ?? '',
+                              context);
                         } else {
                           isMarked = true;
                           setState(() {});

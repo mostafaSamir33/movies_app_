@@ -5,7 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../../../core/providers/token_provider.dart';
+import '../../../../../core/utils/app_constants.dart';
+import '../../../../../core/utils/app_endpoints.dart';
+import '../../../../auth/providers/token_provider.dart';
+import '../../../../movieDetails/model/movie_added_to_fav_response.dart';
+import '../../homeTab/model/movies_list_response.dart';
 import '../models/get_favourite_movies_response_model.dart';
 
 class WatchListAndHistoryMoviesApi {
@@ -60,11 +64,34 @@ class WatchListAndHistoryMoviesApi {
     Map<String, dynamic> jsonResponse = jsonDecode(response.body);
     GetFavouriteMoviesResponseModel data =
         GetFavouriteMoviesResponseModel.fromJson(jsonResponse);
-    log(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return data.data;
     } else {
       throw data.message ?? 'something went wrong';
     }
   }
+
+  static Future<String> removeMovieFromFav(
+      String movieId, BuildContext context) async {
+    final String? token = context.read<TokenProvider>().token;
+
+    Uri uri = Uri.https(AppConstants.moviesAddDeleteBaseUrl,
+        '${AppEndpoints.movieFavDeleteEndpoint}$movieId');
+    final response = await http.delete(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+        if (token != null) "Authorization": "Bearer $token",
+      },
+    );
+    var jsonResponse = jsonDecode(response.body);
+    MovieAddedToFavResponse responseMessage =
+    MovieAddedToFavResponse.fromJson(jsonResponse);
+    if (response.statusCode == 200 || response.statusCode == 404) {
+      return responseMessage.message ?? 'something went wrong';
+    } else {
+      throw responseMessage.message ?? 'something Wrong';
+    }
+  }
+
 }

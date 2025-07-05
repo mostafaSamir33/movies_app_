@@ -88,7 +88,7 @@ class MovieDetailsApi {
     MovieAddedToFavResponse responseMessage =
         MovieAddedToFavResponse.fromJson(jsonResponse);
     if (response.statusCode == 200 || response.statusCode == 404) {
-      return responseMessage.message ?? 'somrthing went wrong';
+      return responseMessage.message ?? 'something went wrong';
     } else {
       throw responseMessage.message ?? 'something Wrong';
     }

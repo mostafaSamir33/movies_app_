@@ -26,7 +26,6 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('MovieCard imagePath: $imagePath');
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(

@@ -190,13 +190,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     if (state is AuthSuccess) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(state.message),
+                        content: Text(
+                          state.message,
+                          style: CustomTextStyles.style20w600
+                              .copyWith(color: AppColors.black1),
+                        ),
                         backgroundColor: AppColors.yellow,
                       ));
                       Navigator.pop(context);
                     } else if (state is AuthFailure) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(state.message),
+                        content: Text(
+                          state.message,
+                          style: CustomTextStyles.style20w600
+                              .copyWith(color: AppColors.white),
+                        ),
                         backgroundColor: AppColors.red,
                       ));
                     }
