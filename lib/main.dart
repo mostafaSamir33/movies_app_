@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/providers/switch_provider.dart';
+import 'package:movies_app/UI/auth/providers/token_provider.dart';
 import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
-import 'package:movies_app/UI/movieDetails/viewModel/favourite_cubit.dart';
 import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.dart';
-import 'package:movies_app/UI/auth/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_theme.dart';
 import 'package:movies_app/generated/l10n.dart';
 import 'package:provider/provider.dart';
+
 import 'UI/main_layer/tabs/profileTab/screens/update_profile_screen.dart';
 import 'UI/onboarding/onboarding_screens/onboarding_screen_2.dart';
 import 'core/providers/avatar_bottom_sheet_provider.dart';
@@ -84,7 +83,13 @@ class MyApp extends StatelessWidget {
           MainLayerScreen.routeName: (_) => const MainLayerScreen(),
           ResetPassword.routeName: (_) => ResetPassword(),
           SignUpScreen.routeName: (_) => SignUpScreen(),
-          MovieDetailsScreen.routeName: (_) => MovieDetailsScreen(),
+          MovieDetailsScreen.routeName: (context) {
+            String movieId =
+                ModalRoute.of(context)!.settings.arguments as String;
+            return MovieDetailsScreen(
+              movieId: movieId,
+            );
+          },
         },
         initialRoute: getInitialRoute(tokenProvider),
       ),

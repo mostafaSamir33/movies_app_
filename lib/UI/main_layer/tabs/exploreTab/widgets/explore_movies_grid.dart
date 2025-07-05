@@ -35,7 +35,7 @@ class ExploreMoviesGrid extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return MovieCard(
-                  movie: movies[index],
+                  movieId: movies[index].imdbCode,
                   imagePath: movies[index].mediumCoverImage ?? '',
                   rating: movies[index].rating,
                 );

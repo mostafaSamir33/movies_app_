@@ -31,7 +31,7 @@ class WatchListTab extends StatelessWidget {
             itemBuilder: (context, index) {
               return MovieCard(
                 imagePath: favouriteMovies?[index].imageURL ?? '',
-                favouriteMovie: favouriteMovies?[index],
+                movieId: favouriteMovies?[index].movieId,
                 rating: favouriteMovies?[index].rating,
               );
             },

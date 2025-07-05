@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/models/get_favourite_movies_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/watch_list_and_history_movies_api.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
 import 'package:movies_app/UI/movieDetails/view/views/cast_section_view.dart';
@@ -20,13 +18,15 @@ import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit_stat
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
-import '../../main_layer/tabs/profileTab/models/movie_details_args.dart';
+import '../model/movie_details_api.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
+  final String movieId;
   static const String routeName = '/movieDetailsScreen';
 
   const MovieDetailsScreen({
     super.key,
+    required this.movieId,
   });
 
   @override
@@ -36,16 +36,15 @@ class MovieDetailsScreen extends StatefulWidget {
 class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   bool isMarked = false;
 
-  late final Movies? movie;
-  late final FavouriteMovie? favouriteMovie;
+  MovieDetails? movieDetails;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final args = ModalRoute.of(context)!.settings.arguments as MovieDetailsArgs;
-    movie = args.movie;
-    favouriteMovie = args.favourite;
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      movieDetails = await MovieDetailsApi.getMovieDetails(widget.movieId);
+      setState(() {});
+    });
   }
 
   @override
@@ -54,7 +53,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
       create: (context) => MovieDetailsCubit(),
       child: BlocBuilder<MovieDetailsCubit, MovieDetailsCubitStates>(
         bloc: MovieDetailsCubit()
-          ..getMovieDetails(movie?.imdbCode ?? favouriteMovie?.movieId ?? ''),
+          ..getMovieDetails(movieDetails?.imdbCode ?? ''),
         builder: (context, state) {
           final showAppBarButtons = state is MovieDetailsSuccessState;
           return Scaffold(
@@ -85,28 +84,18 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           isMarked = false;
                           setState(() {});
                           await WatchListAndHistoryMoviesApi.removeMovieFromFav(
-                              movie?.imdbCode ?? favouriteMovie?.movieId ?? '',
-                              context);
+                              movieDetails?.imdbCode ?? '', context);
                         } else {
                           isMarked = true;
                           setState(() {});
                           await WatchListAndHistoryMoviesApi
                               .postWatchListMovies(
                                   context: context,
-                                  movieId: movie?.imdbCode ??
-                                      favouriteMovie?.movieId ??
-                                      '',
-                                  name: movie?.title ??
-                                      favouriteMovie?.name ??
-                                      '',
-                                  rating: movie?.rating ??
-                                      favouriteMovie?.rating ??
-                                      0.0,
-                                  imageURL: movie?.largeCoverImage ??
-                                      favouriteMovie?.imageURL ??
-                                      '',
-                                  year: movie?.year.toString() ??
-                                      favouriteMovie?.year ??
+                                  movieId: movieDetails?.imdbCode ?? '',
+                                  name: movieDetails?.title ?? '',
+                                  rating: movieDetails?.rating ?? 0.0,
+                                  imageURL: movieDetails?.largeCoverImage ?? '',
+                                  year: movieDetails?.year.toString() ??
                                       0.toString());
                         }
                       },
@@ -212,8 +201,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 child: BlocBuilder<MovieSuggestionCubit,
                     MovieSuggestionCubitStates>(
                   bloc: MovieSuggestionCubit()
-                    ..getMovieSuggestion(
-                        movie?.id.toString() ?? favouriteMovie?.movieId ?? ''),
+                    ..getMovieSuggestion(movieDetails.imdbCode ?? ''),
                   builder: (context, state) {
                     switch (state) {
                       case MovieSuggestionInitialState():

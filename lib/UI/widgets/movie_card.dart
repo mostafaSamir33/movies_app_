@@ -1,27 +1,20 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 
 import '../../core/utils/app_colors.dart';
-import '../main_layer/tabs/profileTab/models/get_favourite_movies_response_model.dart';
-import '../main_layer/tabs/profileTab/models/movie_details_args.dart';
 
 class MovieCard extends StatelessWidget {
   final String imagePath;
   final double? rating;
-  final Movies? movie;
-  final FavouriteMovie? favouriteMovie;
+  final String? movieId;
 
   const MovieCard({
     super.key,
     required this.imagePath,
     this.rating,
-    this.movie,
-    this.favouriteMovie,
+    required this.movieId,
   });
 
   @override
@@ -30,10 +23,7 @@ class MovieCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(
           MovieDetailsScreen.routeName,
-          arguments: MovieDetailsArgs(
-            movie: movie,
-            favourite: favouriteMovie,
-          ),
+          arguments: movieId,
         );
       },
       child: Container(
