@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/providers/token_provider.dart';
+import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -145,7 +146,9 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                           minimumSize: Size(252.w, 56.h),
                           backgroundColor: AppColors.yellow),
                       child: Text(
-                        context.getLocalization().editProfile, //TODO:localization
+                        context
+                            .getLocalization()
+                            .editProfile, //TODO:localization
                         style: CustomTextStyles.style20w400.copyWith(
                             color: AppColors.black1, fontFamily: 'Roboto'),
                       ),
@@ -164,6 +167,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                           SignInScreen.routeName,
                           (route) => false,
                         );
+                        currentIndex.value = 0;
                       },
                       style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -207,8 +211,10 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 6.r),
                   child: Tab(
-                    text: context.getLocalization().watchList, //TODO:localization
-                    iconMargin: EdgeInsets.only(bottom: 12.r),
+                    text:
+                        context.getLocalization().watchList, //TODO:localization
+                    iconMargin: EdgeInsets.only(bottom: 6.r),
+
                     icon: SvgPicture.asset(
                       AppAssets.watchListIcon,
                       height: 24.h,
@@ -220,7 +226,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                   padding: EdgeInsets.only(bottom: 6.r),
                   child: Tab(
                     text: context.getLocalization().history, //TODO:localization
-                    iconMargin: EdgeInsets.only(bottom: 12.r),
+                    iconMargin: EdgeInsets.only(bottom: 6.r),
                     icon: SvgPicture.asset(
                       AppAssets.historyIcon,
                       height: 30.h,
