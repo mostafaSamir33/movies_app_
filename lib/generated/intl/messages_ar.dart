@@ -22,9 +22,110 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "Email": MessageLookupByLibrary.simpleMessage("بريد "),
-    "Or": MessageLookupByLibrary.simpleMessage("أو"),
-    "name": MessageLookupByLibrary.simpleMessage("اسم"),
-    "title": MessageLookupByLibrary.simpleMessage("عنوان"),
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "لديك حساب بالفعل؟ ",
+    ),
+    "avatar": MessageLookupByLibrary.simpleMessage("الصورة الرمزية"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "confirmPasswordHint": MessageLookupByLibrary.simpleMessage(
+      "تأكيد كلمة المرور",
+    ),
+    "confirmPasswordRequired": MessageLookupByLibrary.simpleMessage(
+      "تأكيد كلمة المرور مطلوب",
+    ),
+    "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء الحساب"),
+    "createOne": MessageLookupByLibrary.simpleMessage("أنشئ حساب"),
+    "deleteAccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
+    "deleteAccountMessage": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد حذف الحساب؟",
+    ),
+    "donotHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
+    "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+    "emailHint": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "emailRequired": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني مطلوب",
+    ),
+    "exit": MessageLookupByLibrary.simpleMessage("خروج"),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+    "googleCancelled": MessageLookupByLibrary.simpleMessage(
+      "تم إلغاء تسجيل الدخول عبر جوجل",
+    ),
+    "history": MessageLookupByLibrary.simpleMessage("السجل"),
+    "invalidEmail": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريد إلكتروني صحيح",
+    ),
+    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل الدخول بنجاح",
+    ),
+    "loginWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الدخول بواسطة جوجل",
+    ),
+    "nameHint": MessageLookupByLibrary.simpleMessage("الاسم"),
+    "nameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
+    "newPasswordHint": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور الجديدة",
+    ),
+    "no": MessageLookupByLibrary.simpleMessage("لا"),
+    "oldPasswordHint": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور القديمة",
+    ),
+    "or": MessageLookupByLibrary.simpleMessage("أو"),
+    "passwordHint": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordMinLength": MessageLookupByLibrary.simpleMessage(
+      "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    ),
+    "passwordNumber": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تحتوي على رقم واحد على الأقل",
+    ),
+    "passwordRequired": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور مطلوبة",
+    ),
+    "passwordSpecial": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تحتوي على رمز خاص واحد على الأقل",
+    ),
+    "passwordUppercase": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل",
+    ),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "كلمتا المرور غير متطابقتين",
+    ),
+    "phoneExactLength": MessageLookupByLibrary.simpleMessage(
+      "رقم الهاتف يجب أن يحتوي على 13 رقمًا بالضبط",
+    ),
+    "phoneHint": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+    "phoneOnlyDigits": MessageLookupByLibrary.simpleMessage(
+      "رقم الهاتف يجب أن يحتوي على أرقام فقط بعد +",
+    ),
+    "phoneRequired": MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
+    "phoneStartWithPlus": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يبدأ رقم الهاتف بعلامة +",
+    ),
+    "pickAvatar": MessageLookupByLibrary.simpleMessage("اختر صورة رمزية"),
+    "profileDeleted": MessageLookupByLibrary.simpleMessage(
+      "تم حذف الحساب بنجاح",
+    ),
+    "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
+      "فشل التحديث: ",
+    ),
+    "profileUpdated": MessageLookupByLibrary.simpleMessage(
+      "تم تحديث الملف الشخصي بنجاح",
+    ),
+    "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
+    "registrationFailed": MessageLookupByLibrary.simpleMessage(
+      "فشل في إنشاء الحساب",
+    ),
+    "registrationSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم إنشاء الحساب بنجاح",
+    ),
+    "resetPassword": MessageLookupByLibrary.simpleMessage(
+      "إعادة تعيين كلمة المرور",
+    ),
+    "search": MessageLookupByLibrary.simpleMessage("ابحث"),
+    "updateData": MessageLookupByLibrary.simpleMessage("تحديث البيانات"),
+    "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+    "watchList": MessageLookupByLibrary.simpleMessage("قائمة المشاهدة"),
+    "wishList": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),
+    "yes": MessageLookupByLibrary.simpleMessage("نعم"),
   };
 }

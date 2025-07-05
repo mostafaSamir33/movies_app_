@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/providers/token_provider.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
@@ -67,7 +68,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                                   .join(' ')
                                   .substring(0)
                                   .toUpperCase()
-                              : 'User Name',
+                              : context.getLocalization().userName,
                           style: CustomTextStyles.style20w700.copyWith(
                               color: AppColors.white, fontFamily: 'Roboto'),
                           textAlign: TextAlign.center,
@@ -88,7 +89,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                         height: 20.h,
                       ),
                       Text(
-                        'Wish List', //TODO:localization
+                        context.getLocalization().watchList, //TODO:localization
                         style: CustomTextStyles.style24w700.copyWith(
                             color: AppColors.white, fontFamily: 'Roboto'),
                       ),
@@ -107,7 +108,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                         height: 20.h,
                       ),
                       Text(
-                        'History', //TODO:localization
+                        context.getLocalization().history, //TODO:localization
                         style: CustomTextStyles.style24w700.copyWith(
                             color: AppColors.white, fontFamily: 'Roboto'),
                       ),
@@ -140,7 +141,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                           minimumSize: Size(252.w, 56.h),
                           backgroundColor: AppColors.yellow),
                       child: Text(
-                        'Edit Profile', //TODO:localization
+                        context.getLocalization().editProfile, //TODO:localization
                         style: CustomTextStyles.style20w400.copyWith(
                             color: AppColors.black1, fontFamily: 'Roboto'),
                       ),
@@ -169,7 +170,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Exit', //TODO:localization
+                            context.getLocalization().exit, //TODO:localization
                             style: CustomTextStyles.style20w400.copyWith(
                                 color: AppColors.white, fontFamily: 'Roboto'),
                           ),
@@ -202,7 +203,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 6.r),
                   child: Tab(
-                    text: 'Watch List', //TODO:localization
+                    text: context.getLocalization().watchList, //TODO:localization
                     iconMargin: EdgeInsets.only(bottom: 12.r),
                     icon: SvgPicture.asset(
                       AppAssets.watchListIcon,
@@ -214,7 +215,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 6.r),
                   child: Tab(
-                    text: 'History', //TODO:localization
+                    text: context.getLocalization().history, //TODO:localization
                     iconMargin: EdgeInsets.only(bottom: 12.r),
                     icon: SvgPicture.asset(
                       AppAssets.historyIcon,
