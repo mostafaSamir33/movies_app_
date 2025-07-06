@@ -244,6 +244,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                             AppAssets.exitIcon,
                             height: 18.h,
                             width: 16.4.w,
+                            matchTextDirection: true,
                           )
                         ],
                       ),

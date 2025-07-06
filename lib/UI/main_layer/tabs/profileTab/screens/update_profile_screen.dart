@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/auth/providers/switch_provider.dart';
 import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
@@ -157,11 +158,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
               ),
             ),
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: context.watch<SwitchProvider>().isActive
+                  ? Alignment.centerRight
+                  : Alignment.centerLeft,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed(ResetPassword.routeName,
-                      arguments: profileData);
+                  Navigator.of(context).pushNamed(ResetPassword.routeName);
                 },
                 child: Text(
                   context.getLocalization().resetPassword,

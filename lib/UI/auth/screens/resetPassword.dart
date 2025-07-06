@@ -13,9 +13,8 @@ import '../../../core/utils/custom_text_styles.dart';
 
 class ResetPassword extends StatefulWidget {
   static const String routeName = '/Forgetpassword';
-  ProfileData? profileData;
 
-  ResetPassword({super.key, this.profileData});
+  ResetPassword({super.key,});
 
   @override
   State<ResetPassword> createState() => _ResetPasswordState();
