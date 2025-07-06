@@ -77,7 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "genreWestern": MessageLookupByLibrary.simpleMessage("ويسترن"),
         "googleCancelled": MessageLookupByLibrary.simpleMessage(
           "تم إلغاء تسجيل الدخول عبر جوجل",
-    ),
+        ),
     "history": MessageLookupByLibrary.simpleMessage("السجل"),
     "invalidEmail": MessageLookupByLibrary.simpleMessage(
       "أدخل بريد إلكتروني صحيح",
