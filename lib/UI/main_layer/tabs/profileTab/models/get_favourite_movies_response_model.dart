@@ -53,7 +53,7 @@ class FavouriteMovie {
   FavouriteMovie.fromJson(dynamic json) {
     movieId = json['movieId'];
     name = json['name'];
-    rating = json['rating'];
+    rating = (json['rating'] as num?)?.toDouble();
     imageURL = json['imageURL'];
     year = json['year'];
   }

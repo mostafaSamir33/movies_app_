@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/network/watch_list_and_history_movies_api.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
 import 'package:movies_app/UI/movieDetails/view/views/cast_section_view.dart';
 import 'package:movies_app/UI/movieDetails/view/views/geners_section_view.dart';
@@ -17,7 +17,10 @@ import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit.dart
 import 'package:movies_app/UI/movieDetails/viewModel/movie_suggestion_cubit_states.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/app_constants.dart';
+import 'package:movies_app/core/utils/app_prefs.dart';
 
+import '../../../core/utils/custom_text_styles.dart';
 import '../model/movie_details_api.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
@@ -83,20 +86,16 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         if (isMarked) {
                           isMarked = false;
                           setState(() {});
-                          await WatchListAndHistoryMoviesApi.removeMovieFromFav(
-                              movieDetails?.imdbCode ?? '', context);
+                          context
+                              .read<ProfileTabProvider>()
+                              .removeFromWatchList(
+                                  context, movieDetails?.imdbCode ?? '');
                         } else {
                           isMarked = true;
                           setState(() {});
-                          await WatchListAndHistoryMoviesApi
-                              .postWatchListMovies(
-                                  context: context,
-                                  movieId: movieDetails?.imdbCode ?? '',
-                                  name: movieDetails?.title ?? '',
-                                  rating: movieDetails?.rating ?? 0.0,
-                                  imageURL: movieDetails?.largeCoverImage ?? '',
-                                  year: movieDetails?.year.toString() ??
-                                      0.toString());
+                          context
+                              .read<ProfileTabProvider>()
+                              .addToWatchList(context, movieDetails);
                         }
                       },
                       icon: isMarked == true
@@ -148,8 +147,24 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               movie: movieDetails,
             ), //take obgect of movie
             CustomWatchElevatedButton(
-              title: 'Watch',
-              onPressed: () {},
+              title: 'Watch', //TODO:localization
+              onPressed: () async {
+                MovieDetails? watchedMovie =
+                    await MovieDetailsApi.getMovieDetails(widget.movieId);
+
+                await AppPrefs.historySetSetOfString(
+                    key: AppConstants.historyTabKey,
+                    watchedMovie: watchedMovie);
+
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    'You Are Going To Watch The Movie', //TODO:localization
+                    style: CustomTextStyles.style20w600
+                        .copyWith(color: AppColors.black1),
+                  ),
+                  backgroundColor: AppColors.yellow,
+                ));
+              },
             ),
             SizedBox(
               height: 16,

@@ -8,6 +8,7 @@ import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
 import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
@@ -15,10 +16,13 @@ import 'package:movies_app/core/utils/app_theme.dart';
 import 'package:movies_app/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
+import 'UI/main_layer/tabs/profileTab/providers/avatar_bottom_sheet_provider.dart';
 import 'UI/main_layer/tabs/profileTab/screens/update_profile_screen.dart';
 import 'UI/onboarding/onboarding_screens/onboarding_screen_2.dart';
-import 'core/providers/avatar_bottom_sheet_provider.dart';
 import 'core/utils/app_prefs.dart';
+
+final RouteObserver<ModalRoute<void>> routeObserver =
+    RouteObserver<ModalRoute<void>>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +42,9 @@ Future<void> main() async {
         ChangeNotifierProvider(
           create: (context) => TokenProvider()..loadToken(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileTabProvider(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -50,11 +57,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokenProvider = context.watch<TokenProvider>();
+
     if (!tokenProvider.isTokenLoaded) {
-      return const MaterialApp(
-        home: Scaffold(
+      return MaterialApp(
+        home: const Scaffold(
           body: Center(child: CircularProgressIndicator()),
         ),
+        navigatorObservers: [routeObserver],
       );
     }
     return ScreenUtilInit(
@@ -63,6 +72,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        navigatorObservers: [routeObserver],
         theme: AppTheme.themeData,
         themeMode: ThemeMode.light,
         localizationsDelegates: [

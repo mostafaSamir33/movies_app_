@@ -278,6 +278,15 @@ class MovieDetails {
     _data["date_uploaded_unix"] = dateUploadedUnix;
     return _data;
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;          // same instance
+    return other is MovieDetails && other.imdbCode == imdbCode;
+  }
+
+  @override
+  int get hashCode => imdbCode.hashCode;
 }
 
 class Torrents {
