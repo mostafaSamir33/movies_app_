@@ -14,6 +14,7 @@ class MovieDetailsFailureState extends MovieDetailsCubitStates {
 
 class MovieDetailsSuccessState extends MovieDetailsCubitStates {
   MovieDetails movie;
+  bool isMarked;
 
-  MovieDetailsSuccessState({required this.movie});
+  MovieDetailsSuccessState({required this.movie, required this.isMarked});
 }

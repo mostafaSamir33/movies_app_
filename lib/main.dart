@@ -86,6 +86,7 @@ class MyApp extends StatelessWidget {
           MovieDetailsScreen.routeName: (context) {
             String movieId =
                 ModalRoute.of(context)!.settings.arguments as String;
+
             return MovieDetailsScreen(
               movieId: movieId,
             );

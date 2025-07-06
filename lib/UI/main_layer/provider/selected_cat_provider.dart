@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/UI/auth/providers/switch_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 
 class SelectedCatProvider extends ChangeNotifier {
@@ -36,13 +35,11 @@ class SelectedCatProvider extends ChangeNotifier {
     'حرب': 'War',
     'ويسترن': 'Western',
   };
-  SwitchProvider switchProvider = SwitchProvider();
+
   void selectCat(
     String cat,
   ) {
-    if (switchProvider.isActive) {
-      cat = arabicToEnglishGenre[cat] ?? cat;
-    }
+    cat = arabicToEnglishGenre[cat] ?? cat;
 
     selectedCat = AppConstants.genresList.indexWhere((e) => e == cat);
     notifyListeners();

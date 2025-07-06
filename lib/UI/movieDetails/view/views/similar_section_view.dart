@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/widgets/movie_card.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class SimilarSectionView extends StatelessWidget {
@@ -17,7 +18,7 @@ class SimilarSectionView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Similar',
+            context.getLocalization().similar,
             style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w700,

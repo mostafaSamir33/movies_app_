@@ -5,4 +5,5 @@ class AppEndpoints {
       '/api/v2/movie_suggestions.json';
   static const String movieFavAddEndpoint = '/favorites/add';
   static const String movieFavDeleteEndpoint = '/favorites/remove/';
+  static const String movieIsFavEndpoint = 'favorites/is-favorite/';
 }

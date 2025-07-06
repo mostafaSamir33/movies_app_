@@ -81,5 +81,18 @@
   "genreThriller": "إثارة",
   "genreWar": "حرب",
   "genreWestern": "ويسترن",
-  "seeMore": "عرض المزيد"
+  "seeMore": "عرض المزيد",
+  "summary": "الملخص",
+  "geners": "النوع",
+  "cast": "الممثلين",
+  "similar": "مشابه",
+  "screenshots": "لقطات الشاشة",
+  "watch": "مشاهدة",
+  "nocharacter": "لا توجد شخصية متاحة",
+  "noname": "لا يوجد اسم متاح",
+  "nocast": "لا يوجد ممثلين متاحين",
+  "nosummary": "لا يوجد ملخص متاح لهذا الفيلم!",
+  "character": "الشخصية:",
+  "name": "الاسم:",
+  "nomovies": "لا توجد أفلام!"
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
 import 'package:movies_app/UI/movieDetails/view/widgets/cast_card.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class CastSectionView extends StatelessWidget {
@@ -17,7 +18,7 @@ class CastSectionView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Cast',
+            context.getLocalization().cast,
             style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w700,
@@ -29,7 +30,7 @@ class CastSectionView extends StatelessWidget {
           ),
           cast.isEmpty
               ? Text(
-                  'No Cast Available',
+                  context.getLocalization().nocast,
                   style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
@@ -50,11 +51,11 @@ class CastSectionView extends StatelessWidget {
                         imagePath: castMember.urlSmallImage ??
                             'https://static.vecteezy.com/system/resources/previews/014/194/232/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg',
                         name: (castMember.name == null || castMember.name == '')
-                            ? 'No Name Available'
+                            ? context.getLocalization().noname
                             : castMember.name!,
                         character: (castMember.characterName == null ||
                                 castMember.characterName == '')
-                            ? 'No Character Available'
+                            ? context.getLocalization().nocharacter
                             : castMember.characterName!);
                   })
         ],

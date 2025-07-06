@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class CoustomeInformationContainer extends StatelessWidget {
@@ -24,15 +25,13 @@ class CoustomeInformationContainer extends StatelessWidget {
           SizedBox(
             width: 14,
           ),
-          SizedBox(
-            child: Text(
-              data,
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Roboto',
-                  color: AppColors.white),
-            ),
+          Text(
+            data,
+            style: TextStyle(
+                fontSize: 24.sp,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Roboto',
+                color: AppColors.white),
           )
         ],
       ),

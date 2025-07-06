@@ -26,7 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "لديك حساب بالفعل؟ ",
     ),
     "avatar": MessageLookupByLibrary.simpleMessage("الصورة الرمزية"),
+    "cast": MessageLookupByLibrary.simpleMessage("الممثلين"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "character": MessageLookupByLibrary.simpleMessage("الشخصية:"),
     "confirmPasswordHint": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
@@ -47,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "exit": MessageLookupByLibrary.simpleMessage("خروج"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+    "geners": MessageLookupByLibrary.simpleMessage("النوع"),
     "genreAction": MessageLookupByLibrary.simpleMessage("أكشن"),
     "genreAdventure": MessageLookupByLibrary.simpleMessage("مغامرة"),
     "genreAnimation": MessageLookupByLibrary.simpleMessage("رسوم متحركة"),
@@ -88,12 +91,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginWithGoogle": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول بواسطة جوجل",
     ),
+    "name": MessageLookupByLibrary.simpleMessage("الاسم:"),
     "nameHint": MessageLookupByLibrary.simpleMessage("الاسم"),
     "nameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
     "newPasswordHint": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور الجديدة",
     ),
     "no": MessageLookupByLibrary.simpleMessage("لا"),
+    "nocast": MessageLookupByLibrary.simpleMessage("لا يوجد ممثلين متاحين"),
+    "nocharacter": MessageLookupByLibrary.simpleMessage("لا توجد شخصية متاحة"),
+    "nomovies": MessageLookupByLibrary.simpleMessage("لا توجد أفلام!"),
+    "noname": MessageLookupByLibrary.simpleMessage("لا يوجد اسم متاح"),
+    "nosummary": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد ملخص متاح لهذا الفيلم!",
+    ),
     "oldPasswordHint": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور القديمة",
     ),
@@ -148,10 +159,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "resetPassword": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
     ),
+    "screenshots": MessageLookupByLibrary.simpleMessage("لقطات الشاشة"),
     "search": MessageLookupByLibrary.simpleMessage("ابحث"),
     "seeMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
+    "similar": MessageLookupByLibrary.simpleMessage("مشابه"),
+    "summary": MessageLookupByLibrary.simpleMessage("الملخص"),
     "updateData": MessageLookupByLibrary.simpleMessage("تحديث البيانات"),
     "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+    "watch": MessageLookupByLibrary.simpleMessage("مشاهدة"),
     "watchList": MessageLookupByLibrary.simpleMessage("قائمة المشاهدة"),
     "wishList": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),
     "yes": MessageLookupByLibrary.simpleMessage("نعم"),

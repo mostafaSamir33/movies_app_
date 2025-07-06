@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class ScreenShotsSectionView extends StatelessWidget {
@@ -21,7 +22,7 @@ class ScreenShotsSectionView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Screen Shots',
+            context.getLocalization().screenshots,
             style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w700,

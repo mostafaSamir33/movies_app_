@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
+import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class CastCard extends StatelessWidget {
@@ -28,15 +30,21 @@ class CastCard extends StatelessWidget {
               height: 70.h,
               width: 70.w,
               fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => Image.asset(
+                AppAssets.failedImage,
+                fit: BoxFit.fill,
+                height: 70.h,
+                width: 70.w,
+              ),
             ),
           ),
           Expanded(
             child: Column(
-              spacing: 10,
+              spacing: 5,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Name : $name',
+                  '${context.getLocalization().name} $name',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -46,7 +54,7 @@ class CastCard extends StatelessWidget {
                       fontFamily: 'Roboto'),
                 ),
                 Text(
-                  'Character: $character',
+                  '${context.getLocalization().character} $character',
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,

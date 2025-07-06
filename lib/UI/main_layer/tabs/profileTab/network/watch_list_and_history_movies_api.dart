@@ -86,7 +86,7 @@ class WatchListAndHistoryMoviesApi {
     );
     var jsonResponse = jsonDecode(response.body);
     MovieAddedToFavResponse responseMessage =
-    MovieAddedToFavResponse.fromJson(jsonResponse);
+        MovieAddedToFavResponse.fromJson(jsonResponse);
     if (response.statusCode == 200 || response.statusCode == 404) {
       return responseMessage.message ?? 'something went wrong';
     } else {
@@ -94,4 +94,23 @@ class WatchListAndHistoryMoviesApi {
     }
   }
 
+  static Future<bool> movieIsFav(String movieID, BuildContext context) async {
+    final String? token = context.read<TokenProvider>().token;
+
+    Uri uri = Uri.https(
+      AppConstants.moviesAddDeleteBaseUrl,
+      '${AppEndpoints.movieIsFavEndpoint}$movieID',
+    );
+    var response = await http.get(
+      uri,
+      headers: {
+        "Content-Type": "application/json",
+        if (token != null) "Authorization": "Bearer $token",
+      },
+    );
+    var jsonResponse = jsonDecode(response.body);
+    bool dataValue = jsonResponse['data'] as bool;
+    print(dataValue);
+    return dataValue;
+  }
 }

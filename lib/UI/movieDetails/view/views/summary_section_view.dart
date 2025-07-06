@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class SummarySectionView extends StatelessWidget {
@@ -16,7 +17,7 @@ class SummarySectionView extends StatelessWidget {
         spacing: 16.h,
         children: [
           Text(
-            'Summary',
+            context.getLocalization().summary,
             style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w700,
@@ -25,7 +26,7 @@ class SummarySectionView extends StatelessWidget {
           ),
           Text(
             (summary == null || summary == '')
-                ? 'No Summary Available For This Movie!'
+                ? context.getLocalization().nosummary
                 : summary!,
             style: TextStyle(
                 fontSize: 16.sp,

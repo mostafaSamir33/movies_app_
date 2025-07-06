@@ -653,6 +653,91 @@ class S {
   String get seeMore {
     return Intl.message('See More', name: 'seeMore', desc: '', args: []);
   }
+
+  /// `Summary`
+  String get summary {
+    return Intl.message('Summary', name: 'summary', desc: '', args: []);
+  }
+
+  /// `Genres`
+  String get geners {
+    return Intl.message('Genres', name: 'geners', desc: '', args: []);
+  }
+
+  /// `Cast`
+  String get cast {
+    return Intl.message('Cast', name: 'cast', desc: '', args: []);
+  }
+
+  /// `Similar`
+  String get similar {
+    return Intl.message('Similar', name: 'similar', desc: '', args: []);
+  }
+
+  /// `Screenshots`
+  String get screenshots {
+    return Intl.message('Screenshots', name: 'screenshots', desc: '', args: []);
+  }
+
+  /// `Watch`
+  String get watch {
+    return Intl.message('Watch', name: 'watch', desc: '', args: []);
+  }
+
+  /// `No Character Available`
+  String get nocharacter {
+    return Intl.message(
+      'No Character Available',
+      name: 'nocharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Name Available`
+  String get noname {
+    return Intl.message(
+      'No Name Available',
+      name: 'noname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Cast Available`
+  String get nocast {
+    return Intl.message(
+      'No Cast Available',
+      name: 'nocast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Summary Available For This Movie!`
+  String get nosummary {
+    return Intl.message(
+      'No Summary Available For This Movie!',
+      name: 'nosummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Character:`
+  String get character {
+    return Intl.message('Character:', name: 'character', desc: '', args: []);
+  }
+
+  /// `Name:`
+  String get name {
+    return Intl.message('Name:', name: 'name', desc: '', args: []);
+  }
+
+  /// `No Movies!`
+  String get nomovies {
+    return Intl.message('No Movies!', name: 'nomovies', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

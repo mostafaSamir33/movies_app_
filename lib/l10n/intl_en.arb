@@ -81,5 +81,18 @@
   "genreThriller": "Thriller",
   "genreWar": "War",
   "genreWestern": "Western",
-  "seeMore": "See More"
+  "seeMore": "See More",
+  "summary": "Summary",
+  "geners": "Genres",
+  "cast": "Cast",
+  "similar": "Similar",
+  "screenshots": "Screenshots",
+  "watch": "Watch",
+  "nocharacter": "No Character Available",
+  "noname": "No Name Available",
+  "nocast": "No Cast Available",
+  "nosummary": "No Summary Available For This Movie!",
+  "character": "Character:",
+  "name": "Name:",
+  "nomovies": "No Movies!"
 }
