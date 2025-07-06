@@ -1,4 +1,3 @@
-
 class MovieAddedToFavResponse {
   String? message;
   Data? data;
@@ -6,22 +5,23 @@ class MovieAddedToFavResponse {
   MovieAddedToFavResponse({this.message, this.data});
 
   MovieAddedToFavResponse.fromJson(Map<String, dynamic> json) {
-    if(json["message"] is String) {
+    if (json["message"] is String) {
       message = json["message"];
     }
-    if(json["data"] is Map) {
+    if (json["data"] is Map) {
       data = json["data"] == null ? null : Data.fromJson(json["data"]);
     }
   }
 
-  static List<MovieAddedToFavResponse> fromList(List<Map<String, dynamic>> list) {
+  static List<MovieAddedToFavResponse> fromList(
+      List<Map<String, dynamic>> list) {
     return list.map(MovieAddedToFavResponse.fromJson).toList();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["message"] = message;
-    if(data != null) {
+    if (data != null) {
       _data["data"] = data?.toJson();
     }
     return _data;
@@ -38,19 +38,19 @@ class Data {
   Data({this.movieId, this.name, this.rating, this.imageUrl, this.year});
 
   Data.fromJson(Map<String, dynamic> json) {
-    if(json["movieId"] is String) {
+    if (json["movieId"] is String) {
       movieId = json["movieId"];
     }
-    if(json["name"] is String) {
+    if (json["name"] is String) {
       name = json["name"];
     }
-    if(json["rating"] is double) {
+    if (json["rating"] is double) {
       rating = json["rating"];
     }
-    if(json["imageURL"] is String) {
+    if (json["imageURL"] is String) {
       imageUrl = json["imageURL"];
     }
-    if(json["year"] is String) {
+    if (json["year"] is String) {
       year = json["year"];
     }
   }
