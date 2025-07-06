@@ -10,6 +10,7 @@ class CastCard extends StatelessWidget {
       required this.imagePath,
       required this.name,
       required this.character});
+
   final String imagePath;
   final String name;
   final String character;

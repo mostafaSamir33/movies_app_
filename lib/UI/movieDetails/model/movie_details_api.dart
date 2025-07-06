@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_endpoints.dart';
-import 'package:http/http.dart' as http;
 
 class MovieDetailsApi {
   static Future<MovieDetails?> getMovieDetails(String movieId) async {

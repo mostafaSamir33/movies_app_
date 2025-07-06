@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/app_endpoints.dart';
 import '../../../../auth/providers/token_provider.dart';
 import '../../../../movieDetails/model/movie_added_to_fav_response.dart';
-import '../../homeTab/model/movies_list_response.dart';
 import '../models/get_favourite_movies_response_model.dart';
 
 class WatchListAndHistoryMoviesApi {
