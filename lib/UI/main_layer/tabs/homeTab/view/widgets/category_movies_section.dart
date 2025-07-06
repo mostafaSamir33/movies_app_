@@ -5,12 +5,10 @@ import 'package:movies_app/UI/widgets/movie_card.dart';
 import '../../../../../../core/utils/app_colors.dart';
 
 class CategoryMoviesSection extends StatelessWidget {
-  final String title;
   final List<Movies> movies;
 
   const CategoryMoviesSection({
     super.key,
-    required this.title,
     required this.movies,
   });
 
@@ -35,7 +33,7 @@ class CategoryMoviesSection extends StatelessWidget {
                 width: 150.w,
                 height: 220.h,
                 child: MovieCard(
-                  movie: movie,
+                  movieId: movie.imdbCode,
                   imagePath: movie.largeCoverImage ?? '',
                   rating: movie.rating,
                 ),

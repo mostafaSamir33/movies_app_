@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/avatar_bottom_sheet_icon.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/models/avatar_bottom_sheet_model.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -59,7 +60,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
           child: Icon(Icons.arrow_back_rounded, color: AppColors.yellow),
         ),
         title: Text(
-          'Pick Avatar', //TODO:localization
+         context.getLocalization().pickAvatar, //TODO:localization
           style: CustomTextStyles.style16w400.copyWith(
             color: AppColors.yellow,
             fontFamily: 'Roboto',
@@ -140,7 +141,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
             Padding(
               padding: EdgeInsets.only(top: 34.r, bottom: 20.r),
               child: CustomTextFormFieldOnboarding(
-                hintText: 'Name', //TODO:localization
+                hintText: context.getLocalization().nameHint, //TODO:localization
                 prefixIcon: AppAssets.personIcon,
                 controller: nameController,
               ),
@@ -148,7 +149,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
             Padding(
               padding: EdgeInsets.only(bottom: 30.r),
               child: CustomTextFormFieldOnboarding(
-                hintText: 'Phone Number', //TODO:localization
+                hintText: context.getLocalization().phoneHint, //TODO:localization
                 prefixIcon: AppAssets.phoneIcon1,
                 controller: phoneController,
               ),
@@ -158,7 +159,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
               child: GestureDetector(
                 onTap: () {},
                 child: Text(
-                  'Reset Password', //TODO:localization
+                  context.getLocalization().resetPassword, //TODO:localization
                   style: CustomTextStyles.style20w400.copyWith(
                     color: AppColors.white,
                     fontFamily: 'Roboto',
@@ -176,7 +177,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                     useSafeArea: true,
                     builder: (context) => AlertDialog(
                       title: Text(
-                        'Delete Account',
+                        context.getLocalization().deleteAccount,
                         style: CustomTextStyles.style36w500
                             .copyWith(color: AppColors.red),
                       ),
@@ -186,7 +187,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                       alignment: Alignment.center,
                       actionsAlignment: MainAxisAlignment.center,
                       content: Text(
-                        'Are you sure you want to delete the account?',
+                        context.getLocalization().deleteAccountMessage,
                         style: CustomTextStyles.style20w600
                             .copyWith(color: AppColors.black1),
                         textAlign: TextAlign.center,
@@ -208,7 +209,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16))),
                               child: Text(
-                                'No',
+                                context.getLocalization().no,
                                 style: CustomTextStyles.style20w600
                                     .copyWith(color: AppColors.black1),
                               ),
@@ -222,7 +223,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text(
-                                    'Profile deleted successfully',
+                                    context.getLocalization().profileDeleted,
                                     style: CustomTextStyles.style20w600
                                         .copyWith(color: AppColors.black1),
                                   ),
@@ -240,7 +241,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16))),
                               child: Text(
-                                'Yes',
+                                context.getLocalization().yes,
                                 style: CustomTextStyles.style20w600
                                     .copyWith(color: AppColors.white),
                               ),
@@ -253,7 +254,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                 },
                 buttonColor: AppColors.red,
                 buttonTextWidget: Text(
-                  'Delete Account', //TODO:localization
+                  context.getLocalization().deleteAccount, //TODO:localization
                   style: CustomTextStyles.style20w400.copyWith(
                     color: AppColors.white,
                     fontFamily: 'Roboto',
@@ -271,7 +272,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        "Profile updated successfully",
+                        context.getLocalization().profileUpdated,
                         style: CustomTextStyles.style20w600
                             .copyWith(color: AppColors.black1),
                       ),
@@ -283,7 +284,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        "Failed to update: $e",
+                        "${context.getLocalization().profileUpdateFailed} $e",
                         style: CustomTextStyles.style20w600
                             .copyWith(color: AppColors.white),
                       ),
@@ -293,7 +294,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                 }
               },
               buttonTextWidget: Text(
-                'Update Data', //TODO:localization
+                context.getLocalization().updateData, //TODO:localization
                 style: CustomTextStyles.style20w400.copyWith(
                   color: AppColors.black1,
                   fontFamily: 'Roboto',

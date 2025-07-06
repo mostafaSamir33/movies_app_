@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_added_to_fav_response.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
-import 'package:movies_app/core/providers/token_provider.dart';
+import 'package:movies_app/UI/auth/providers/token_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_endpoints.dart';
 import 'package:http/http.dart' as http;
@@ -88,7 +88,7 @@ class MovieDetailsApi {
     MovieAddedToFavResponse responseMessage =
         MovieAddedToFavResponse.fromJson(jsonResponse);
     if (response.statusCode == 200 || response.statusCode == 404) {
-      return responseMessage.message ?? 'somrthing went wrong';
+      return responseMessage.message ?? 'something went wrong';
     } else {
       throw responseMessage.message ?? 'something Wrong';
     }

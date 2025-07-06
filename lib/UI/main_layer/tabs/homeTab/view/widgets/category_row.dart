@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +39,7 @@ class CategoryRow extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "See More",
+                  context.getLocalization().seeMore,
                   style: TextStyle(
                       color: AppColors.amber,
                       fontWeight: FontWeight.w400,

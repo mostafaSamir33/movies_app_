@@ -1,3 +1,4 @@
+import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPrefs {
@@ -24,4 +25,10 @@ class AppPrefs {
   static bool? localizationGetBool(String key) {
     return prefs.getBool(key);
   }
+
+// history tab in profile tab screen
+//   static Future<void> historySetSet(String key, Set<Movies> value) async {
+//     await prefs.setStringList(key, value.toList().map((e) => e,));
+//   }
+
 }

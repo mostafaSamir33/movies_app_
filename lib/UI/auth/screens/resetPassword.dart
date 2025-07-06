@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
+import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 
 class ResetPassword extends StatelessWidget {
@@ -23,7 +24,7 @@ class ResetPassword extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             icon: Icon(Icons.arrow_back)),
         title: Text(
-          'reset Password',
+          context.getLocalization().resetPassword,
         ),
         centerTitle: true,
       ),
@@ -38,33 +39,57 @@ class ResetPassword extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               CustomTextFormFieldAuth(
-                hintText: 'old password',
+                hintText: context.getLocalization().oldPasswordHint,
                 password: true,
                 prefixIconPath: AppAssets.passwordIcon,
                 controller: oldPasswordController,
                 validator: (value) {
-                  if (value == null || value.isEmpty)
-                    return 'Password is required';
-                  if (value.length < 6)
-                    return 'Password must be at least 6 characters';
+                  if (value == null || value.isEmpty) {
+                    return context.getLocalization().passwordRequired;
+                  }
+                  if (value.length < 6) {
+                    return context.getLocalization().passwordMinLength;
+                  }
+                  if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                    return context.getLocalization().passwordUppercase;
+                  }
+                  if (!RegExp(r'[0-9]').hasMatch(value)) {
+                    return context.getLocalization().passwordNumber;
+                  }
+                  if (!RegExp(r'[!@#\$&*~%^()\-_+=<>?/.,;:{}\[\]]')
+                      .hasMatch(value)) {
+                    return context.getLocalization().passwordSpecial;
+                  }
                   return null;
                 },
               ),
               CustomTextFormFieldAuth(
-                hintText: 'new password',
+                hintText: context.getLocalization().newPasswordHint,
                 password: true,
                 prefixIconPath: AppAssets.passwordIcon,
                 controller: newPasswordController,
                 validator: (value) {
-                  if (value == null || value.isEmpty)
-                    return 'Password is required';
-                  if (value.length < 6)
-                    return 'Password must be at least 6 characters';
+                  if (value == null || value.isEmpty) {
+                    return context.getLocalization().passwordRequired;
+                  }
+                  if (value.length < 6) {
+                    return context.getLocalization().passwordMinLength;
+                  }
+                  if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                    return context.getLocalization().passwordUppercase;
+                  }
+                  if (!RegExp(r'[0-9]').hasMatch(value)) {
+                    return context.getLocalization().passwordNumber;
+                  }
+                  if (!RegExp(r'[!@#\$&*~%^()\-_+=<>?/.,;:{}\[\]]')
+                      .hasMatch(value)) {
+                    return context.getLocalization().passwordSpecial;
+                  }
                   return null;
                 },
               ),
               CustomElevatedButtonFilled(
-                buttonText: 'change password',
+                buttonText: context.getLocalization().changePassword,
                 onPressed: () {
                   formKey.currentState!.validate();
                 },

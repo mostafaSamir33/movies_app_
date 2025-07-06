@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/UI/main_layer/tabs/exploreTab/modelView/explore_movies_cubit.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/widgets/movie_card.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/custom_text_styles.dart';
+
+import '../../view_model/explore_movies_cubit.dart';
 
 class ExploreMoviesGrid extends StatelessWidget {
   final ExploreMoviesCubit exploreCubit;
@@ -34,14 +36,19 @@ class ExploreMoviesGrid extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return MovieCard(
-                  movie: movies[index],
+                  movieId: movies[index].imdbCode,
                   imagePath: movies[index].mediumCoverImage ?? '',
                   rating: movies[index].rating,
                 );
               },
             );
           } else {
-            return const Center(child: Text('No Movies Found'));
+            return Center(
+                child: Text(
+              'No Movies Found',
+              style:
+                  CustomTextStyles.style20w600.copyWith(color: AppColors.white),
+            ));
           }
         },
       ),

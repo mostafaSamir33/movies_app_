@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
+import 'package:movies_app/core/utils/app_assets.dart';
+
 import '../../core/utils/app_colors.dart';
 
 class MovieCard extends StatelessWidget {
   final String imagePath;
   final double? rating;
-  final Movies movie;
+  final String? movieId;
 
   const MovieCard({
     super.key,
     required this.imagePath,
     this.rating,
-    required this.movie,
+    required this.movieId,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(MovieDetailsScreen.routeName, arguments: movie);
+        Navigator.of(context).pushNamed(
+          MovieDetailsScreen.routeName,
+          arguments: movieId,
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -41,8 +45,11 @@ class MovieCard extends StatelessWidget {
               Image.network(
                 imagePath,
                 fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const Center(
-                  child: Icon(Icons.broken_image, color: Colors.white),
+                errorBuilder: (_, __, ___) => Image.asset(
+                  AppAssets.failedImage,
+                  fit: BoxFit.fill,
+                  height: 400.h,
+                  width: 300.w,
                 ),
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;

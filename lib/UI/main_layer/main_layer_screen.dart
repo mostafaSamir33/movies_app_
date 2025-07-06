@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
-import 'package:movies_app/core/utils/app_assets.dart';
-import 'package:movies_app/core/utils/app_colors.dart';
-import 'package:movies_app/UI/main_layer/tabs/exploreTab/explore_tab_screen.dart';
+import 'package:movies_app/UI/main_layer/tabs/exploreTab/view/explore_tab_screen.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/view/home_tab_screen.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/profile_tab_screen.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/provider/watch_list_and_history_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/search_tab_screen.dart';
+import 'package:movies_app/core/utils/app_assets.dart';
+import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 
 final ValueNotifier<int> currentIndex = ValueNotifier<int>(0);
 
 class MainLayerScreen extends StatefulWidget {
   static const String routeName = '/mainLayerScreen';
+
   const MainLayerScreen({super.key});
 
   @override
@@ -23,8 +25,11 @@ class _MainLayerScreenState extends State<MainLayerScreen> {
     const HomeTabScreen(),
     const SearchTabScreen(),
     const ExploreTabScreen(),
-    const ProfileTabScreen(),
+    ChangeNotifierProvider(
+        create: (context) => WatchListAndHistoryProvider(),
+        child: const ProfileTabScreen()),
   ];
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
