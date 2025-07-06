@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/avatar_bottom_sheet_model.dart';
+import '../../../../../core/models/avatar_bottom_sheet_model.dart';
 
 class AvatarBottomSheetProvider extends ChangeNotifier {
   int? avatarId;

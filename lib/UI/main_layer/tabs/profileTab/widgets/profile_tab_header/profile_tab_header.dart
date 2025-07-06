@@ -3,8 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/providers/token_provider.dart';
+import 'package:movies_app/UI/auth/screens/signInScreen.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
@@ -19,15 +20,9 @@ import '../../screens/update_profile_screen.dart';
 class ProfileTabHeader extends StatefulWidget {
   final TabController controller;
   final ProfileData? profileData;
-  final VoidCallback onProfileUpdated;
-  final int? favouriteMoviesLength;
 
   const ProfileTabHeader(
-      {super.key,
-      required this.controller,
-      required this.profileData,
-      required this.onProfileUpdated,
-      required this.favouriteMoviesLength});
+      {super.key, required this.controller, required this.profileData});
 
   @override
   State<ProfileTabHeader> createState() => _ProfileTabHeaderState();
@@ -83,8 +78,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                   Column(
                     children: [
                       Text(
-                        '${widget.favouriteMoviesLength ?? 0}',
-                        //TODO: change to the exactly number
+                        '${context.watch<ProfileTabProvider>().favouriteMovies?.length ?? 0}',
                         style: CustomTextStyles.style36w500.copyWith(
                             fontWeight: FontWeight.w700,
                             color: AppColors.white,
@@ -94,7 +88,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                         height: 20.h,
                       ),
                       Text(
-                        context.getLocalization().watchList, //TODO:localization
+                        context.getLocalization().watchList,
                         style: CustomTextStyles.style24w700.copyWith(
                             color: AppColors.white, fontFamily: 'Roboto'),
                       ),
@@ -103,7 +97,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                   Column(
                     children: [
                       Text(
-                        '10', //TODO: change to the exactly number
+                        '${context.watch<ProfileTabProvider>().watchedMovies?.length ?? 0}',
                         style: CustomTextStyles.style36w500.copyWith(
                             fontWeight: FontWeight.w700,
                             color: AppColors.white,
@@ -113,7 +107,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                         height: 20.h,
                       ),
                       Text(
-                        context.getLocalization().history, //TODO:localization
+                        context.getLocalization().history,
                         style: CustomTextStyles.style24w700.copyWith(
                             color: AppColors.white, fontFamily: 'Roboto'),
                       ),
@@ -132,13 +126,9 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                     child: FilledButton(
                       onPressed: () async {
                         log(context.read<TokenProvider>().token.toString());
-                        final updated = await Navigator.of(context).pushNamed(
+                        Navigator.of(context).pushNamed(
                             UpdateProfileScreen.routeName,
                             arguments: widget.profileData);
-
-                        if (updated == true) {
-                          widget.onProfileUpdated();
-                        }
                       },
                       style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -146,9 +136,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                           minimumSize: Size(252.w, 56.h),
                           backgroundColor: AppColors.yellow),
                       child: Text(
-                        context
-                            .getLocalization()
-                            .editProfile, //TODO:localization
+                        context.getLocalization().editProfile,
                         style: CustomTextStyles.style20w400.copyWith(
                             color: AppColors.black1, fontFamily: 'Roboto'),
                       ),
@@ -178,7 +166,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            context.getLocalization().exit, //TODO:localization
+                            context.getLocalization().exit,
                             style: CustomTextStyles.style20w400.copyWith(
                                 color: AppColors.white, fontFamily: 'Roboto'),
                           ),
@@ -211,10 +199,8 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 6.r),
                   child: Tab(
-                    text:
-                        context.getLocalization().watchList, //TODO:localization
+                    text: context.getLocalization().watchList,
                     iconMargin: EdgeInsets.only(bottom: 6.r),
-
                     icon: SvgPicture.asset(
                       AppAssets.watchListIcon,
                       height: 24.h,
@@ -225,7 +211,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 6.r),
                   child: Tab(
-                    text: context.getLocalization().history, //TODO:localization
+                    text: context.getLocalization().history,
                     iconMargin: EdgeInsets.only(bottom: 6.r),
                     icon: SvgPicture.asset(
                       AppAssets.historyIcon,

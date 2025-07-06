@@ -1,16 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/network/watch_list_and_history_movies_api.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/widgets/profile_tab_body/profile_tab_body.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/widgets/profile_tab_header/profile_tab_header.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/custom_text_styles.dart';
+import '../../../../main.dart';
+import '../../../movieDetails/model/movie_details_model.dart';
 import 'models/get_favourite_movies_response_model.dart';
 import 'models/profile_response_model.dart';
-import 'network/profile_api.dart';
 
 class ProfileTabScreen extends StatefulWidget {
   const ProfileTabScreen({super.key});
@@ -20,92 +19,76 @@ class ProfileTabScreen extends StatefulWidget {
 }
 
 class _ProfileTabScreenState extends State<ProfileTabScreen>
-    with TickerProviderStateMixin {
-  late Future<ProfileData?> _profileFuture;
+    with TickerProviderStateMixin, RouteAware {
+  late TabController controller = TabController(
+      length: 2, vsync: this, animationDuration: Duration(seconds: 1));
+
+  ProfileData? getProfileData;
+  List<FavouriteMovie>? getWatchListMovies;
+  List<MovieDetails>? getHistoryMovies;
 
   @override
   void initState() {
     super.initState();
-    _profileFuture = ProfileApi.getProfile(context);
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      setState(() {});
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => context.read<ProfileTabProvider>().initialize(context));
   }
 
-  void _reloadProfile() {
-    setState(() {
-      _profileFuture = ProfileApi.getProfile(context);
-    });
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didPopNext() {
+    context.read<ProfileTabProvider>().initialize(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    TabController controller = TabController(
-        length: 2, vsync: this, animationDuration: Duration(seconds: 1));
+    final provider = context.watch<ProfileTabProvider>();
     return Scaffold(
-      body: FutureBuilder<ProfileData?>(
-        future: ProfileApi.getProfile(context),
-        builder: (context, getProfileSnapshot) {
-          return FutureBuilder<List<FavouriteMovie>?>(
-            future: WatchListAndHistoryMoviesApi.getWatchListMovies(
-                context: context),
-            builder: (context, getWatchListMoviesSnapshot) {
-              if (getProfileSnapshot.connectionState ==
-                      ConnectionState.waiting ||
-                  getWatchListMoviesSnapshot.connectionState ==
-                      ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.yellow,
-                  ),
-                );
-              }
-              if (getProfileSnapshot.hasError ||
-                  getWatchListMoviesSnapshot.hasError) {
-                log(getProfileSnapshot.error.toString());
-                return Center(
+      body: provider.loading
+          ? Center(
+              child: CircularProgressIndicator(
+                color: AppColors.yellow,
+              ),
+            )
+          : provider.errorMessage != null
+              ? Center(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        getProfileSnapshot.error.toString(),
-                        style: CustomTextStyles.style20w600
-                            .copyWith(color: AppColors.yellow),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        getWatchListMoviesSnapshot.error.toString(),
+                        provider.errorMessage!,
                         style: CustomTextStyles.style20w600
                             .copyWith(color: AppColors.yellow),
                       ),
                     ],
                   ),
-                );
-              }
-              ProfileData? profileData = getProfileSnapshot.data;
-              List<FavouriteMovie>? favouriteMovies =
-                  getWatchListMoviesSnapshot.data;
-              return Column(
-                children: [
-                  ProfileTabHeader(
-                    controller: controller,
-                    profileData: profileData,
-                    onProfileUpdated: _reloadProfile,
-                    favouriteMoviesLength: favouriteMovies?.length,
-                  ),
-                  Expanded(
-                    child: ProfileTabBody(
+                )
+              : Column(
+                  children: [
+                    ProfileTabHeader(
                       controller: controller,
-                      favouriteMovies: favouriteMovies,
+                      profileData: provider.profileData,
                     ),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-      ),
+                    Expanded(
+                      child: ProfileTabBody(
+                          controller: controller,
+                          allWatchedMovies: provider.watchedMovies,
+                          favouriteMovies: provider.favouriteMovies),
+                    ),
+                  ],
+                ),
     );
   }
 }

@@ -10,10 +10,10 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../core/providers/avatar_bottom_sheet_provider.dart';
 import '../../../../auth/screens/signInScreen.dart';
 import '../../../../widgets/custom_elevated_button_filled.dart';
 import '../../../../widgets/custom_text_form_field.dart';
+import '../providers/avatar_bottom_sheet_provider.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   static const String routeName = '/updateProfileScreen';
@@ -60,7 +60,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
           child: Icon(Icons.arrow_back_rounded, color: AppColors.yellow),
         ),
         title: Text(
-         context.getLocalization().pickAvatar, //TODO:localization
+          context.getLocalization().pickAvatar,
           style: CustomTextStyles.style16w400.copyWith(
             color: AppColors.yellow,
             fontFamily: 'Roboto',
@@ -141,7 +141,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
             Padding(
               padding: EdgeInsets.only(top: 34.r, bottom: 20.r),
               child: CustomTextFormFieldOnboarding(
-                hintText: context.getLocalization().nameHint, //TODO:localization
+                hintText: context.getLocalization().nameHint,
                 prefixIcon: AppAssets.personIcon,
                 controller: nameController,
               ),
@@ -149,7 +149,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
             Padding(
               padding: EdgeInsets.only(bottom: 30.r),
               child: CustomTextFormFieldOnboarding(
-                hintText: context.getLocalization().phoneHint, //TODO:localization
+                hintText: context.getLocalization().phoneHint,
                 prefixIcon: AppAssets.phoneIcon1,
                 controller: phoneController,
               ),
@@ -159,7 +159,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
               child: GestureDetector(
                 onTap: () {},
                 child: Text(
-                  context.getLocalization().resetPassword, //TODO:localization
+                  context.getLocalization().resetPassword,
                   style: CustomTextStyles.style20w400.copyWith(
                     color: AppColors.white,
                     fontFamily: 'Roboto',
@@ -218,7 +218,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                               width: 20.w,
                             ),
                             ElevatedButton(
-                              onPressed: () async{
+                              onPressed: () async {
                                 await ProfileApi.deleteProfile(context);
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
@@ -230,7 +230,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                                   backgroundColor: AppColors.yellow,
                                 ));
 
-                                // Navigator.of(context).pop();
                                 Navigator.of(context).pushNamedAndRemoveUntil(
                                   SignInScreen.routeName,
                                   (route) => false,
@@ -254,7 +253,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                 },
                 buttonColor: AppColors.red,
                 buttonTextWidget: Text(
-                  context.getLocalization().deleteAccount, //TODO:localization
+                  context.getLocalization().deleteAccount,
                   style: CustomTextStyles.style20w400.copyWith(
                     color: AppColors.white,
                     fontFamily: 'Roboto',
@@ -279,7 +278,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                       backgroundColor: AppColors.yellow,
                     ),
                   );
-                  Navigator.of(context).pop(true);
+                  Navigator.of(context).pop();
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -294,7 +293,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                 }
               },
               buttonTextWidget: Text(
-                context.getLocalization().updateData, //TODO:localization
+                context.getLocalization().updateData,
                 style: CustomTextStyles.style20w400.copyWith(
                   color: AppColors.black1,
                   fontFamily: 'Roboto',

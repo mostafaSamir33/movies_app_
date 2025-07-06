@@ -3,7 +3,6 @@ import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/view/explore_tab_screen.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/view/home_tab_screen.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/profile_tab_screen.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/provider/watch_list_and_history_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/search_tab_screen.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -25,9 +24,7 @@ class _MainLayerScreenState extends State<MainLayerScreen> {
     const HomeTabScreen(),
     const SearchTabScreen(),
     const ExploreTabScreen(),
-    ChangeNotifierProvider(
-        create: (context) => WatchListAndHistoryProvider(),
-        child: const ProfileTabScreen()),
+    const ProfileTabScreen(),
   ];
 
   @override
