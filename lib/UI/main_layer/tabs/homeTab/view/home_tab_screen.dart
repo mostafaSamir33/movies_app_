@@ -9,6 +9,7 @@ import 'package:movies_app/UI/main_layer/tabs/homeTab/view/widgets/category_movi
 import 'package:movies_app/UI/main_layer/tabs/homeTab/view/widgets/category_row.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/genre_translator.dart';
 
 class HomeTabScreen extends StatelessWidget {
   const HomeTabScreen({super.key});
@@ -104,18 +105,18 @@ class HomeTabScreen extends StatelessWidget {
                       const SizedBox(height: 24),
                       Column(
                         children: [
-                          CategoryRow(title: selectedCategories[0]),
-                          CategoryMoviesSection(
-                              title: selectedCategories[0],
-                              movies: moviesSection1),
-                          CategoryRow(title: selectedCategories[1]),
-                          CategoryMoviesSection(
-                              title: selectedCategories[1],
-                              movies: moviesSection2),
-                          CategoryRow(title: selectedCategories[2]),
-                          CategoryMoviesSection(
-                              title: selectedCategories[2],
-                              movies: moviesSection3),
+                          CategoryRow(
+                              title: selectedCategories[0]
+                                  .getGenreLocalizedName(context)),
+                          CategoryMoviesSection(movies: moviesSection1),
+                          CategoryRow(
+                              title: selectedCategories[1]
+                                  .getGenreLocalizedName(context)),
+                          CategoryMoviesSection(movies: moviesSection2),
+                          CategoryRow(
+                              title: selectedCategories[2]
+                                  .getGenreLocalizedName(context)),
+                          CategoryMoviesSection(movies: moviesSection3),
                           const SizedBox(height: 60),
                         ],
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/UI/auth/providers/switch_provider.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 
 class SelectedCatProvider extends ChangeNotifier {
@@ -6,10 +7,43 @@ class SelectedCatProvider extends ChangeNotifier {
   final ScrollController scrollController = ScrollController();
 
   final double itemWidth = 100;
-
+  Map<String, String> arabicToEnglishGenre = {
+    'أكشن': 'Action',
+    'مغامرة': 'Adventure',
+    'رسوم متحركة': 'Animation',
+    'سيرة ذاتية': 'Biography',
+    'كوميديا': 'Comedy',
+    'جريمة': 'Crime',
+    'وثائقي': 'Documentary',
+    'دراما': 'Drama',
+    'عائلي': 'Family',
+    'خيال': 'Fantasy',
+    'فيلم نوار': 'Film-Noir',
+    'برامج ألعاب': 'Game-Show',
+    'تاريخي': 'History',
+    'رعب': 'Horror',
+    'موسيقى': 'Music',
+    'غنائي': 'Musical',
+    'غموض': 'Mystery',
+    'أخبار': 'News',
+    'تلفزيون الواقع': 'Reality-TV',
+    'رومانسي': 'Romance',
+    'خيال علمي': 'Sci-Fi',
+    'قصير': 'Short',
+    'رياضي': 'Sport',
+    'برنامج حواري': 'Talk-Show',
+    'إثارة': 'Thriller',
+    'حرب': 'War',
+    'ويسترن': 'Western',
+  };
+  SwitchProvider switchProvider = SwitchProvider();
   void selectCat(
     String cat,
   ) {
+    if (switchProvider.isActive) {
+      cat = arabicToEnglishGenre[cat] ?? cat;
+    }
+
     selectedCat = AppConstants.genresList.indexWhere((e) => e == cat);
     notifyListeners();
     Future.delayed(Duration(milliseconds: 100), () {

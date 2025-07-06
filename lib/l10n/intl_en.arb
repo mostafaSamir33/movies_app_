@@ -34,13 +34,12 @@
   "registrationSuccess": "Registration Successful",
   "registrationFailed": "Registration failed",
   "googleCancelled": "Google Sign-In Cancelled",
-   "resetPassword": "Reset Password",
+  "resetPassword": "Reset Password",
   "oldPasswordHint": "Old Password",
   "newPasswordHint": "New Password",
   "changePassword": "Change Password",
   "search": "search",
   "pickAvatar": "Pick Avatar",
-
   "deleteAccount": "Delete Account",
   "deleteAccountMessage": "Are you sure you want to delete the account?",
   "no": "No",
@@ -81,6 +80,6 @@
   "genreTalkShow": "Talk-Show",
   "genreThriller": "Thriller",
   "genreWar": "War",
-  "genreWestern": "Western"
-
+  "genreWestern": "Western",
+  "seeMore": "See More"
 }

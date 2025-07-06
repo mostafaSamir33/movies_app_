@@ -149,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "إعادة تعيين كلمة المرور",
     ),
     "search": MessageLookupByLibrary.simpleMessage("ابحث"),
+    "seeMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
     "updateData": MessageLookupByLibrary.simpleMessage("تحديث البيانات"),
     "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "watchList": MessageLookupByLibrary.simpleMessage("قائمة المشاهدة"),
