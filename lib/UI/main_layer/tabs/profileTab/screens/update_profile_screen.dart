@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/UI/auth/screens/resetPassword.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/avatar_bottom_sheet_icon.dart';
@@ -13,6 +14,7 @@ import 'package:provider/provider.dart';
 import '../../../../auth/screens/signInScreen.dart';
 import '../../../../widgets/custom_elevated_button_filled.dart';
 import '../../../../widgets/custom_text_form_field.dart';
+import '../../../main_layer_screen.dart';
 import '../providers/avatar_bottom_sheet_provider.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
@@ -157,7 +159,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
             Align(
               alignment: Alignment.centerLeft,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed(ResetPassword.routeName,
+                      arguments: profileData);
+                },
                 child: Text(
                   context.getLocalization().resetPassword,
                   style: CustomTextStyles.style20w400.copyWith(
@@ -234,6 +239,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen>
                                   SignInScreen.routeName,
                                   (route) => false,
                                 );
+                                currentIndex.value = 0;
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.red,

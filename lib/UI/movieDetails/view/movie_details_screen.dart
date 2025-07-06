@@ -168,7 +168,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
 
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
-                'You Are Going To Watch The Movie', //TODO:localization
+                context.getLocalization().youAreGoingToWatchTheMovie,
                 style: CustomTextStyles.style20w600
                     .copyWith(color: AppColors.black1),
               ),

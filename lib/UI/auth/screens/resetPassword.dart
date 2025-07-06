@@ -2,19 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 
-class ResetPassword extends StatelessWidget {
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/custom_text_styles.dart';
+
+class ResetPassword extends StatefulWidget {
   static const String routeName = '/Forgetpassword';
+  ProfileData? profileData;
+
+  ResetPassword({super.key, this.profileData});
+
+  @override
+  State<ResetPassword> createState() => _ResetPasswordState();
+}
+
+class _ResetPasswordState extends State<ResetPassword> {
   TextEditingController oldPasswordController = TextEditingController();
+
   TextEditingController newPasswordController = TextEditingController();
 
   final AuthService _authService = AuthService();
-  final formKey = GlobalKey<FormState>();
 
-  ResetPassword({super.key});
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +104,34 @@ class ResetPassword extends StatelessWidget {
               ),
               CustomElevatedButtonFilled(
                 buttonText: context.getLocalization().changePassword,
-                onPressed: () {
-                  formKey.currentState!.validate();
+                onPressed: () async {
+                  if (formKey.currentState!.validate()) {
+                    try {
+                      String responseMessage = await ProfileApi.resetPassword(
+                          context,
+                          oldPasswordController.text.trim(),
+                          newPasswordController.text.trim());
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          responseMessage,
+                          style: CustomTextStyles.style20w600
+                              .copyWith(color: AppColors.black1),
+                        ),
+                        backgroundColor: AppColors.yellow,
+                      ));
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "${context.getLocalization().profileUpdateFailed} $e",
+                            style: CustomTextStyles.style20w600
+                                .copyWith(color: AppColors.white),
+                          ),
+                          backgroundColor: AppColors.red,
+                        ),
+                      );
+                    }
+                  }
                 },
               ),
             ],

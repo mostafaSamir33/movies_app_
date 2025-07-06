@@ -110,8 +110,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           showDialog(
                             context: context,
                             barrierDismissible: false,
-                            builder: (_) =>
-                                Center(child: CircularProgressIndicator()),
+                            builder: (_) => Center(
+                                child: CircularProgressIndicator(
+                              color: AppColors.yellow,
+                            )),
                           );
                         } else {
                           Navigator.pop(context);

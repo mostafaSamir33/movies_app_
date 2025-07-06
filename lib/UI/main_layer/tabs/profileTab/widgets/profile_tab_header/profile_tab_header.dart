@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/UI/auth/providers/token_provider.dart';
 import 'package:movies_app/UI/auth/screens/signInScreen.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -149,13 +149,80 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                     flex: 3,
                     child: FilledButton(
                       onPressed: () {
-                        context.read<TokenProvider>().token = null;
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          SignInScreen.routeName,
-                          (route) => false,
+                        showDialog(
+                          context: context,
+                          useSafeArea: true,
+                          builder: (context) => AlertDialog(
+                            title: Text(
+                              'Exit',
+                              style: CustomTextStyles.style36w500
+                                  .copyWith(color: AppColors.red),
+                            ),
+                            backgroundColor: AppColors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                            alignment: Alignment.center,
+                            actionsAlignment: MainAxisAlignment.center,
+                            content: Text(
+                              'Are you sure you want to exit?',
+                              style: CustomTextStyles.style20w600
+                                  .copyWith(color: AppColors.black1),
+                              textAlign: TextAlign.center,
+                            ),
+                            icon: Icon(
+                              Icons.exit_to_app_rounded,
+                              color: AppColors.red,
+                            ),
+                            actions: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.yellow,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16))),
+                                    child: Text(
+                                      context.getLocalization().no,
+                                      style: CustomTextStyles.style20w600
+                                          .copyWith(color: AppColors.black1),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 20.w,
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      context.read<TokenProvider>().token =
+                                          null;
+                                      Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        SignInScreen.routeName,
+                                        (route) => false,
+                                      );
+                                      currentIndex.value = 0;
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.red,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16))),
+                                    child: Text(
+                                      context.getLocalization().yes,
+                                      style: CustomTextStyles.style20w600
+                                          .copyWith(color: AppColors.white),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         );
-                        currentIndex.value = 0;
                       },
                       style: FilledButton.styleFrom(
                           shape: RoundedRectangleBorder(
