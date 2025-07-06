@@ -738,6 +738,16 @@ class S {
   String get nomovies {
     return Intl.message('No Movies!', name: 'nomovies', desc: '', args: []);
   }
+
+  /// `You Are Going To Watch The Movie`
+  String get youAreGoingToWatchTheMovie {
+    return Intl.message(
+      'You Are Going To Watch The Movie',
+      name: 'youAreGoingToWatchTheMovie',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

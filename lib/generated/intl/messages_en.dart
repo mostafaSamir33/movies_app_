@@ -164,5 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "watchList": MessageLookupByLibrary.simpleMessage("Watch List"),
     "wishList": MessageLookupByLibrary.simpleMessage("Wish List"),
     "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+    "youAreGoingToWatchTheMovie": MessageLookupByLibrary.simpleMessage(
+      "You Are Going To Watch The Movie",
+    ),
   };
 }
