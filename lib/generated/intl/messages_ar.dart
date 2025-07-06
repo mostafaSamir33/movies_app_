@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
     ),
+    "areYouSureYouWantToExit": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد الخروج؟",
+    ),
     "avatar": MessageLookupByLibrary.simpleMessage("الصورة الرمزية"),
     "cast": MessageLookupByLibrary.simpleMessage("الممثلين"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),

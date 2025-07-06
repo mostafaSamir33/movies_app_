@@ -95,5 +95,6 @@
   "character": "Character:",
   "name": "Name:",
   "nomovies": "No Movies!",
-  "youAreGoingToWatchTheMovie": "You Are Going To Watch The Movie"
+  "youAreGoingToWatchTheMovie": "You Are Going To Watch The Movie",
+  "areYouSureYouWantToExit": "Are you sure you want to exit?"
 }

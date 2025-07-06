@@ -748,6 +748,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Are you sure you want to exit?`
+  String get areYouSureYouWantToExit {
+    return Intl.message(
+      'Are you sure you want to exit?',
+      name: 'areYouSureYouWantToExit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

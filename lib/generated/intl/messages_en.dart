@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already Have Account ? ",
     ),
+    "areYouSureYouWantToExit": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to exit?",
+    ),
     "avatar": MessageLookupByLibrary.simpleMessage("Avatar"),
     "cast": MessageLookupByLibrary.simpleMessage("Cast"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),

@@ -154,7 +154,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                           useSafeArea: true,
                           builder: (context) => AlertDialog(
                             title: Text(
-                              'Exit',
+                              context.getLocalization().exit,
                               style: CustomTextStyles.style36w500
                                   .copyWith(color: AppColors.red),
                             ),
@@ -164,7 +164,7 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                             alignment: Alignment.center,
                             actionsAlignment: MainAxisAlignment.center,
                             content: Text(
-                              'Are you sure you want to exit?',
+                              context.getLocalization().areYouSureYouWantToExit,
                               style: CustomTextStyles.style20w600
                                   .copyWith(color: AppColors.black1),
                               textAlign: TextAlign.center,

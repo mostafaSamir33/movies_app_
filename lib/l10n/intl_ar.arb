@@ -95,6 +95,6 @@
   "character": "الشخصية:",
   "name": "الاسم:",
   "nomovies": "لا توجد أفلام!",
-  "youAreGoingToWatchTheMovie": "أنت ذاهب لمشاهدة الفيلم"
-
+  "youAreGoingToWatchTheMovie": "أنت ذاهب لمشاهدة الفيلم",
+  "areYouSureYouWantToExit": "هل أنت متأكد أنك تريد الخروج؟"
 }
