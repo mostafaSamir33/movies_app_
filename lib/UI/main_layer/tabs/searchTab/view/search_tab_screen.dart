@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/UI/main_layer/tabs/searchTab/modelView/search_movies_cubit.dart';
-import 'package:movies_app/UI/main_layer/tabs/searchTab/modelView/search_movies_state.dart';
-import 'package:movies_app/UI/main_layer/tabs/searchTab/widgets/custom_search_field.dart';
+import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_cubit.dart';
+import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_state.dart';
+import 'package:movies_app/UI/main_layer/tabs/searchTab/view/widgets/custom_search_field.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
-import '../../../widgets/movie_card.dart';
+import '../../../../widgets/movie_card.dart';
 
 class SearchTabScreen extends StatefulWidget {
   const SearchTabScreen({super.key});

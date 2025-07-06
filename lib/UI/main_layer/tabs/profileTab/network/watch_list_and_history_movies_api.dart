@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/app_endpoints.dart';
-import '../../../../auth/providers/token_provider.dart';
+import '../../../../auth/view_model/providers/token_provider.dart';
 import '../../../../movieDetails/model/movie_added_to_fav_response.dart';
 import '../models/get_favourite_movies_response_model.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
-import '../data/explore_movies_api.dart';
+import '../model/explore_movies_api.dart';
 
 abstract class ExploreMoviesState {}
 

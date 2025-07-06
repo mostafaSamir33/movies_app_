@@ -2,10 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
-import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
-import 'package:movies_app/UI/auth/widgets/customSwitch.dart';
-import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
+import 'package:movies_app/UI/auth/model/AuthService%20.dart';
+import 'package:movies_app/UI/auth/view/screens/signUpScreen.dart';
+import 'package:movies_app/UI/auth/view/widgets/customSwitch.dart';
+import 'package:movies_app/UI/auth/view/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
@@ -14,8 +14,8 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:movies_app/generated/l10n.dart';
 
-import '../cubit/auth_cubit.dart';
-import '../cubit/auth_state.dart';
+import '../../view_model/cubit/auth_cubit.dart';
+import '../../view_model/cubit/auth_state.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String routeName = '/Signinscreen';

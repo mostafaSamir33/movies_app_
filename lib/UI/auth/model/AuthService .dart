@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/avatar_bottom_sheet_provider.dart';
 
-import '../providers/token_provider.dart';
+import '../view_model/providers/token_provider.dart';
 import '../../main_layer/tabs/profileTab/models/profile_response_model.dart';
 
 class AuthService {

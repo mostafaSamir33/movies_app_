@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/screens/signInScreen.dart';
+import 'package:movies_app/UI/auth/view/screens/signInScreen.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_prefs.dart';
 

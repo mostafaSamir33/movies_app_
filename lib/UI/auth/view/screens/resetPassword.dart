@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
-import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
+import 'package:movies_app/UI/auth/model/AuthService%20.dart';
+import 'package:movies_app/UI/auth/view/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 
-import '../../../core/utils/app_colors.dart';
-import '../../../core/utils/custom_text_styles.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/custom_text_styles.dart';
 
 class ResetPassword extends StatefulWidget {
   static const String routeName = '/Forgetpassword';

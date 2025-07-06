@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/providers/switch_provider.dart';
-import 'package:movies_app/UI/auth/screens/resetPassword.dart';
+import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
+import 'package:movies_app/UI/auth/view/screens/resetPassword.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/avatar_bottom_sheet_icon.dart';
@@ -12,7 +12,7 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../auth/screens/signInScreen.dart';
+import '../../../../auth/view/screens/signInScreen.dart';
 import '../../../../widgets/custom_elevated_button_filled.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../../main_layer_screen.dart';

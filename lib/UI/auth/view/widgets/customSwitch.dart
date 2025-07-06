@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:movies_app/UI/auth/providers/switch_provider.dart';
+import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 

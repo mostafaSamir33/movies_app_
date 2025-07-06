@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
-import 'package:movies_app/UI/auth/Service/googleServices.dart';
+import 'package:movies_app/UI/auth/model/AuthService%20.dart';
+import 'package:movies_app/UI/auth/model/googleServices.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'auth_state.dart';
 
