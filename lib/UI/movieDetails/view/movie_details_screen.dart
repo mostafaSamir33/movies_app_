@@ -80,7 +80,6 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               return Scaffold(
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
-                    //TODO:Logic
                     leading: Visibility(
                       visible: showAppBarButtons,
                       child: GestureDetector(
@@ -157,7 +156,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
         ), //take obgect of movie
         CustomWatchElevatedButton(
           title: context.getLocalization().watch,
-          onPressed: () {},
+          onPressed: () {
+
+          },
         ),
         SizedBox(
           height: 16,
