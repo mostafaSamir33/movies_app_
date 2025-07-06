@@ -8,6 +8,7 @@ import 'package:movies_app/UI/auth/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/screens/signUpScreen.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
 import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.dart';
@@ -91,7 +92,13 @@ class MyApp extends StatelessWidget {
           OnboardingScreen2.routeName: (_) => OnboardingScreen2(),
           UpdateProfileScreen.routeName: (_) => UpdateProfileScreen(),
           MainLayerScreen.routeName: (_) => const MainLayerScreen(),
-          ResetPassword.routeName: (_) => ResetPassword(),
+          ResetPassword.routeName: (context) {
+            ProfileData? profileData =
+                ModalRoute.of(context)!.settings.arguments as ProfileData?;
+            return ResetPassword(
+              profileData: profileData,
+            );
+          },
           SignUpScreen.routeName: (_) => SignUpScreen(),
           MovieDetailsScreen.routeName: (context) {
             String movieId =
