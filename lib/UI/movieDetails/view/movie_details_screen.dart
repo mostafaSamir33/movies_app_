@@ -18,6 +18,9 @@ import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
+import '../../../core/utils/app_constants.dart';
+import '../../../core/utils/app_prefs.dart';
+import '../../../core/utils/custom_text_styles.dart';
 import '../../main_layer/tabs/profileTab/network/watch_list_and_history_movies_api.dart';
 import '../model/movie_details_api.dart';
 
@@ -153,11 +156,24 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
       children: [
         MovieSectionView(
           movie: movieDetails,
-        ), //take obgect of movie
+        ),
         CustomWatchElevatedButton(
           title: context.getLocalization().watch,
-          onPressed: () {
+          onPressed: () async {
+            MovieDetails? watchedMovie =
+                await MovieDetailsApi.getMovieDetails(widget.movieId);
 
+            await AppPrefs.historySetSetOfString(
+                key: AppConstants.historyTabKey, watchedMovie: watchedMovie);
+
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                'You Are Going To Watch The Movie', //TODO:localization
+                style: CustomTextStyles.style20w600
+                    .copyWith(color: AppColors.black1),
+              ),
+              backgroundColor: AppColors.yellow,
+            ));
           },
         ),
         SizedBox(

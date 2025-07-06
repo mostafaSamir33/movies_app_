@@ -34,6 +34,8 @@ class CustomSearchField extends StatelessWidget {
             child: TextField(
               controller: controller,
               onChanged: onChanged,
+              cursorColor: AppColors.white,
+              onTapOutside: (event) => FocusScope.of(context).unfocus(),
               style: const TextStyle(color: AppColors.white),
               decoration: InputDecoration(
                 hintText: context.getLocalization().search,

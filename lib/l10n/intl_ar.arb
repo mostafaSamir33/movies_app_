@@ -94,5 +94,7 @@
   "nosummary": "لا يوجد ملخص متاح لهذا الفيلم!",
   "character": "الشخصية:",
   "name": "الاسم:",
-  "nomovies": "لا توجد أفلام!"
+  "nomovies": "لا توجد أفلام!",
+    "youAreGoingToWatchTheMovie": "أنت ذاهب لمشاهدة الفيلم"
+
 }
