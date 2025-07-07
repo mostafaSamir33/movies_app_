@@ -35,7 +35,7 @@ class SearchMoviesCubit extends Cubit<SearchMoviesState> {
 
       movies.addAll(result);
       print('Search result: ${movies.length} movies found');
-      if (movies == null || movies.isEmpty) {
+      if (movies.isEmpty) {
         emit(SearchEmpty());
         return;
       }
