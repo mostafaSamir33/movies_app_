@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_cubit.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class CustomSearchField extends StatelessWidget {
-  final TextEditingController controller;
   final void Function(String) onChanged;
 
   const CustomSearchField({
     super.key,
-    required this.controller,
     required this.onChanged,
   });
 
@@ -32,7 +32,7 @@ class CustomSearchField extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: TextField(
-              controller: controller,
+              controller: context.read<SearchMoviesCubit>().searchController,
               onChanged: onChanged,
               cursorColor: AppColors.white,
               onTapOutside: (event) => FocusScope.of(context).unfocus(),

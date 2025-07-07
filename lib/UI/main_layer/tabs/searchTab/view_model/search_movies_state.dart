@@ -12,6 +12,8 @@ class SearchSuccess extends SearchMoviesState {
   SearchSuccess(this.movies);
 }
 
+class GetMoreMoviesLoadingState extends SearchMoviesState {}
+
 class SearchEmpty extends SearchMoviesState {}
 
 class SearchError extends SearchMoviesState {

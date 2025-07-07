@@ -135,9 +135,6 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                     size: 30,
                                   )),
                       ),
-                      SizedBox(
-                        width: 22,
-                      )
                     ],
                     backgroundColor: Colors.transparent,
                     elevation: 0,

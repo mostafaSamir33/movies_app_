@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/view/explore_tab_screen.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/view/home_tab_screen.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/profile_tab_screen.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/view/search_tab_screen.dart';
+import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_cubit.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +24,9 @@ class MainLayerScreen extends StatefulWidget {
 class _MainLayerScreenState extends State<MainLayerScreen> {
   List<Widget> tabs = [
     const HomeTabScreen(),
-    const SearchTabScreen(),
+    BlocProvider(
+        create: (context) => SearchMoviesCubit(),
+        child: const SearchTabScreen()),
     const ExploreTabScreen(),
     const ProfileTabScreen(),
   ];

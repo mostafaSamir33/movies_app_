@@ -35,13 +35,14 @@ class MoviesListApi {
     }
   }
 
-  static Future<List<Movies>?> getMoviesByQuery(String query) async {
+  static Future<List<Movies>?> getMoviesByQuery(String query, int page) async {
     Uri uri = Uri.https(
       AppConstants.moviesBaseUrl,
       AppEndpoints.listMoviesEndpoint,
       {
         'query_term': query,
         'sort_by': 'date_added',
+        'page': page.toString(),
       },
     );
 

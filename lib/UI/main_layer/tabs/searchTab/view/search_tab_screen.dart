@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_cubit.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_state.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/view/widgets/custom_search_field.dart';
@@ -15,14 +16,11 @@ class SearchTabScreen extends StatefulWidget {
 }
 
 class _SearchTabScreenState extends State<SearchTabScreen> {
-  late SearchMoviesCubit _searchCubit;
-  final TextEditingController _controller = TextEditingController();
   bool hasSearched = false;
 
   @override
   void initState() {
     super.initState();
-    _searchCubit = SearchMoviesCubit();
   }
 
   void _onSearch(String value) {
@@ -33,14 +31,16 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
     } else {
       setState(() {
         hasSearched = true;
+        context.read<SearchMoviesCubit>().movies = [];
       });
-      _searchCubit.searchMovies(value);
+      context.read<SearchMoviesCubit>().searchMovies();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.black1,
       body: SafeArea(
         child: Padding(
@@ -48,13 +48,11 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
           child: Column(
             children: [
               CustomSearchField(
-                controller: _controller,
                 onChanged: _onSearch,
               ),
               const SizedBox(height: 20),
               Expanded(
                 child: BlocBuilder<SearchMoviesCubit, SearchMoviesState>(
-                  bloc: _searchCubit,
                   builder: (context, state) {
                     if (!hasSearched) {
                       return Center(
@@ -80,18 +78,34 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                           fit: BoxFit.contain,
                         ),
                       );
-                    } else if (state is SearchSuccess) {
-                      final movies = state.movies;
+                    } else if (state is SearchSuccess ||
+                        state is GetMoreMoviesLoadingState) {
+                      final List<Movies> movies =
+                          context.watch<SearchMoviesCubit>().movies;
+                      print('Movies count: ${movies.length}');
                       return GridView.builder(
-                        itemCount: movies.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        controller:
+                            context.read<SearchMoviesCubit>().scrollController,
+                        itemCount: movies.length +
+                            (state is GetMoreMoviesLoadingState ? 1 : 0),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 0.65,
                           crossAxisSpacing: 12,
                           mainAxisSpacing: 12,
                         ),
                         itemBuilder: (context, index) {
+                          if (state is GetMoreMoviesLoadingState &&
+                              index == movies.length) {
+                            return Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.amber,
+                                ),
+                              ),
+                            );
+                          }
                           final movie = movies[index];
                           return MovieCard(
                             movieId: movie.imdbCode,
