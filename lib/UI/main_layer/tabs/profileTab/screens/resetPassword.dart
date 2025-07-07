@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/model/AuthService%20.dart';
 import 'package:movies_app/UI/auth/view/widgets/customTextFormField.dart';
+import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
@@ -113,7 +115,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                           newPasswordController.text.trim());
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
-                          responseMessage,
+                          context.read<SwitchProvider>().isActive
+                              ? 'تم تحديث الملف الشخصي بنجاح'
+                              : responseMessage,
                           style: CustomTextStyles.style20w600
                               .copyWith(color: AppColors.black1),
                         ),
