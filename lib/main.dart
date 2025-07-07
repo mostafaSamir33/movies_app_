@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
-import 'package:movies_app/UI/auth/view_model/providers/token_provider.dart';
-import 'package:movies_app/UI/auth/view/screens/resetPassword.dart';
 import 'package:movies_app/UI/auth/view/screens/signInScreen.dart';
 import 'package:movies_app/UI/auth/view/screens/signUpScreen.dart';
+import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
+import 'package:movies_app/UI/auth/view_model/providers/token_provider.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/screens/resetPassword.dart';
 import 'package:movies_app/UI/movieDetails/view/movie_details_screen.dart';
 import 'package:movies_app/UI/onboarding/onboarding_screens/onboarding_screen_1.dart';
 import 'package:movies_app/core/utils/app_constants.dart';
@@ -56,6 +57,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     final tokenProvider = context.watch<TokenProvider>();
 
     if (!tokenProvider.isTokenLoaded) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
-import 'package:movies_app/UI/auth/view/screens/resetPassword.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/screens/resetPassword.dart';
 import 'package:movies_app/UI/widgets/avatar_bottom_sheet_icon.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/models/avatar_bottom_sheet_model.dart';
