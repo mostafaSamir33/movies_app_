@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/Service/AuthService%20.dart';
 import 'package:movies_app/UI/auth/widgets/customTextFormField.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 
-import '../../../core/utils/app_colors.dart';
-import '../../../core/utils/custom_text_styles.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/custom_text_styles.dart';
 
 class ResetPassword extends StatefulWidget {
   static const String routeName = '/Forgetpassword';
 
-  ResetPassword({super.key,});
+  const ResetPassword({
+    super.key,
+  });
 
   @override
   State<ResetPassword> createState() => _ResetPasswordState();
@@ -118,6 +119,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         ),
                         backgroundColor: AppColors.yellow,
                       ));
+                      Navigator.of(context).pop();
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

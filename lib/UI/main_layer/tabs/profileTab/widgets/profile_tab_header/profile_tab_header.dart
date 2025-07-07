@@ -117,8 +117,8 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.r)
-                  .copyWith(top: 22.r, bottom: 30.r),
+              padding:
+                  EdgeInsets.symmetric(horizontal: 16.r).copyWith(top: 22.r),
               child: Row(
                 children: [
                   Expanded(
@@ -253,43 +253,6 @@ class _ProfileTabHeaderState extends State<ProfileTabHeader> {
                 ],
               ),
             ),
-            TabBar(
-              controller: widget.controller,
-              indicatorWeight: 3.r,
-              indicatorColor: AppColors.yellow,
-              indicatorSize: TabBarIndicatorSize.tab,
-              dividerColor: Colors.transparent,
-              labelStyle: CustomTextStyles.style20w400
-                  .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
-              unselectedLabelStyle: CustomTextStyles.style20w400
-                  .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
-              tabs: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 6.r),
-                  child: Tab(
-                    text: context.getLocalization().watchList,
-                    iconMargin: EdgeInsets.only(bottom: 6.r),
-                    icon: SvgPicture.asset(
-                      AppAssets.watchListIcon,
-                      height: 24.h,
-                      width: 38.w,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 6.r),
-                  child: Tab(
-                    text: context.getLocalization().history,
-                    iconMargin: EdgeInsets.only(bottom: 6.r),
-                    icon: SvgPicture.asset(
-                      AppAssets.historyIcon,
-                      height: 30.h,
-                      width: 36.w,
-                    ),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       ),
