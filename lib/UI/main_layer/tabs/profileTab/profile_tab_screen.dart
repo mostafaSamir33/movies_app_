@@ -106,7 +106,7 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
 
   _TabBarDelegate(this.controller);
 
-  static final double _barHeight = 130.h;
+  static final double _barHeight = 120.h;
 
   static final double _gap = 3.h;
   final double _safeInset = WidgetsBinding.instance.window.padding.top /
@@ -137,7 +137,7 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
               ],
             )
           : BoxDecoration(color: AppColors.black2),
-      padding: EdgeInsets.only(top: isPinned ? 8.r : topLift),
+      padding: EdgeInsets.only(top: isPinned ? 0.r : topLift),
       child: SafeArea(
         top: isPinned,
         bottom: false,
