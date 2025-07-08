@@ -1,3 +1,7 @@
+import 'package:hive/hive.dart';
+
+part 'movie_details_model.g.dart';
+
 class MovieDetailsModel {
   String? status;
   String? statusMessage;
@@ -58,38 +62,102 @@ class Data {
   }
 }
 
-class MovieDetails {
+@HiveType(typeId: 0)
+class MovieDetails extends HiveObject {
+  @HiveField(0)
   int? id;
+
+  @HiveField(1)
   String? url;
+
+  @HiveField(2)
   String? imdbCode;
+
+  @HiveField(3)
   String? title;
+
+  @HiveField(4)
   String? titleEnglish;
+
+  @HiveField(5)
   String? titleLong;
+
+  @HiveField(6)
   String? slug;
+
+  @HiveField(7)
   int? year;
+
+  @HiveField(8)
   double? rating;
+
+  @HiveField(9)
   int? runtime;
+
+  @HiveField(10)
   List<String>? genres;
+
+  @HiveField(11)
   int? likeCount;
+
+  @HiveField(12)
   String? descriptionIntro;
+
+  @HiveField(13)
   String? descriptionFull;
+
+  @HiveField(14)
   String? ytTrailerCode;
+
+  @HiveField(15)
   String? language;
+
+  @HiveField(16)
   String? mpaRating;
+
+  @HiveField(17)
   String? backgroundImage;
+
+  @HiveField(18)
   String? backgroundImageOriginal;
+
+  @HiveField(19)
   String? smallCoverImage;
+
+  @HiveField(20)
   String? mediumCoverImage;
+
+  @HiveField(21)
   String? largeCoverImage;
+
+  @HiveField(22)
   String? mediumScreenshotImage1;
+
+  @HiveField(23)
   String? mediumScreenshotImage2;
+
+  @HiveField(24)
   String? mediumScreenshotImage3;
+
+  @HiveField(25)
   String? largeScreenshotImage1;
+
+  @HiveField(26)
   String? largeScreenshotImage2;
+
+  @HiveField(27)
   String? largeScreenshotImage3;
+
+  @HiveField(28)
   List<Cast>? cast;
+
+  @HiveField(29)
   List<Torrents>? torrents;
+
+  @HiveField(30)
   String? dateUploaded;
+
+  @HiveField(31)
   int? dateUploadedUnix;
 
   MovieDetails(
@@ -281,7 +349,7 @@ class MovieDetails {
 
   @override
   bool operator ==(Object other) {
-    if (identical(this, other)) return true;          // same instance
+    if (identical(this, other)) return true; // same instance
     return other is MovieDetails && other.imdbCode == imdbCode;
   }
 
@@ -289,20 +357,35 @@ class MovieDetails {
   int get hashCode => imdbCode.hashCode;
 }
 
+@HiveType(typeId: 2)
 class Torrents {
+  @HiveField(0)
   String? url;
+  @HiveField(1)
   String? hash;
+  @HiveField(2)
   String? quality;
+  @HiveField(3)
   String? type;
+  @HiveField(4)
   String? isRepack;
+  @HiveField(5)
   String? videoCodec;
+  @HiveField(6)
   String? bitDepth;
+  @HiveField(7)
   String? audioChannels;
+  @HiveField(8)
   int? seeds;
+  @HiveField(9)
   int? peers;
+  @HiveField(10)
   String? size;
+  @HiveField(11)
   int? sizeBytes;
+  @HiveField(12)
   String? dateUploaded;
+  @HiveField(13)
   int? dateUploadedUnix;
 
   Torrents(
@@ -390,10 +473,15 @@ class Torrents {
   }
 }
 
+@HiveType(typeId: 1)
 class Cast {
+  @HiveField(0)
   String? name;
+  @HiveField(1)
   String? characterName;
+  @HiveField(2)
   String? urlSmallImage;
+  @HiveField(3)
   String? imdbCode;
 
   Cast({this.name, this.characterName, this.urlSmallImage, this.imdbCode});

@@ -20,7 +20,7 @@ class CustomSwitch extends StatelessWidget {
     final switchProvider = context.watch<SwitchProvider>();
 
     return FlutterSwitch(
-      width: 90.w,
+      width: 80.w,
       height: 40.h,
       toggleSize: 36.w,
       activeToggleColor: AppColors.yellow,

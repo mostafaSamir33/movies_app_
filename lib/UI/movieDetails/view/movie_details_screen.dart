@@ -18,7 +18,6 @@ import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
-import '../../../core/utils/app_constants.dart';
 import '../../../core/utils/app_prefs.dart';
 import '../../../core/utils/custom_text_styles.dart';
 import '../../main_layer/tabs/profileTab/network/watch_list_and_history_movies_api.dart';
@@ -161,7 +160,10 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 await MovieDetailsApi.getMovieDetails(widget.movieId);
 
             await AppPrefs.historySetSetOfString(
-                key: AppConstants.historyTabKey, watchedMovie: watchedMovie);
+              watchedMovie: watchedMovie!
+                ..cast = null
+                ..torrents = null,
+            );
 
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(

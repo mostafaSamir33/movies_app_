@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
 import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
-import 'package:movies_app/core/utils/app_constants.dart';
 import 'package:movies_app/core/utils/app_prefs.dart';
 
 import '../../../../movieDetails/model/movie_details_model.dart';
@@ -66,8 +65,7 @@ class ProfileTabProvider extends ChangeNotifier {
 
   // ---------- history ----------
   Future<List<MovieDetails>?> getHistoryMovies() async {
-    watchedMovies =
-        await AppPrefs.historyGetSetOfString(key: AppConstants.historyTabKey);
+    watchedMovies = await AppPrefs.historyGetSetOfString();
     return watchedMovies;
   }
 

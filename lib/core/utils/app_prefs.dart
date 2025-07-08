@@ -1,11 +1,11 @@
-import 'dart:convert';
-
-import 'package:movies_app/core/utils/app_constants.dart';
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../UI/movieDetails/model/movie_details_model.dart';
 
 class AppPrefs {
+  static const String _historyBoxName = 'historyBox';
+
   static late SharedPreferences prefs;
 
   static Future<void> init() async {
@@ -30,40 +30,34 @@ class AppPrefs {
     return prefs.getBool(key);
   }
 
-// history tab in profile tab screen
-  static Future<void> historySetSetOfString(
-      {required String key, required MovieDetails? watchedMovie}) async {
-    List<MovieDetails>? movies =
-        (await AppPrefs.historyGetSetOfString(key: AppConstants.historyTabKey));
+// history tab in profile tab screen (Hive)
+  static MovieDetails _clone(MovieDetails m) => MovieDetails(
+        imdbCode: m.imdbCode,
+        rating: m.rating,
+        largeCoverImage: m.largeCoverImage,
+        title: m.title,
+        year: m.year,
+      );
 
-    if (movies.contains(watchedMovie)) {
-      movies.remove(watchedMovie);
-    }
+  static Future<void> historySetSetOfString({
+    required MovieDetails? watchedMovie,
+  }) async {
+    if (watchedMovie == null) return;
 
-    if (watchedMovie != null && !movies.contains(watchedMovie)) {
-      movies.insert(0, watchedMovie);
-    }
+    final box = await Hive.openBox<MovieDetails>(_historyBoxName);
 
-    List<String>? stringList = movies
-        .map((m) => jsonEncode({
-              'imdbCode': m.imdbCode,
-              'rating': m.rating,
-              'largeCoverImage': m.largeCoverImage,
-            }))
-        .toList();
-    await prefs.setStringList(key, stringList);
+    final list = box.values.map(_clone).toList();
+
+    list.removeWhere((m) => m.imdbCode == watchedMovie.imdbCode);
+
+    list.insert(0, _clone(watchedMovie));
+
+    await box.clear();
+    await box.addAll(list);
   }
 
-  static Future<List<MovieDetails>> historyGetSetOfString(
-      {required String key}) async {
-    List<String> stored = prefs.getStringList(key) ?? [];
-    return stored.map((str) {
-      final map = jsonDecode(str);
-      return MovieDetails(
-        imdbCode: map['imdbCode'] as String?,
-        rating: (map['rating'] as num?)?.toDouble(),
-        largeCoverImage: map['largeCoverImage'] as String?,
-      );
-    }).toList();
+  static Future<List<MovieDetails>?> historyGetSetOfString() async {
+    final box = await Hive.openBox<MovieDetails>(_historyBoxName);
+    return box.values.toList();
   }
 }
