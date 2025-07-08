@@ -106,7 +106,7 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
 
   _TabBarDelegate(this.controller);
 
-  static final double _barHeight = 120.h;
+  static final double _barHeight = 130.h;
 
   static final double _gap = 3.h;
   final double _safeInset = WidgetsBinding.instance.window.padding.top /
