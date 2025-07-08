@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/view/widgets/explore_movies_grid.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/view/widgets/genre_selector.dart';
@@ -28,16 +29,9 @@ class _ExploreTabScreenState extends State<ExploreTabScreen>
     super.initState();
 
     final provider = Provider.of<SelectedCatProvider>(context, listen: false);
-
     selectedGenreIndex = provider.selectedCat;
-    exploreCubit = ExploreMoviesCubit();
-    exploreCubit.fetchMovies(genres[selectedGenreIndex]);
-  }
 
-  @override
-  void didUpdateWidget(covariant ExploreTabScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    exploreCubit.fetchMovies(genres[selectedGenreIndex]);
+    exploreCubit = ExploreMoviesCubit();
   }
 
   @override
@@ -46,30 +40,41 @@ class _ExploreTabScreenState extends State<ExploreTabScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return SafeArea(
-      bottom: false,
-      child: Column(
-        children: [
-          const SizedBox(height: 12),
-          GenreSelector(
-            genres: genres,
-            selectedIndex: selectedGenreIndex,
-            onGenreSelected: (index) {
-              setState(() {
-                selectedGenreIndex = index;
-              });
-              exploreCubit.fetchMovies(genres[index]);
-            },
+    return Consumer<SelectedCatProvider>(
+      builder: (context, value, child) {
+        selectedGenreIndex = value.selectedCat;
+        exploreCubit.selectedGenre = genres[selectedGenreIndex];
+        exploreCubit.page = 1;
+        exploreCubit.movies = [];
+
+        exploreCubit.fetchMovies(genres[selectedGenreIndex]);
+        return SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+              GenreSelector(
+                genres: genres,
+                selectedIndex: selectedGenreIndex,
+                onGenreSelected: (index) {
+                  setState(() {
+                    context.read<SelectedCatProvider>().selectedCat = index;
+                  });
+                },
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: BlocProvider.value(
+                      value: exploreCubit,
+                      child: ExploreMoviesGrid(exploreCubit: exploreCubit)),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: ExploreMoviesGrid(exploreCubit: exploreCubit),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

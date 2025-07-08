@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import '../model/explore_movies_api.dart';
@@ -7,6 +8,8 @@ abstract class ExploreMoviesState {}
 class ExploreMoviesInitial extends ExploreMoviesState {}
 
 class ExploreMoviesLoading extends ExploreMoviesState {}
+
+class GetMoreMoviesLoadingState extends ExploreMoviesState {}
 
 class ExploreMoviesLoaded extends ExploreMoviesState {
   final List<Movies> movies;
@@ -23,17 +26,38 @@ class ExploreMoviesError extends ExploreMoviesState {
 }
 
 class ExploreMoviesCubit extends Cubit<ExploreMoviesState> {
-  ExploreMoviesCubit() : super(ExploreMoviesInitial());
+  final ScrollController scrollController = ScrollController();
+  int page = 1;
+  List<Movies> movies = [];
+  String selectedGenre = 'Action'; // Default genre
+  ExploreMoviesCubit() : super(ExploreMoviesInitial()) {
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        bool atTop = scrollController.position.pixels == 0;
+        if (!atTop && state is! GetMoreMoviesLoadingState) {
+          page++;
+          emit(GetMoreMoviesLoadingState());
+          fetchMovies(selectedGenre);
+        }
+      }
+    });
+  }
 
   Future<void> fetchMovies(String genre) async {
-    emit(ExploreMoviesLoading());
+    selectedGenre = genre;
+    print('Fetching movies for genre: $selectedGenre, page: $page');
+    if (movies.isEmpty) {
+      emit(ExploreMoviesLoading());
+    }
+
     try {
-      final movies = await ExploreMoviesApi.getMoviesByGenre(genre);
-      if (movies == null || movies.isEmpty) {
+      final newMovies = await ExploreMoviesApi.getMoviesByGenre(genre, page);
+      movies.addAll(newMovies ?? []);
+      if (movies.isEmpty) {
         emit(ExploreMoviesEmpty());
-      } else {
-        emit(ExploreMoviesLoaded(movies));
+        return;
       }
+      emit(ExploreMoviesLoaded(movies));
     } catch (e) {
       emit(ExploreMoviesError(e.toString()));
     }

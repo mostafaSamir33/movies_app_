@@ -24,10 +24,14 @@ class ExploreMoviesGrid extends StatelessWidget {
             );
           } else if (state is ExploreMoviesError) {
             return Center(child: Text(state.message));
-          } else if (state is ExploreMoviesLoaded) {
-            final List<Movies> movies = state.movies;
+          } else if (state is ExploreMoviesLoaded ||
+              state is GetMoreMoviesLoadingState) {
+            final List<Movies> movies =
+                context.watch<ExploreMoviesCubit>().movies;
             return GridView.builder(
-              itemCount: movies.length,
+              controller: context.watch<ExploreMoviesCubit>().scrollController,
+              itemCount:
+                  movies.length + (state is GetMoreMoviesLoadingState ? 1 : 0),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 0.65,
@@ -35,6 +39,17 @@ class ExploreMoviesGrid extends StatelessWidget {
                 mainAxisSpacing: 12,
               ),
               itemBuilder: (context, index) {
+                if (state is GetMoreMoviesLoadingState &&
+                    index == movies.length) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.amber,
+                      ),
+                    ),
+                  );
+                }
                 return MovieCard(
                   movieId: movies[index].imdbCode,
                   imagePath: movies[index].mediumCoverImage ?? '',

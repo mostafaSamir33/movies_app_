@@ -5,13 +5,14 @@ import 'package:movies_app/core/utils/app_endpoints.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 
 class ExploreMoviesApi {
-  static Future<List<Movies>?> getMoviesByGenre(String genre) async {
+  static Future<List<Movies>?> getMoviesByGenre(String genre, int page) async {
     Uri uri = Uri.https(
       AppConstants.moviesBaseUrl,
       AppEndpoints.listMoviesEndpoint,
       {
         'genre': genre,
         'sort_by': 'date_added',
+        'page': page.toString(),
       },
     );
     var response = await http.get(uri);
