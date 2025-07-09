@@ -146,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               context.read<AuthCubit>().login(
-                                    emailController.text.trim(),
+                                    emailController.text.trim().toLowerCase(),
                                     passwordController.text.trim(),
                                     context,
                                   );
