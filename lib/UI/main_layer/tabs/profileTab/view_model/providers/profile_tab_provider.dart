@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
 import 'package:movies_app/core/utils/app_prefs.dart';
 
-import '../../../../movieDetails/model/movie_details_model.dart';
-import '../models/get_favourite_movies_response_model.dart';
-import '../network/watch_list_and_history_movies_api.dart';
+import '../../../../../movieDetails/model/movie_details_model.dart';
+import '../../model/models/get_favourite_movies_response_model.dart';
+import '../../model/models/profile_response_model.dart';
+import '../../model/network/profile_api.dart';
+import '../../model/network/watch_list_and_history_movies_api.dart';
 
 class ProfileTabProvider extends ChangeNotifier {
   bool loading = false;

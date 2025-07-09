@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/models/avatar_bottom_sheet_model.dart';
+import '../../../../../../core/models/avatar_bottom_sheet_model.dart';
 
 class AvatarBottomSheetProvider extends ChangeNotifier {
   int? avatarId;
@@ -15,13 +15,13 @@ class AvatarBottomSheetProvider extends ChangeNotifier {
   }
 
   void initialAvatar({int? avatarId}) {
-    selectedIndex=avatarId;
+    selectedIndex = avatarId;
     selectedAvatar =
         AvatarBottomSheetModel.avatarImages[selectedIndex ?? 7].avatarImage;
     notifyListeners();
   }
 
-  void changeAvatarId(){
-    avatarId=selectedIndex;
+  void changeAvatarId() {
+    avatarId = selectedIndex;
   }
 }

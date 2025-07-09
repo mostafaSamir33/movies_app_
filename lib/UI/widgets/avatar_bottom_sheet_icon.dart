@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../main_layer/tabs/profileTab/providers/avatar_bottom_sheet_provider.dart';
 import '../../core/utils/app_colors.dart';
+import '../main_layer/tabs/profileTab/view_model/providers/avatar_bottom_sheet_provider.dart';
 
 class AvatarBottomSheetIcon extends StatelessWidget {
   final String avatarImage;
