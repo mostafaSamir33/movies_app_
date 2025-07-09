@@ -56,7 +56,7 @@ class Page1 extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Discover Movies', //TODO:localization
+                    'Discover Movies', 
                     style: CustomTextStyles.style24w700.copyWith(
                       color: AppColors.white,
                     ),
@@ -64,7 +64,7 @@ class Page1 extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 24.r),
                     child: Text(
-                      //TODO:localization
+                      
                       'Explore a vast collection of movies in all\nqualities and genres. Find your next\nfavorite film with ease.',
                       style: CustomTextStyles.style20w400.copyWith(
                         color: AppColors.white,
@@ -73,7 +73,7 @@ class Page1 extends StatelessWidget {
                     ),
                   ),
                   CustomElevatedButtonFilled(
-                    buttonText: 'Next', //TODO:localization
+                    buttonText: 'Next', 
                     onPressed:
                         () => controller.nextPage(
                           duration: Duration(milliseconds: 500),

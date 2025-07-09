@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/auth/model/AuthService%20.dart';
 import 'package:movies_app/UI/auth/view/widgets/customTextFormField.dart';
 import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
 import 'package:movies_app/UI/widgets/custom_elevated_button_filled.dart';
@@ -28,7 +27,7 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   TextEditingController newPasswordController = TextEditingController();
 
-  final AuthService _authService = AuthService();
+
 
   final formKey = GlobalKey<FormState>();
 

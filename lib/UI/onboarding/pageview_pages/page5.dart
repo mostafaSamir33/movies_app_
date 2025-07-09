@@ -60,14 +60,14 @@ class Page5 extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Start Watching Now', //TODO:localization
+                    'Start Watching Now', 
                     style: CustomTextStyles.style24w700.copyWith(
                       color: AppColors.white,
                     ),
                   ),
                   SizedBox(height: 26.h),
                   CustomElevatedButtonFilled(
-                    buttonText: 'Finish', //TODO:localization
+                    buttonText: 'Finish', 
                     onPressed: () {
                       Navigator.of(
                         context,
@@ -80,7 +80,7 @@ class Page5 extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   CustomOutlinedButton(
-                    buttonText: 'Back', //TODO:localization
+                    buttonText: 'Back', 
                     onPressed:
                         () => controller.previousPage(
                           duration: Duration(milliseconds: 500),

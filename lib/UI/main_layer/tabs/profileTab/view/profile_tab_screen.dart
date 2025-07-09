@@ -289,8 +289,7 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
 
   static final double _maxBarHeight = 130.h;
   static final double _minBarHeight = 100.h + 20.h + 10.h;
-  final double _safeInset = WidgetsBinding.instance.window.padding.top /
-      WidgetsBinding.instance.window.devicePixelRatio;
+
 
   @override
   double get minExtent => _minBarHeight;

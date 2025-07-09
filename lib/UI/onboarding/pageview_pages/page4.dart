@@ -56,7 +56,7 @@ class Page4 extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Rate, Review, and Learn', //TODO:localization
+                    'Rate, Review, and Learn', 
                     style: CustomTextStyles.style24w700.copyWith(
                       color: AppColors.white,
                     ),
@@ -64,7 +64,7 @@ class Page4 extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 16.r, bottom: 26.r),
                     child: Text(
-                      //TODO:localization
+                      
                       'Share your thoughts on the movies\nyou\'ve watched. Dive deep into film\ndetails and help others discover great\nmovies with your reviews.',
                       style: CustomTextStyles.style20w400.copyWith(
                         color: AppColors.white,
@@ -73,7 +73,7 @@ class Page4 extends StatelessWidget {
                     ),
                   ),
                   CustomElevatedButtonFilled(
-                    buttonText: 'Next', //TODO:localization
+                    buttonText: 'Next', 
                     onPressed:
                         () => controller.nextPage(
                           duration: Duration(milliseconds: 500),
@@ -82,7 +82,7 @@ class Page4 extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   CustomOutlinedButton(
-                    buttonText: 'Back', //TODO:localization
+                    buttonText: 'Back', 
                     onPressed:
                         () => controller.previousPage(
                           duration: Duration(milliseconds: 500),
