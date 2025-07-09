@@ -58,19 +58,19 @@ class MovieCard extends StatelessWidget {
                   );
                 },
               ),
-              Positioned(
-                top: 8,
-                left: 8,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: rating == null || rating == 0
-                      ? SizedBox.shrink()
-                      : Row(
+              rating == null || rating == 0
+                  ? SizedBox.shrink()
+                  : Positioned(
+                      top: 8,
+                      left: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.6),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Row(
                           children: [
                             Text(
                               (rating ?? 0).toStringAsFixed(1),
@@ -88,8 +88,8 @@ class MovieCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                ),
-              ),
+                      ),
+                    ),
             ],
           ),
         ),
