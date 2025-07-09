@@ -91,8 +91,8 @@ class HomeTabScreen extends StatelessWidget {
                           ),
                           Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24.0, vertical: 20),
+                              padding:  EdgeInsets.symmetric(
+                                  horizontal: 24.0.w, vertical: 20.h),
                               child: Image.asset(
                                 AppAssets.availableNow,
                                 width: 267.w,
@@ -102,7 +102,7 @@ class HomeTabScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24),
+                       SizedBox(height: 24.h),
                       Column(
                         children: [
                           CategoryRow(
@@ -117,7 +117,7 @@ class HomeTabScreen extends StatelessWidget {
                               title: selectedCategories[2]
                                   .getGenreLocalizedName(context)),
                           CategoryMoviesSection(movies: moviesSection3),
-                          const SizedBox(height: 60),
+                           SizedBox(height: 60.h),
                         ],
                       ),
                     ],

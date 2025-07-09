@@ -28,9 +28,10 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -754,6 +755,16 @@ class S {
     return Intl.message(
       'Are you sure you want to exit?',
       name: 'areYouSureYouWantToExit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Should Not Match Old Password`
+  String get passwordShouldNotMatch {
+    return Intl.message(
+      'Password Should Not Match Old Password',
+      name: 'passwordShouldNotMatch',
       desc: '',
       args: [],
     );

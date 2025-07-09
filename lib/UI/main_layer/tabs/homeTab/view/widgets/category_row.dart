@@ -17,7 +17,7 @@ class CategoryRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding:  EdgeInsets.symmetric(horizontal: 20.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -46,10 +46,10 @@ class CategoryRow extends StatelessWidget {
                       fontSize: 16.sp,
                       fontFamily: 'Roboto'),
                 ),
-                const SizedBox(width: 4),
-                const Icon(
+                 SizedBox(width: 4.w),
+                 Icon(
                   Icons.arrow_forward_ios,
-                  size: 14,
+                  size: 14.sp,
                   color: AppColors.amber,
                 ),
               ],

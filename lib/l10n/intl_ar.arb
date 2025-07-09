@@ -96,5 +96,6 @@
   "name": "الاسم:",
   "nomovies": "لا توجد أفلام!",
   "youAreGoingToWatchTheMovie": "أنت ذاهب لمشاهدة الفيلم",
-  "areYouSureYouWantToExit": "هل أنت متأكد أنك تريد الخروج؟"
+  "areYouSureYouWantToExit": "هل أنت متأكد أنك تريد الخروج؟",
+  "passwordShouldNotMatch":"لا يجب ان تكون كلمه المرور نفس القديمه "
 }

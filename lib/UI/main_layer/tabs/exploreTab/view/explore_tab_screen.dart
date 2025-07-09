@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/view/widgets/explore_movies_grid.dart';
 import 'package:movies_app/UI/main_layer/tabs/exploreTab/view/widgets/genre_selector.dart';
@@ -52,7 +53,7 @@ class _ExploreTabScreenState extends State<ExploreTabScreen>
           bottom: false,
           child: Column(
             children: [
-              const SizedBox(height: 12),
+               SizedBox(height: 12.h),
               GenreSelector(
                 genres: genres,
                 selectedIndex: selectedGenreIndex,
@@ -62,10 +63,10 @@ class _ExploreTabScreenState extends State<ExploreTabScreen>
                   });
                 },
               ),
-              const SizedBox(height: 16),
+               SizedBox(height: 16.h),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding:  EdgeInsets.symmetric(horizontal: 12.0.w),
                   child: BlocProvider.value(
                       value: exploreCubit,
                       child: ExploreMoviesGrid(exploreCubit: exploreCubit)),

@@ -8,7 +8,7 @@ class WatchNowBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.r),
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Image.asset(
         AppAssets.watchNow,
         width: 354.w,

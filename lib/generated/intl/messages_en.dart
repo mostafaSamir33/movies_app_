@@ -116,6 +116,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordRequired": MessageLookupByLibrary.simpleMessage(
       "Password is required",
     ),
+    "passwordShouldNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Password Should Not Match Old Password",
+    ),
     "passwordSpecial": MessageLookupByLibrary.simpleMessage(
       "Password must contain at least one special character",
     ),

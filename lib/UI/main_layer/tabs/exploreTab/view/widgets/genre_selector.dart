@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/provider/selected_cat_provider.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/genre_translator.dart';
@@ -19,25 +20,25 @@ class GenreSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 42,
+      height: 42.h,
       child: ListView.builder(
         controller: context.watch<SelectedCatProvider>().scrollController,
         scrollDirection: Axis.horizontal,
         itemCount: genres.length,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding:  EdgeInsets.symmetric(horizontal: 12.h),
         itemBuilder: (context, index) {
           final isSelected = index == selectedIndex;
           return GestureDetector(
             onTap: () => onGenreSelected(index),
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 6),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              margin:  EdgeInsets.symmetric(horizontal: 6.h),
+              padding:  EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.amber : AppColors.black1,
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(
                   color: AppColors.amber,
-                  width: 1.5,
+                  width: 1.5.w,
                 ),
               ),
               child: Center(

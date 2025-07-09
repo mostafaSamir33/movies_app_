@@ -10,20 +10,20 @@ class CoustomeInformationContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: AppColors.grey,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Row(
         children: [
           ImageIcon(
             AssetImage(icon),
-            size: 25,
+            size: 25.sp,
             color: AppColors.amber,
           ),
           SizedBox(
-            width: 14,
+            width: 14.w,
           ),
           Text(
             data,

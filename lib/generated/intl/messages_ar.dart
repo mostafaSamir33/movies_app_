@@ -122,6 +122,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordRequired": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور مطلوبة",
     ),
+    "passwordShouldNotMatch": MessageLookupByLibrary.simpleMessage(
+      "لا يجب ان تكون كلمه المرور نفس القديمه ",
+    ),
     "passwordSpecial": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور يجب أن تحتوي على رمز خاص واحد على الأقل",
     ),

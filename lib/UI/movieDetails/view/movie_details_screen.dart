@@ -89,10 +89,10 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           Navigator.of(context).pop();
                         },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
                           child: Icon(
                             Icons.arrow_back_ios,
-                            size: 30,
+                            size: 30.sp,
                           ),
                         ),
                       ),
@@ -126,12 +126,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             icon: isMarked
                                 ? Icon(
                                     Icons.bookmark,
-                                    size: 30,
+                                    size: 30.sp,
                                     color: AppColors.amber,
                                   )
                                 : Icon(
                                     Icons.bookmark,
-                                    size: 30,
+                                    size: 30.sp,
                                   )),
                       ),
                     ],
@@ -176,12 +176,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
           },
         ),
         SizedBox(
-          height: 16,
+          height: 16.h,
         ),
         SizedBox(
           height: 50.h,
           child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
               scrollDirection: Axis.horizontal,
               children: [
                 movieDetails.likeCount == null
@@ -190,7 +190,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         icon: AppAssets.loveIcon,
                         data: movieDetails.likeCount.toString()),
                 SizedBox(
-                  width: 16,
+                  width: 16.w,
                 ),
                 movieDetails.runtime == null
                     ? SizedBox()
@@ -198,7 +198,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         icon: AppAssets.watchIcon,
                         data: movieDetails.runtime.toString()),
                 SizedBox(
-                  width: 16,
+                  width: 16.h,
                 ),
                 movieDetails.rating == null
                     ? SizedBox()
@@ -208,7 +208,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               ]),
         ),
         SizedBox(
-          height: 16,
+          height: 16.h,
         ),
         ScreenShotsSectionView(
             screenShot1: movieDetails.largeScreenshotImage1 ??
@@ -218,7 +218,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
             screenShot3: movieDetails.largeScreenshotImage3 ??
                 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg'),
         SizedBox(
-          height: 16,
+          height: 16.h,
         ),
         BlocProvider(
             create: (context) => MovieSuggestionCubit(),
@@ -251,19 +251,19 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               },
             )),
         SizedBox(
-          height: 16,
+          height: 16.h,
         ),
         SummarySectionView(
           summary: movieDetails.descriptionFull,
         ),
         SizedBox(
-          height: 16,
+          height: 16.h,
         ),
         CastSectionView(
           cast: movieDetails.cast ?? [],
         ),
         SizedBox(
-          height: 16,
+          height: 16.h,
         ),
         GenersSectionView(
           geners: movieDetails.genres,

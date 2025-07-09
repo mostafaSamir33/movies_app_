@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_cubit.dart';
 import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_state.dart';
@@ -44,13 +45,13 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
       backgroundColor: AppColors.black1,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(12.0.r),
           child: Column(
             children: [
               CustomSearchField(
                 onChanged: _onSearch,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Expanded(
                 child: BlocBuilder<SearchMoviesCubit, SearchMoviesState>(
                   builder: (context, state) {
@@ -58,7 +59,7 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                       return Center(
                         child: Image.asset(
                           AppAssets.empty,
-                          width: 110,
+                          width: 110.w,
                           fit: BoxFit.contain,
                         ),
                       );
@@ -74,7 +75,7 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                       return Center(
                         child: Image.asset(
                           AppAssets.empty,
-                          width: 124,
+                          width: 124.w,
                           fit: BoxFit.contain,
                         ),
                       );
@@ -91,14 +92,14 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 0.65,
-                          crossAxisSpacing: 12,
-                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12.w,
+                          mainAxisSpacing: 12.h,
                         ),
                         itemBuilder: (context, index) {
                           if (state is GetMoreMoviesLoadingState &&
                               index == movies.length) {
                             return Padding(
-                              padding: const EdgeInsets.all(16),
+                              padding: EdgeInsets.all(16.r),
                               child: Center(
                                 child: CircularProgressIndicator(
                                   color: AppColors.amber,

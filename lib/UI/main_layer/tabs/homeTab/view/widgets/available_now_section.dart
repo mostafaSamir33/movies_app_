@@ -48,7 +48,7 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
           child: Column(
             children: [
               SizedBox(height: 100.h),
-              const SizedBox(height: 10),
+               SizedBox(height: 10.h),
               CarouselSlider.builder(
                 itemCount: widget.movies.length,
                 itemBuilder: (context, index, realIdx) {
@@ -73,7 +73,7 @@ class _AvailableNowSectionState extends State<AvailableNowSection> {
                   },
                 ),
               ),
-              const SizedBox(height: 10),
+               SizedBox(height: 10.h),
               const WatchNowBanner(),
             ],
           ),

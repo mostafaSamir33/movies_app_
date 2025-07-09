@@ -18,7 +18,7 @@ class CategoryMoviesSection extends StatelessWidget {
       height: 300.h,
       child: ListView.separated(
         separatorBuilder: (context, index) => SizedBox(
-          width: 16,
+          width: 16.w,
         ),
         scrollDirection: Axis.horizontal,
         itemCount: movies.length,
@@ -46,7 +46,7 @@ class CategoryMoviesSection extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: AppColors.white,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontFamily: 'Roboto'),
                 ),
               ),

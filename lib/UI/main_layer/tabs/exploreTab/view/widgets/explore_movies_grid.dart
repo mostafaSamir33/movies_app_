@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/main_layer/tabs/homeTab/model/movies_list_response.dart';
 import 'package:movies_app/UI/widgets/movie_card.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
@@ -32,17 +33,17 @@ class ExploreMoviesGrid extends StatelessWidget {
               controller: context.watch<ExploreMoviesCubit>().scrollController,
               itemCount:
                   movies.length + (state is GetMoreMoviesLoadingState ? 1 : 0),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 0.65,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
+                crossAxisSpacing: 12.w,
+                mainAxisSpacing: 12.h,
               ),
               itemBuilder: (context, index) {
                 if (state is GetMoreMoviesLoadingState &&
                     index == movies.length) {
                   return Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding:  EdgeInsets.all(16.r),
                     child: Center(
                       child: CircularProgressIndicator(
                         color: AppColors.amber,

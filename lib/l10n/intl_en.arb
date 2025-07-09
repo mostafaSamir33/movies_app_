@@ -96,5 +96,6 @@
   "name": "Name:",
   "nomovies": "No Movies!",
   "youAreGoingToWatchTheMovie": "You Are Going To Watch The Movie",
-  "areYouSureYouWantToExit": "Are you sure you want to exit?"
+  "areYouSureYouWantToExit": "Are you sure you want to exit?",
+  "passwordShouldNotMatch" : "Password Should Not Match Old Password"
 }

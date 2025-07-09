@@ -101,6 +101,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                       .hasMatch(value)) {
                     return context.getLocalization().passwordSpecial;
                   }
+                  if (value == oldPasswordController.text) {
+                    return context.getLocalization().passwordShouldNotMatch;
+                  }
                   return null;
                 },
               ),

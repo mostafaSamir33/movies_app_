@@ -11,20 +11,20 @@ class CustomWatchElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.r),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16)),
+                borderRadius: BorderRadius.circular(16.r)),
             backgroundColor: AppColors.red,
             foregroundColor: AppColors.white,
             minimumSize: Size(double.infinity, 58.h)),
         child: Text(
           title,
           style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w700, fontFamily: 'Roboto'),
+              fontSize: 20.sp, fontWeight: FontWeight.w700, fontFamily: 'Roboto'),
         ),
       ),
     );

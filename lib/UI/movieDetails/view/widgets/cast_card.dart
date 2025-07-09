@@ -18,9 +18,9 @@ class CastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
-          color: AppColors.grey, borderRadius: BorderRadius.circular(16)),
+          color: AppColors.grey, borderRadius: BorderRadius.circular(16.r)),
       child: Row(
         spacing: 10,
         children: [
@@ -49,7 +49,7 @@ class CastCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w400,
                       color: AppColors.white,
                       fontFamily: 'Roboto'),
@@ -57,7 +57,7 @@ class CastCard extends StatelessWidget {
                 Text(
                   '${context.getLocalization().character} $character',
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w400,
                       color: AppColors.white,
                       fontFamily: 'Roboto'),
