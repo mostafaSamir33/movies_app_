@@ -337,11 +337,10 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
                 .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
             tabs: [
               Padding(
-                padding: EdgeInsets.only(bottom: 6.r),
+                padding: EdgeInsets.only(bottom: 6.r, top: isPinned ? 0 : 20.r),
                 child: Tab(
                   text: context.getLocalization().watchList,
-                  iconMargin:
-                      EdgeInsets.only(bottom: 6.r, top: isPinned ? 0 : 20.r),
+                  iconMargin: EdgeInsets.only(bottom: 6.r),
                   icon: SvgPicture.asset(
                     AppAssets.watchListIcon,
                     height: 24.h,
