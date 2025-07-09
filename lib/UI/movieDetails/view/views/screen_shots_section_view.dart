@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
+import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
 class ScreenShotsSectionView extends StatelessWidget {
@@ -16,7 +17,7 @@ class ScreenShotsSectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.0.w),
       child: Column(
         spacing: 14.h,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,6 +36,12 @@ class ScreenShotsSectionView extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               child: Image.network(
                 screenShot1,
+                errorBuilder: (_, __, ___) => Image.asset(
+                  AppAssets.failedImage,
+                  fit: BoxFit.fill,
+                  height: 70.h,
+                  width: 70.w,
+                ),
                 height: 176.h,
                 fit: BoxFit.cover,
               ),
@@ -48,6 +55,12 @@ class ScreenShotsSectionView extends StatelessWidget {
                 screenShot2,
                 height: 176.h,
                 fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Image.asset(
+                  AppAssets.failedImage,
+                  fit: BoxFit.fill,
+                  height: 70.h,
+                  width: 70.w,
+                ),
               ),
             ),
           ),
@@ -57,6 +70,12 @@ class ScreenShotsSectionView extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               child: Image.network(
                 screenShot3,
+                errorBuilder: (_, __, ___) => Image.asset(
+                  AppAssets.failedImage,
+                  fit: BoxFit.fill,
+                  height: 70.h,
+                  width: 70.w,
+                ),
                 height: 176.h,
                 fit: BoxFit.cover,
               ),
