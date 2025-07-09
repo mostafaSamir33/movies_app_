@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:movies_app/UI/auth/view_model/providers/token_provider.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/avatar_bottom_sheet_provider.dart';
 
+import '../../view_model/providers/avatar_bottom_sheet_provider.dart';
 import '../models/profile_response_model.dart';
 
 class ProfileApi {
@@ -58,7 +58,7 @@ class ProfileApi {
   }
 
   static Future<String> resetPassword(
-      BuildContext context, String oldPassword,String newPassword) async {
+      BuildContext context, String oldPassword, String newPassword) async {
     final String? token = context.read<TokenProvider>().token;
 
     Uri uri = Uri.parse('$baseUrl/auth/reset-password');
@@ -68,10 +68,8 @@ class ProfileApi {
         "Content-Type": "application/json",
         if (token != null) "Authorization": "Bearer $token",
       },
-      body: jsonEncode({
-        "oldPassword": oldPassword,
-        "newPassword": newPassword
-      }),
+      body:
+          jsonEncode({"oldPassword": oldPassword, "newPassword": newPassword}),
     );
 
     Map<String, dynamic> jsonResponse = jsonDecode(response.body);

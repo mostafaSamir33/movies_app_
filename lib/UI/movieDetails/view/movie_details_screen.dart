@@ -20,7 +20,7 @@ import 'package:movies_app/core/utils/app_colors.dart';
 
 import '../../../core/utils/app_prefs.dart';
 import '../../../core/utils/custom_text_styles.dart';
-import '../../main_layer/tabs/profileTab/network/watch_list_and_history_movies_api.dart';
+import '../../main_layer/tabs/profileTab/model/network/watch_list_and_history_movies_api.dart';
 import '../model/movie_details_api.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
@@ -89,7 +89,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           Navigator.of(context).pop();
                         },
                         child: Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                           child: Icon(
                             Icons.arrow_back_ios,
                             size: 30.sp,
@@ -181,7 +181,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
         SizedBox(
           height: 50.h,
           child: ListView(
-              padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
+              padding: EdgeInsets.symmetric(horizontal: 16.0.w),
               scrollDirection: Axis.horizontal,
               children: [
                 movieDetails.likeCount == null

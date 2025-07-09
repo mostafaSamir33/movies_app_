@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/UI/auth/view_model/providers/switch_provider.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/models/profile_response_model.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/network/profile_api.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/screens/resetPassword.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/view/screens/resetPassword.dart';
 import 'package:movies_app/UI/widgets/avatar_bottom_sheet_icon.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/models/avatar_bottom_sheet_model.dart';
@@ -12,11 +10,13 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../auth/view/screens/signInScreen.dart';
-import '../../../../widgets/custom_elevated_button_filled.dart';
-import '../../../../widgets/custom_text_form_field.dart';
-import '../../../main_layer_screen.dart';
-import '../providers/avatar_bottom_sheet_provider.dart';
+import '../../../../../auth/view/screens/signInScreen.dart';
+import '../../../../../widgets/custom_elevated_button_filled.dart';
+import '../../../../../widgets/custom_text_form_field.dart';
+import '../../../../main_layer_screen.dart';
+import '../../model/models/profile_response_model.dart';
+import '../../model/network/profile_api.dart';
+import '../../view_model/providers/avatar_bottom_sheet_provider.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   static const String routeName = '/updateProfileScreen';

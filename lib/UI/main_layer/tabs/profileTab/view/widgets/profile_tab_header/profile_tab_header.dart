@@ -3,18 +3,18 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movies_app/UI/auth/view_model/providers/token_provider.dart';
 import 'package:movies_app/UI/auth/view/screens/signInScreen.dart';
+import 'package:movies_app/UI/auth/view_model/providers/token_provider.dart';
 import 'package:movies_app/UI/main_layer/main_layer_screen.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../../core/models/avatar_bottom_sheet_model.dart';
-import '../../models/profile_response_model.dart';
+import '../../../../../../../core/models/avatar_bottom_sheet_model.dart';
+import '../../../model/models/profile_response_model.dart';
+import '../../../view_model/providers/profile_tab_provider.dart';
 import '../../screens/update_profile_screen.dart';
 
 class ProfileTabHeader extends StatefulWidget {

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/network/watch_list_and_history_movies_api.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_details_api.dart';
 import 'package:movies_app/UI/movieDetails/model/movie_details_model.dart';
 import 'package:movies_app/UI/movieDetails/viewModel/movie_details_cubit_states.dart';
+
+import '../../main_layer/tabs/profileTab/model/network/watch_list_and_history_movies_api.dart';
 
 class MovieDetailsCubit extends Cubit<MovieDetailsCubitStates> {
   MovieDetailsCubit() : super(MovieDetailsInitialState());

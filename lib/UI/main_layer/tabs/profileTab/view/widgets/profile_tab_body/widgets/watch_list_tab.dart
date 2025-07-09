@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
 
-import '../../../../../../../core/utils/app_assets.dart';
-import '../../../../../../movieDetails/model/movie_details_model.dart';
-import '../../../../../../widgets/movie_card.dart';
+import '../../../../../../../../core/utils/app_assets.dart';
+import '../../../../../../../widgets/movie_card.dart';
+import '../../../../model/models/get_favourite_movies_response_model.dart';
+import '../../../../view_model/providers/profile_tab_provider.dart';
 
-class HistoryTab extends StatelessWidget {
-  const HistoryTab({super.key});
+class WatchListTab extends StatelessWidget {
+  const WatchListTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<MovieDetails>? allWatchedMovies =
-        context.watch<ProfileTabProvider>().watchedMovies;
-    return allWatchedMovies?.isEmpty == true || allWatchedMovies == null
+    List<FavouriteMovie>? favouriteMovies =
+        context.watch<ProfileTabProvider>().favouriteMovies;
+    return favouriteMovies?.isEmpty == true || favouriteMovies == null
         ? Center(
             child: Image.asset(
               AppAssets.emptyList,
@@ -23,7 +23,7 @@ class HistoryTab extends StatelessWidget {
             ),
           )
         : GridView.builder(
-            itemCount: allWatchedMovies.length,
+            itemCount: favouriteMovies.length,
             padding: EdgeInsets.symmetric(horizontal: 16.r)
                 .copyWith(top: 24.r, bottom: 90.r),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -33,9 +33,9 @@ class HistoryTab extends StatelessWidget {
                 crossAxisSpacing: 16.r),
             itemBuilder: (context, index) {
               return MovieCard(
-                imagePath: allWatchedMovies[index].largeCoverImage ?? '',
-                movieId: allWatchedMovies[index].imdbCode,
-                rating: allWatchedMovies[index].rating,
+                imagePath: favouriteMovies[index].imageURL ?? '',
+                movieId: favouriteMovies[index].movieId,
+                rating: favouriteMovies[index].rating,
               );
             },
           );

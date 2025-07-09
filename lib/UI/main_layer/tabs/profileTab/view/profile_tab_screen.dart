@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/providers/profile_tab_provider.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/widgets/profile_tab_body/profile_tab_body.dart';
-import 'package:movies_app/UI/main_layer/tabs/profileTab/widgets/profile_tab_header/profile_tab_header.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/view/widgets/profile_tab_body/profile_tab_body.dart';
+import 'package:movies_app/UI/main_layer/tabs/profileTab/view/widgets/profile_tab_header/profile_tab_header.dart';
 import 'package:movies_app/core/extentions/context_extention.dart';
 
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/custom_text_styles.dart';
-import '../../../../main.dart';
-import '../../../movieDetails/model/movie_details_model.dart';
-import 'models/get_favourite_movies_response_model.dart';
-import 'models/profile_response_model.dart';
+import '../../../../../core/utils/app_assets.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/custom_text_styles.dart';
+import '../../../../../main.dart';
+import '../../../../movieDetails/model/movie_details_model.dart';
+import '../model/models/get_favourite_movies_response_model.dart';
+import '../model/models/profile_response_model.dart';
+import '../view_model/providers/profile_tab_provider.dart';
 
 class ProfileTabScreen extends StatefulWidget {
   const ProfileTabScreen({super.key});
@@ -116,7 +116,7 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => _barHeight;
 
   @override
-  double get maxExtent => _barHeight+1.h;
+  double get maxExtent => _barHeight + 1.h;
 
   @override
   Widget build(
@@ -127,15 +127,15 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
     return Container(
       decoration: isPinned
           ? BoxDecoration(
-        color: AppColors.black2,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            offset: Offset(0, 10),
-            blurRadius: 4,
-          )
-        ],
-      )
+              color: AppColors.black2,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  offset: Offset(0, 10),
+                  blurRadius: 4,
+                )
+              ],
+            )
           : BoxDecoration(color: AppColors.black2),
       padding: EdgeInsets.only(top: isPinned ? 0.r : topLift),
       child: SafeArea(
