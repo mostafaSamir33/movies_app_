@@ -56,11 +56,22 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                 child: BlocBuilder<SearchMoviesCubit, SearchMoviesState>(
                   builder: (context, state) {
                     if (!hasSearched) {
-                      return Center(
-                        child: Image.asset(
-                          AppAssets.empty,
-                          width: 110.w,
-                          fit: BoxFit.contain,
+                      return SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 300.h),
+                            Center(
+                              child: Image.asset(
+                                AppAssets.empty,
+                                width: 110.w,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     } else if (state is SearchLoading) {
