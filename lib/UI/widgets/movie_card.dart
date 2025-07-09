@@ -68,7 +68,7 @@ class MovieCard extends StatelessWidget {
                     color: Colors.black.withOpacity(0.6),
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: rating == null
+                  child: rating == null || rating == 0
                       ? SizedBox()
                       : Row(
                           children: [

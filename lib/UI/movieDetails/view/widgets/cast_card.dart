@@ -22,7 +22,7 @@ class CastCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.grey, borderRadius: BorderRadius.circular(16.r)),
       child: Row(
-        spacing: 10,
+        spacing: 10.w,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
@@ -41,7 +41,7 @@ class CastCard extends StatelessWidget {
           ),
           Expanded(
             child: Column(
-              spacing: 5,
+              spacing: 5.h,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(

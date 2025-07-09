@@ -13,8 +13,9 @@ class GenersSectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(geners);
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.0.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,10 +35,11 @@ class GenersSectionView extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 16.w,
-                mainAxisSpacing: 10.h,
-                childAspectRatio: 3),
+              crossAxisCount: 3,
+              crossAxisSpacing: 16.w,
+              mainAxisSpacing: 10.h,
+              childAspectRatio: 3,
+            ),
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
                 Navigator.of(context)
@@ -46,15 +48,17 @@ class GenersSectionView extends StatelessWidget {
                 currentIndex.value = 2;
               },
               child: Container(
-                height: 40.h,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                padding: EdgeInsets.symmetric(vertical: 8.h),
                 decoration: BoxDecoration(
                   color: AppColors.grey,
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Center(
                   child: Text(
-                    geners?[index] ?? '',
+                    geners?[index].trim() ?? '',
+                    softWrap: false,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
