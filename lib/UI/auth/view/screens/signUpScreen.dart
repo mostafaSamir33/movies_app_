@@ -219,7 +219,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         if (formKey.currentState!.validate()) {
                           context.read<AuthCubit>().register(
                                 nameController.text.trim(),
-                                emailController.text.trim(),
+                                emailController.text.trim().toLowerCase(),
                                 passwordController.text.trim(),
                                 confirmPasswordController.text.trim(),
                                 phoneController.text.trim(),
