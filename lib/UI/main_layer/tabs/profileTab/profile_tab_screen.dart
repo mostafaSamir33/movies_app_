@@ -101,97 +101,6 @@ class _ProfileTabScreenState extends State<ProfileTabScreen>
   }
 }
 
-// class _TabBarDelegate extends SliverPersistentHeaderDelegate {
-//   final TabController controller;
-
-//   _TabBarDelegate(this.controller);
-
-//   static final double _maxBarHeight = 130.h;
-//   static final double _minBarHeight = 100.h;
-//   final double _safeInset = WidgetsBinding.instance.window.padding.top /
-//       WidgetsBinding.instance.window.devicePixelRatio;
-
-//   static final double _gap = 3.h;
-
-//   @override
-//   double get minExtent => _minBarHeight;
-
-//   @override
-//   double get maxExtent => _maxBarHeight;
-
-//   @override
-//   Widget build(
-//       BuildContext context, double shrinkOffset, bool overlapsContent) {
-//     final double topLift = (_safeInset - shrinkOffset).clamp(0.0, _safeInset);
-//     final bool isPinned = shrinkOffset >= _safeInset;
-
-//     return Container(
-//       decoration: isPinned
-//           ? BoxDecoration(
-//               color: AppColors.black2,
-//               boxShadow: [
-//                 BoxShadow(
-//                   color: Colors.black.withOpacity(0.3),
-//                   offset: Offset(0, 10),
-//                   blurRadius: 4,
-//                 )
-//               ],
-//             )
-//           : BoxDecoration(color: AppColors.black2),
-//       padding: EdgeInsets.only(top: isPinned ? 0.r : topLift),
-//       child: SafeArea(
-//         top: isPinned,
-//         bottom: false,
-//         child: Padding(
-//           padding: EdgeInsets.only(bottom: _gap),
-//           child: TabBar(
-//             controller: controller,
-//             indicatorWeight: 3.r,
-//             indicatorColor: AppColors.yellow,
-//             indicatorSize: TabBarIndicatorSize.tab,
-//             dividerColor: Colors.transparent,
-//             labelStyle: CustomTextStyles.style20w400
-//                 .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
-//             unselectedLabelStyle: CustomTextStyles.style20w400
-//                 .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
-//             tabs: [
-//               Padding(
-//                 padding: EdgeInsets.only(bottom: 6.r),
-//                 child: Tab(
-//                   text: context.getLocalization().watchList,
-//                   iconMargin: EdgeInsets.only(bottom: 6.r),
-//                   icon: SvgPicture.asset(
-//                     AppAssets.watchListIcon,
-//                     height: 24.h,
-//                     width: 38.w,
-//                   ),
-//                 ),
-//               ),
-//               Padding(
-//                 padding: EdgeInsets.only(bottom: 6.r),
-//                 child: Tab(
-//                   text: context.getLocalization().history,
-//                   iconMargin: EdgeInsets.only(bottom: 6.r),
-//                   icon: SvgPicture.asset(
-//                     AppAssets.historyIcon,
-//                     height: 30.h,
-//                     width: 36.w,
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   @override
-//   bool shouldRebuild(covariant _TabBarDelegate oldDelegate) {
-//     return false;
-//   }
-// }
-
 class _TabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabController controller;
 
@@ -202,6 +111,8 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
   final double _safeInset = WidgetsBinding.instance.window.padding.top /
       WidgetsBinding.instance.window.devicePixelRatio;
 
+  static final double _gap = 3.h;
+
   @override
   double get minExtent => _minBarHeight;
 
@@ -211,32 +122,30 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    final double offset = shrinkOffset.clamp(0.0, maxExtent - minExtent);
-    final double visibleHeight = maxExtent - offset;
-    final bool isPinned = visibleHeight <= minExtent;
+    final double topLift = (_safeInset - shrinkOffset).clamp(0.0, _safeInset);
+    final bool isPinned = shrinkOffset >= _safeInset;
 
-    return SizedBox(
-      height: visibleHeight,
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.black2,
-          boxShadow: isPinned
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    offset: const Offset(0, 10),
-                    blurRadius: 4,
-                  )
-                ]
-              : null,
-        ),
-        child: SafeArea(
-          top: isPinned,
-          bottom: false,
+    return Container(
+      decoration: isPinned
+          ? BoxDecoration(
+              color: AppColors.black2,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  offset: Offset(0, 10),
+                  blurRadius: 4,
+                )
+              ],
+            )
+          : BoxDecoration(color: AppColors.black2),
+      padding: EdgeInsets.only(top: isPinned ? 0.r : topLift),
+      child: SafeArea(
+        top: isPinned,
+        bottom: false,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: _gap),
           child: TabBar(
             controller: controller,
-            physics: const NeverScrollableScrollPhysics(),
-            // ... باقي خصائص التاب بار
             indicatorWeight: 3.r,
             indicatorColor: AppColors.yellow,
             indicatorSize: TabBarIndicatorSize.tab,
@@ -279,6 +188,97 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant _TabBarDelegate oldDelegate) {
-    return controller != oldDelegate.controller;
+    return false;
   }
 }
+//////////
+// class _TabBarDelegate extends SliverPersistentHeaderDelegate {
+//   final TabController controller;
+//
+//   _TabBarDelegate(this.controller);
+//
+//   static final double _maxBarHeight = 130.h;
+//   static final double _minBarHeight = 100.h+20.h;
+//   final double _safeInset = WidgetsBinding.instance.window.padding.top /
+//       WidgetsBinding.instance.window.devicePixelRatio;
+//
+//   @override
+//   double get minExtent => _minBarHeight;
+//
+//   @override
+//   double get maxExtent => _maxBarHeight;
+//
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     final double offset = shrinkOffset.clamp(0.0, maxExtent - minExtent);
+//     final double visibleHeight = maxExtent - offset;
+//     final bool isPinned = visibleHeight <= minExtent;
+//
+//     return SizedBox(
+//       height: visibleHeight,
+//       child: Container(
+//         decoration: BoxDecoration(
+//           color: AppColors.black2,
+//           boxShadow: isPinned
+//               ? [
+//                   BoxShadow(
+//                     color: Colors.black.withOpacity(0.3),
+//                     offset: const Offset(0, 10),
+//                     blurRadius: 4,
+//                   )
+//                 ]
+//               : null,
+//         ),
+//         child: SafeArea(
+//           top: isPinned,
+//           bottom: false,
+//           child: TabBar(
+//             controller: controller,
+//             physics: const NeverScrollableScrollPhysics(),
+//             // ... باقي خصائص التاب بار
+//             indicatorWeight: 3.r,
+//             indicatorColor: AppColors.yellow,
+//             indicatorSize: TabBarIndicatorSize.tab,
+//             dividerColor: Colors.transparent,
+//             labelStyle: CustomTextStyles.style20w400
+//                 .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
+//             unselectedLabelStyle: CustomTextStyles.style20w400
+//                 .copyWith(color: AppColors.white, fontFamily: 'Roboto'),
+//             tabs: [
+//               Padding(
+//                 padding: EdgeInsets.only(bottom: 6.r),
+//                 child: Tab(
+//                   text: context.getLocalization().watchList,
+//                   iconMargin: EdgeInsets.only(bottom: 6.r),
+//                   icon: SvgPicture.asset(
+//                     AppAssets.watchListIcon,
+//                     height: 24.h,
+//                     width: 38.w,
+//                   ),
+//                 ),
+//               ),
+//               Padding(
+//                 padding: EdgeInsets.only(bottom: 6.r),
+//                 child: Tab(
+//                   text: context.getLocalization().history,
+//                   iconMargin: EdgeInsets.only(bottom: 6.r),
+//                   icon: SvgPicture.asset(
+//                     AppAssets.historyIcon,
+//                     height: 30.h,
+//                     width: 36.w,
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//
+//   @override
+//   bool shouldRebuild(covariant _TabBarDelegate oldDelegate) {
+//     return controller != oldDelegate.controller;
+//   }
+// }

@@ -69,7 +69,7 @@ class MovieCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: rating == null || rating == 0
-                      ? SizedBox()
+                      ? SizedBox.shrink()
                       : Row(
                           children: [
                             Text(
