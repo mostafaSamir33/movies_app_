@@ -13,7 +13,6 @@ class GenersSectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(geners);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0.w),
       child: Column(

@@ -45,7 +45,7 @@ class ExploreMoviesCubit extends Cubit<ExploreMoviesState> {
 
   Future<void> fetchMovies(String genre) async {
     selectedGenre = genre;
-    print('Fetching movies for genre: $selectedGenre, page: $page');
+
     if (movies.isEmpty) {
       emit(ExploreMoviesLoading());
     }

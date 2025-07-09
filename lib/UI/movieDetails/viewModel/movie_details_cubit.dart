@@ -14,7 +14,6 @@ class MovieDetailsCubit extends Cubit<MovieDetailsCubitStates> {
       MovieDetails? movie = await MovieDetailsApi.getMovieDetails(movieId);
       isMarked =
           await WatchListAndHistoryMoviesApi.movieIsFav(movieId, context);
-      print('cubit: $isMarked');
       if (movie == null) {
         emit(MovieDetailsFailureState(message: 'something went wrong'));
       }

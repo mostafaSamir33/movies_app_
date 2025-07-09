@@ -23,7 +23,6 @@ class SearchMoviesCubit extends Cubit<SearchMoviesState> {
   }
 
   Future<void> searchMovies() async {
-    print('Searching for: ${searchController.text}');
     if (searchController.text.trim().isEmpty) return;
     if (movies.isEmpty) {
       emit(SearchLoading());
@@ -34,7 +33,6 @@ class SearchMoviesCubit extends Cubit<SearchMoviesState> {
               [];
 
       movies.addAll(result);
-      print('Search result: ${movies.length} movies found');
       if (movies.isEmpty) {
         emit(SearchEmpty());
         return;

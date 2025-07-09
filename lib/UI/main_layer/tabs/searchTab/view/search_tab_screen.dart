@@ -94,7 +94,6 @@ class _SearchTabScreenState extends State<SearchTabScreen> {
                         state is GetMoreMoviesLoadingState) {
                       final List<Movies> movies =
                           context.watch<SearchMoviesCubit>().movies;
-                      print('Movies count: ${movies.length}');
                       return GridView.builder(
                         controller:
                             context.read<SearchMoviesCubit>().scrollController,

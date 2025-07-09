@@ -8,7 +8,6 @@ import 'package:movies_app/UI/main_layer/tabs/searchTab/view/search_tab_screen.d
 import 'package:movies_app/UI/main_layer/tabs/searchTab/view_model/search_movies_cubit.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
-import 'package:provider/provider.dart';
 
 final ValueNotifier<int> currentIndex = ValueNotifier<int>(0);
 
