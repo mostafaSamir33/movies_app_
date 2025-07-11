@@ -27,8 +27,6 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   TextEditingController newPasswordController = TextEditingController();
 
-
-
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -49,9 +47,13 @@ class _ResetPasswordState extends State<ResetPassword> {
           key: formKey,
           child: ListView(
             children: [
-              Image(
-                image: AssetImage(AppAssets.forgetPassword),
-                fit: BoxFit.cover,
+              SizedBox(
+                width: 430.w,
+                height: 430.h,
+                child: Image(
+                  image: AssetImage(AppAssets.forgetPassword),
+                  fit: BoxFit.cover,
+                ),
               ),
               CustomTextFormFieldAuth(
                 hintText: context.getLocalization().oldPasswordHint,
