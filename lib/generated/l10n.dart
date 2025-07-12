@@ -18,8 +18,10 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -62,12 +66,7 @@ class S {
 
   /// `Login`
   String get login {
-    return Intl.message(
-      'Login',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Login', name: 'login', desc: '', args: []);
   }
 
   /// `Login With Google`
@@ -92,72 +91,37 @@ class S {
 
   /// `Create One`
   String get createOne {
-    return Intl.message(
-      'Create One',
-      name: 'createOne',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Create One', name: 'createOne', desc: '', args: []);
   }
 
   /// `Or`
   String get or {
-    return Intl.message(
-      'Or',
-      name: 'or',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Or', name: 'or', desc: '', args: []);
   }
 
   /// `Register`
   String get register {
-    return Intl.message(
-      'Register',
-      name: 'register',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Register', name: 'register', desc: '', args: []);
   }
 
   /// `Avatar`
   String get avatar {
-    return Intl.message(
-      'Avatar',
-      name: 'avatar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Avatar', name: 'avatar', desc: '', args: []);
   }
 
   /// `Name`
   String get nameHint {
-    return Intl.message(
-      'Name',
-      name: 'nameHint',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Name', name: 'nameHint', desc: '', args: []);
   }
 
   /// `Email`
   String get emailHint {
-    return Intl.message(
-      'Email',
-      name: 'emailHint',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Email', name: 'emailHint', desc: '', args: []);
   }
 
   /// `Password`
   String get passwordHint {
-    return Intl.message(
-      'Password',
-      name: 'passwordHint',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Password', name: 'passwordHint', desc: '', args: []);
   }
 
   /// `Confirm Password`
@@ -172,12 +136,7 @@ class S {
 
   /// `Phone Number`
   String get phoneHint {
-    return Intl.message(
-      'Phone Number',
-      name: 'phoneHint',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Phone Number', name: 'phoneHint', desc: '', args: []);
   }
 
   /// `Create Account`
@@ -422,22 +381,12 @@ class S {
 
   /// `search`
   String get search {
-    return Intl.message(
-      'search',
-      name: 'search',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('search', name: 'search', desc: '', args: []);
   }
 
   /// `Pick Avatar`
   String get pickAvatar {
-    return Intl.message(
-      'Pick Avatar',
-      name: 'pickAvatar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Pick Avatar', name: 'pickAvatar', desc: '', args: []);
   }
 
   /// `Delete Account`
@@ -462,22 +411,12 @@ class S {
 
   /// `No`
   String get no {
-    return Intl.message(
-      'No',
-      name: 'no',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No', name: 'no', desc: '', args: []);
   }
 
   /// `Yes`
   String get yes {
-    return Intl.message(
-      'Yes',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Yes', name: 'yes', desc: '', args: []);
   }
 
   /// `Profile deleted successfully`
@@ -512,32 +451,17 @@ class S {
 
   /// `Update Data`
   String get updateData {
-    return Intl.message(
-      'Update Data',
-      name: 'updateData',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Update Data', name: 'updateData', desc: '', args: []);
   }
 
   /// `Wish List`
   String get wishList {
-    return Intl.message(
-      'Wish List',
-      name: 'wishList',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Wish List', name: 'wishList', desc: '', args: []);
   }
 
   /// `History`
   String get history {
-    return Intl.message(
-      'History',
-      name: 'history',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('History', name: 'history', desc: '', args: []);
   }
 
   /// `Edit Profile`
@@ -552,42 +476,22 @@ class S {
 
   /// `Exit`
   String get exit {
-    return Intl.message(
-      'Exit',
-      name: 'exit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Exit', name: 'exit', desc: '', args: []);
   }
 
   /// `Watch List`
   String get watchList {
-    return Intl.message(
-      'Watch List',
-      name: 'watchList',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Watch List', name: 'watchList', desc: '', args: []);
   }
 
   /// `User Name`
   String get userName {
-    return Intl.message(
-      'User Name',
-      name: 'userName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('User Name', name: 'userName', desc: '', args: []);
   }
 
   /// `Action`
   String get genreAction {
-    return Intl.message(
-      'Action',
-      name: 'genreAction',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Action', name: 'genreAction', desc: '', args: []);
   }
 
   /// `Adventure`
@@ -622,22 +526,12 @@ class S {
 
   /// `Comedy`
   String get genreComedy {
-    return Intl.message(
-      'Comedy',
-      name: 'genreComedy',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Comedy', name: 'genreComedy', desc: '', args: []);
   }
 
   /// `Crime`
   String get genreCrime {
-    return Intl.message(
-      'Crime',
-      name: 'genreCrime',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Crime', name: 'genreCrime', desc: '', args: []);
   }
 
   /// `Documentary`
@@ -652,112 +546,57 @@ class S {
 
   /// `Drama`
   String get genreDrama {
-    return Intl.message(
-      'Drama',
-      name: 'genreDrama',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Drama', name: 'genreDrama', desc: '', args: []);
   }
 
   /// `Family`
   String get genreFamily {
-    return Intl.message(
-      'Family',
-      name: 'genreFamily',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Family', name: 'genreFamily', desc: '', args: []);
   }
 
   /// `Fantasy`
   String get genreFantasy {
-    return Intl.message(
-      'Fantasy',
-      name: 'genreFantasy',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Fantasy', name: 'genreFantasy', desc: '', args: []);
   }
 
   /// `Film-Noir`
   String get genreFilmNoir {
-    return Intl.message(
-      'Film-Noir',
-      name: 'genreFilmNoir',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Film-Noir', name: 'genreFilmNoir', desc: '', args: []);
   }
 
   /// `Game-Show`
   String get genreGameShow {
-    return Intl.message(
-      'Game-Show',
-      name: 'genreGameShow',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Game-Show', name: 'genreGameShow', desc: '', args: []);
   }
 
   /// `History`
   String get genreHistory {
-    return Intl.message(
-      'History',
-      name: 'genreHistory',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('History', name: 'genreHistory', desc: '', args: []);
   }
 
   /// `Horror`
   String get genreHorror {
-    return Intl.message(
-      'Horror',
-      name: 'genreHorror',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Horror', name: 'genreHorror', desc: '', args: []);
   }
 
   /// `Music`
   String get genreMusic {
-    return Intl.message(
-      'Music',
-      name: 'genreMusic',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Music', name: 'genreMusic', desc: '', args: []);
   }
 
   /// `Musical`
   String get genreMusical {
-    return Intl.message(
-      'Musical',
-      name: 'genreMusical',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Musical', name: 'genreMusical', desc: '', args: []);
   }
 
   /// `Mystery`
   String get genreMystery {
-    return Intl.message(
-      'Mystery',
-      name: 'genreMystery',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mystery', name: 'genreMystery', desc: '', args: []);
   }
 
   /// `News`
   String get genreNews {
-    return Intl.message(
-      'News',
-      name: 'genreNews',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('News', name: 'genreNews', desc: '', args: []);
   }
 
   /// `Reality-TV`
@@ -772,152 +611,77 @@ class S {
 
   /// `Romance`
   String get genreRomance {
-    return Intl.message(
-      'Romance',
-      name: 'genreRomance',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Romance', name: 'genreRomance', desc: '', args: []);
   }
 
   /// `Sci-Fi`
   String get genreSciFi {
-    return Intl.message(
-      'Sci-Fi',
-      name: 'genreSciFi',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sci-Fi', name: 'genreSciFi', desc: '', args: []);
   }
 
   /// `Short`
   String get genreShort {
-    return Intl.message(
-      'Short',
-      name: 'genreShort',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Short', name: 'genreShort', desc: '', args: []);
   }
 
   /// `Sport`
   String get genreSport {
-    return Intl.message(
-      'Sport',
-      name: 'genreSport',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sport', name: 'genreSport', desc: '', args: []);
   }
 
   /// `Talk-Show`
   String get genreTalkShow {
-    return Intl.message(
-      'Talk-Show',
-      name: 'genreTalkShow',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Talk-Show', name: 'genreTalkShow', desc: '', args: []);
   }
 
   /// `Thriller`
   String get genreThriller {
-    return Intl.message(
-      'Thriller',
-      name: 'genreThriller',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Thriller', name: 'genreThriller', desc: '', args: []);
   }
 
   /// `War`
   String get genreWar {
-    return Intl.message(
-      'War',
-      name: 'genreWar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('War', name: 'genreWar', desc: '', args: []);
   }
 
   /// `Western`
   String get genreWestern {
-    return Intl.message(
-      'Western',
-      name: 'genreWestern',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Western', name: 'genreWestern', desc: '', args: []);
   }
 
   /// `See More`
   String get seeMore {
-    return Intl.message(
-      'See More',
-      name: 'seeMore',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('See More', name: 'seeMore', desc: '', args: []);
   }
 
   /// `Summary`
   String get summary {
-    return Intl.message(
-      'Summary',
-      name: 'summary',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Summary', name: 'summary', desc: '', args: []);
   }
 
   /// `Genres`
   String get geners {
-    return Intl.message(
-      'Genres',
-      name: 'geners',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Genres', name: 'geners', desc: '', args: []);
   }
 
   /// `Cast`
   String get cast {
-    return Intl.message(
-      'Cast',
-      name: 'cast',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cast', name: 'cast', desc: '', args: []);
   }
 
   /// `Similar`
   String get similar {
-    return Intl.message(
-      'Similar',
-      name: 'similar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Similar', name: 'similar', desc: '', args: []);
   }
 
   /// `Screenshots`
   String get screenshots {
-    return Intl.message(
-      'Screenshots',
-      name: 'screenshots',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Screenshots', name: 'screenshots', desc: '', args: []);
   }
 
   /// `Watch`
   String get watch {
-    return Intl.message(
-      'Watch',
-      name: 'watch',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Watch', name: 'watch', desc: '', args: []);
   }
 
   /// `No Character Available`
@@ -962,32 +726,17 @@ class S {
 
   /// `Character:`
   String get character {
-    return Intl.message(
-      'Character:',
-      name: 'character',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Character:', name: 'character', desc: '', args: []);
   }
 
   /// `Name:`
   String get name {
-    return Intl.message(
-      'Name:',
-      name: 'name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Name:', name: 'name', desc: '', args: []);
   }
 
   /// `No Movies!`
   String get nomovies {
-    return Intl.message(
-      'No Movies!',
-      name: 'nomovies',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No Movies!', name: 'nomovies', desc: '', args: []);
   }
 
   /// `You Are Going To Watch The Movie`
