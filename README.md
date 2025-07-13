@@ -4,6 +4,13 @@ A Responsive Flutter-based movies application supporting **English and Arabic**,
 
 ---
 
+## 📹 App Demo: How Movies App Works
+- watch this video:
+
+https://www.loom.com/share/a4a8296fe7db4c3195e02fe6a6b7b532?sid=6b837b11-bcbe-403b-81ed-e43327c5d9a5
+
+---
+
 ## 🚀 Features
 
 - 👋 Onboarding flow for new users
