@@ -2,6 +2,10 @@
 
 A Responsive Flutter-based movies application supporting **English and Arabic**, with login and register , onboarding, and rich movie browsing features.
 
+<p align="center">
+  <img src="screenShots/cover" alt="cover" width="200" hspace="10" />
+</p>
+
 ---
 
 ## 📹 App Demo: How Movies App Works
